@@ -22,7 +22,8 @@ dotenv.config();
 
 
 app.use(express.json());
-app.use(bodyParser.text({ type: '/' }));
+app.use(bodyParser.urlencoded({ extended: true }));
+const multerParser = bodyParser.text({ type: '/' });
 app.use(express.static(path.join(__dirname, 'assets')));
 
 app.set('view engine', 'ejs');
@@ -139,7 +140,7 @@ passport.use(new LocalStrategy({
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT,
     clientSecret: process.env.GOOGLE_SECRET,
-    callbackURL: 'http://127.0.0.1/auth/google/callback',
+    callbackURL: 'https://127.0.0.1/auth/google/callback',
 },
     async (accessToken, refreshToken, profile, done) => {
         try {
@@ -201,6 +202,7 @@ app.post('/register', async (req, res) => {
             res.redirect('/')
         }
     } catch (error) {
+        console.log(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
@@ -359,7 +361,7 @@ app.get('/account/server/:id/edit', isAuthenticated, (req, res) => {
     });
 });
 
-app.post('/account/server/:id/edit', isAuthenticated, upload.fields([{ name: 'banner', maxCount: 1 }, { name: 'illustrations', maxCount: 6 }]), (req, res) => {
+app.post('/account/server/:id/edit', isAuthenticated, multerParser, upload.fields([{ name: 'banner', maxCount: 1 }, { name: 'illustrations', maxCount: 6 }]), (req, res) => {
     let banner = 'default-server-picture.gif';
     if (req.files['banner']) banner = req.files['banner'][0].filename;
     let { title, description, mode, version, license, website, premium_color } = req.body;
