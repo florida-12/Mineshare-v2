@@ -349,7 +349,7 @@ app.get('/account/server/:id/edit', isAuthenticated, (req, res) => {
                         console.error(err);
                         return res.status(500).send('Internal Server Error');
                     }
-    
+
                     res.render('server-edit', { servers: server.rows, tags: tags.rows, server_tags: server_tags.rows });
                 });
             });
@@ -471,13 +471,53 @@ app.get('/server/:id', (req, res) => {
 app.get('/tournaments/bedwars', (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
-    res.render('bedwars', { user: req.user, footer: footer_html});
+    res.render('bedwars', { user: req.user, footer: footer_html });
 });
 
 app.get('/shop', (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
-    
-    res.render('shop', { user: req.user, footer: footer_html});
+
+    res.render('shop', { user: req.user, footer: footer_html });
+});
+
+app.get('/terms', (req, res) => {
+    if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
+
+    const pdfFilePath = path.join(__dirname, 'views/terms.pdf');
+
+    const options = {
+        headers: {
+            'Content-Disposition': 'inline; filename="terms.pdf"',
+            'Content-Type': 'application/pdf',
+        },
+    };
+
+    res.sendFile(pdfFilePath, options, (err) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send('Internal Server Error');
+        }
+    });
+});
+
+app.get('/privacy', (req, res) => {
+    if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
+
+    const pdfFilePath = path.join(__dirname, 'views/privacy.pdf');
+
+    const options = {
+        headers: {
+            'Content-Disposition': 'inline; filename="privacy.pdf"',
+            'Content-Type': 'application/pdf',
+        },
+    };
+
+    res.sendFile(pdfFilePath, options, (err) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send('Internal Server Error');
+        }
+    });
 });
 
 
