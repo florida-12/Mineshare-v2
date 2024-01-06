@@ -522,7 +522,19 @@ app.get('/privacy', (req, res) => {
 
 app.get('/obs/bedwars/4x2', (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
-    res.send('[{"username":"Steve","hp":12,"skin":"d3c2d352-9f94-4a13-9c4d-7a7fbfbad2a4"},{"username":"Alex","hp":5,"skin":"b6a8558e-6109-4c6d-a6e0-1e751f003157"},{"username":"Notch","hp":9,"skin":"f036b2f3-70f5-4393-a6be-39d97b95a3c2"},{"username":"Herobrine","hp":3,"skin":"83b06c69-4c88-4c49-9c63-c8ae0a7e5c64"},{"username":"Creeper","hp":17,"skin":"295e0811-1e60-4bb1-912e-1705410d46f8"},{"username":"Enderman","hp":10,"skin":"a4f9c64d-6b84-4f08-8836-2b60c3e1b769"},{"username":"Zombie","hp":7,"skin":"7a70be71-9746-405c-b5b4-12e7dbdcdf7c"},{"username":"Skeleton","hp":14,"skin":"e567297d-173f-4a22-b86b-bdfc0af7d62c"}]');
+
+    const jsonData = [
+        { username: 'SteveBomb', hp: Math.floor(Math.random() * 21)},
+        { username: 'Alexa500', hp: Math.floor(Math.random() * 21)},
+        { username: 'Lololo228', hp: Math.floor(Math.random() * 21)},
+        { username: 'Creeper44', hp: Math.floor(Math.random() * 21)},
+        { username: 'li_88888888', hp: Math.floor(Math.random() * 21)},
+        { username: 'TurboTurbo', hp: Math.floor(Math.random() * 21)},
+        { username: 'MarkusHOPE', hp: Math.floor(Math.random() * 21)},
+        { username: 'PedroRemond', hp: Math.floor(Math.random() * 21)}
+      ];
+    
+      res.send(jsonData);
 });
 
 
