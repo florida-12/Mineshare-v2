@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="DLNWD4pudytDWciFfuuFNl1_BPFJm4Wxhv67aBbJSzY" />
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="/css/styles.css" media="screen,projection">
+
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/tt-norms-medium" type="text/css">
+    <link href="https://fonts.cdnfonts.com/css/tt-norms-pro" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://mineshare.top/">
+    <meta name="robots" content="index, follow" />
+
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/minecraft" type="text/css" />
+
+    <link rel="icon" href="/img/favicon.png">
+    <title>Сервера майнкрафт - мониторинг, статистика, рейтинг серверов Minecraft.</title>
+
+    <meta name="description"
+        content="Мониторинг серверов майнкрафт с честной рейтинговой системой, удобными фильтрами и с отзывчивой администрацией! С нашей гибкой системой добавления проектов, вы сможете быстро и легко настроить ваш сервер для его быстрой раскрутки и дальнейшего продвижения. Mineshare - это быстро, легко, а самое главное - качественно!">
+    <meta name="og:description"
+        content="Мониторинг серверов майнкрафт с честной рейтинговой системой, удобными фильтрами и с отзывчивой администрацией! С нашей гибкой системой добавления проектов, вы сможете быстро и легко настроить ваш сервер для его быстрой раскрутки и дальнейшего продвижения. Mineshare - это быстро, легко, а самое главное - качественно!">
+    <meta name="keywords"
+        content="сервера майнкрафт, майнкрафт, мониторинг, сервер, поиск, поиск серверов, список серверов, сервер майнкрафт, minecraft, мониторинг серверов, ip адреса, сервера minecraft, айпи серверов, топ, список, лучшие сервера, рейтинг">
+    <meta property="og:image" content="https://mineshare.top/assets/img/mineshare-wallpaper-winter.png">
+    <meta property="og:url" content="https://mineshare.top/">
+</head>
+
+<body>
+
+    <div class="container nav-container nav-margin">
+        <div class="row nav-wrapper">
+            <a href="/" class="col l3 brand-logo text-color-black nav-logo left">Mineshare</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger hide-on-med-and-up"><i
+                    class="material-icons">menu</i></a>
+            <div class="col l6 container center hide-on-med-and-down nav-selections">
+                <div class="row">
+                    <a class="col l3 nav-link nav-link-active nav-text" href="/"><span
+                            class="gradient-underline">Серверы</span></a>
+                    <a class="col l3 nav-link nav-text text-color-black" href="tournaments/bedwars">Турниры</a>
+                    <a class="col l3 nav-link nav-text text-color-black" href="shop">Магазин</a>
+                    <a class="col l3 nav-link nav-text text-color-black" href="news">Новости</a>
+                </div>
+            </div>
+            <% if (user) { %>
+                <a class="col l3 nav-text button-nav waves-effect waves-light btn modal-trigger right hide-on-small-and-down"
+                    href="/account">Кабинет</a>
+                <% } else { %>
+                    <a id="login-button"
+                        class="col l3 nav-text button-nav waves-effect waves-light btn modal-trigger right hide-on-small-and-down"
+                        href="#authorization">Войти</a>
+                    <% } %>
+
+                        <div onclick="window.open('https://discord.gg/c6uCxFWTxC','_blank');"
+                            class="nav-discord hide-on-med-and-down">
+                            <div
+                                style="width:50px;height:50px;position:absolute;top:50%;left:-10%;transform:translate(-50%,-50%);background:transparent;">
+                            </div>
+                            <svg width="256px" height="256px" viewBox="0 -28.5 256 256"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                preserveAspectRatio="xMidYMid">
+                                <g>
+                                    <path
+                                        d="M216.856339,16.5966031 C200.285002,8.84328665 182.566144,3.2084988 164.041564,0 C161.766523,4.11318106 159.108624,9.64549908 157.276099,14.0464379 C137.583995,11.0849896 118.072967,11.0849896 98.7430163,14.0464379 C96.9108417,9.64549908 94.1925838,4.11318106 91.8971895,0 C73.3526068,3.2084988 55.6133949,8.86399117 39.0420583,16.6376612 C5.61752293,67.146514 -3.4433191,116.400813 1.08711069,164.955721 C23.2560196,181.510915 44.7403634,191.567697 65.8621325,198.148576 C71.0772151,190.971126 75.7283628,183.341335 79.7352139,175.300261 C72.104019,172.400575 64.7949724,168.822202 57.8887866,164.667963 C59.7209612,163.310589 61.5131304,161.891452 63.2445898,160.431257 C105.36741,180.133187 151.134928,180.133187 192.754523,160.431257 C194.506336,161.891452 196.298154,163.310589 198.110326,164.667963 C191.183787,168.842556 183.854737,172.420929 176.223542,175.320965 C180.230393,183.341335 184.861538,190.991831 190.096624,198.16893 C211.238746,191.588051 232.743023,181.531619 254.911949,164.955721 C260.227747,108.668201 245.831087,59.8662432 216.856339,16.5966031 Z M85.4738752,135.09489 C72.8290281,135.09489 62.4592217,123.290155 62.4592217,108.914901 C62.4592217,94.5396472 72.607595,82.7145587 85.4738752,82.7145587 C98.3405064,82.7145587 108.709962,94.5189427 108.488529,108.914901 C108.508531,123.290155 98.3405064,135.09489 85.4738752,135.09489 Z M170.525237,135.09489 C157.88039,135.09489 147.510584,123.290155 147.510584,108.914901 C147.510584,94.5396472 157.658606,82.7145587 170.525237,82.7145587 C183.391518,82.7145587 193.761324,94.5189427 193.539891,108.914901 C193.539891,123.290155 183.391518,135.09489 170.525237,135.09489 Z"
+                                        fill="#7289da" fill-rule="nonzero"></path>
+                                </g>
+                            </svg>
+                        </div>
+        </div>
+    </div>
+    <ul class="sidenav center" id="mobile-demo">
+        <li><a class="nav-link nav-link-active nav-text" href="/"><span class="gradient-underline">Серверы</span></a>
+        </li>
+        <li><a class="nav-link nav-text text-color-black" href="shop">Магазин</a></li>
+        <li><a class="nav-link nav-text text-color-black" href="news">Новости</a></li>
+        <p class="nav-text" style="font-size: 10px;color: lightgray;">Вход в личный кабинет доступен<br>только в ПК
+            версии сайта!</p>
+    </ul>
+
+    <div id="snackbar">Ошибка</div>
+    <div id="snackbar2">Ошибка</div>
+    <div id="authorization" class="modal auth" style="width: 30%;">
+        <div class="modal-content container">
+            <div class="row">
+                <div class="col s12 auth-tabs">
+                    <ul class="tabs">
+                        <li class="tab col s6">
+                            <a id="swap-auth" class="active" href="#auth-container"></a>
+                        </li>
+                        <li class="tab col s6">
+                            <a id="swap-reg" href="#reg-container"></a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="auth-container" class="col s12">
+                    <div class="col l12 m12 s12">
+                        <form class="auth-form" action="/login" name="logForm" id="logForm" method="post">
+                            <div class="input-field input-auth">
+                                <input placeholder="Email" name="email" type="email" class="validate" required>
+                            </div>
+
+                            <div class="input-field input-auth">
+                                <input placeholder="Пароль" name="password" id="password" type="password"
+                                    class="validate" minlength="8" maxlength="30" required>
+                            </div>
+                            <p class="auth-recovery"><a href="">Забыли пароль?</a>
+                            </p>
+
+                            <div class="center div-complete-auth">
+                                <i id="alert_error_login" class="material-icons"
+                                    onclick="$('#logForm').submit();">cancel</i>
+                                <div id="alert_success_login" class="loader-1"><span></span></div>
+                                <input value="Войти" type="submit"
+                                    class="nav-text button-auth waves-effect waves-light btn">
+                            </div>
+
+                            <div class="google-auth" onclick="window.location = '/auth/google';"><img src="img/google.svg"><a>Продолжить с Google</a></div>
+                        </form>
+
+                        <p class="auth-change">Если у вас еще нет аккаунта, то вы можете<br> зарегистрироваться <a
+                                onclick="regTab()" class="auth-change-link">здесь!</a></p>
+                    </div>
+                </div>
+                <div id="reg-container" class="col l12 m12 s12">
+                    <div class="row" style="margin-bottom: 5px;">
+                        <form class="reg-form" action="/register" name="regForm" id="regForm" method="post">
+
+                            <div class="col l12 m12 s12">
+                                <div class="input-field input-reg">
+                                    <input placeholder="Email" id="email" name="email" type="email" class="validate"
+                                        required>
+                                </div>
+                            </div>
+
+                            <div class="col l12 m6 s12">
+                                <div class="input-field input-reg">
+                                    <input placeholder="Пароль" id="password" name="password" type="password"
+                                        class="validate" minlength="8" maxlength="30" required>
+                                </div>
+                            </div>
+
+                            <div class="col l12 m6 s12">
+                                <div class="input-field input-reg input-reg-last">
+                                    <input placeholder="Повтор пароля" id="password_repeat" name="password_repeat"
+                                        type="password" class="validate" minlength="8" maxlength="30" required>
+                                </div>
+                            </div>
+
+                            <div class="col l12 div-complete-reg center">
+                                <i id="alert_error" class="material-icons" onclick="$('#regForm').submit();">cancel</i>
+                                <div id="alert_success" class="loader-1"><span></span></div>
+                                <input onmouseenter="document.getElementById(this).focus();" value="Регистрация"
+                                    type="submit" class="nav-text button-reg waves-effect waves-light btn">
+
+                                <div class="google-auth" onclick="window.location = '/auth/google';"><img src="img/google.svg"><a>Продолжить с Google</a>
+                                </div>
+                            </div>
+
+                            <p class="reg-change">Уже есть аккаунт? <a onclick="authTab()"
+                                    class="auth-change-link">Авторизуйтесь!</a></p>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <% if (!user) { %>
+        <div id="welcome-servers" class="welcome-servers hide-on-small-only">
+            <div class="close-icon" onclick="$('#welcome-servers').fadeOut(200);">
+                <img src="img/close.svg">
+            </div>
+            <p>Привет&nbsp;&nbsp;<img
+                    src="https://em-content.zobj.net/thumbs/120/apple/325/waving-hand_1f44b.png"><br>Хочешь
+                добавить свой сервер?</p>
+            <div class="chip modal-trigger" href="#authorization" style="user-select:none;cursor:pointer;"
+                onclick="regTab();$('#welcome-servers').fadeOut(200);">Регистрация<i
+                    class="close material-icons">chevron_right</i></div>
+        </div>
+        <% } %>
+
+            <div class="party-container container hide-on-med-and-down">
+                <p class="tournament-subtitle"><span>—————</span> ТУРНИР <span>—————<br></span></p>
+                <p class="tournament-title"><span
+                        style="background: radial-gradient(circle at 10% 20%, rgb(238, 56, 56) 0%, rgba(206, 21, 0, 0.92) 90.1%);background-clip: text;-webkit-text-fill-color: transparent;color:#ff0033">BED</span>WARS
+                </p>
+                <p class="tournament-line"><span>—————</span>—————<span>—————<br></span></p>
+                <a class="party-button waves-effect waves-light btn" href="/tournaments/bedwars">Подробнее</a>
+            </div>
+
+            <div class="search-container container">
+                <div class="row">
+                    <div class="col l12 s12">
+                        <form action=""
+                            style="background:#fff;margin-right: -10px;margin-left: -10px;border-radius: 12px;box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.05);"
+                            method="get">
+                            <div class="input-field input-search">
+                                <input name="search" id="search" type="search" required>
+                                <label class="label-icon icon-search right" for="search"><i
+                                        class="material-icons">search</i></label>
+                            </div>
+                        </form>
+                    </div>
+                    <div style="margin-left: -10px;margin-right: -10px;">
+                        <div class="col l2 m4 s6">
+                            <form id="form_version" action="" method="get"><input id="get_version" name="version"
+                                    class="hidden">
+                                <ul id="dropdown-filter-version" class="dropdown-content">
+                                    <li
+                                        onclick="document.getElementById('get_version').value = '1.20';document.getElementById('form_version').submit();">
+                                        <a>1.20.X</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_version').value = '1.19';document.getElementById('form_version').submit();">
+                                        <a>1.19.X</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_version').value = '1.18';document.getElementById('form_version').submit();">
+                                        <a>1.18.X</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_version').value = '1.17';document.getElementById('form_version').submit();">
+                                        <a>1.17.X</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_version').value = '1.16';document.getElementById('form_version').submit();">
+                                        <a>1.16.X</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_version').value = '1.15';document.getElementById('form_version').submit();">
+                                        <a>1.15.X</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_version').value = '1.14';document.getElementById('form_version').submit();">
+                                        <a>1.14.X</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_version').value = '1.13';document.getElementById('form_version').submit();">
+                                        <a>1.13.X</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_version').value = '1.12';document.getElementById('form_version').submit();">
+                                        <a>1.12.X</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_version').value = '1.11';document.getElementById('form_version').submit();">
+                                        <a>1.11.X</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_version').value = '1.10';document.getElementById('form_version').submit();">
+                                        <a>1.10.X</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_version').value = '1.9';document.getElementById('form_version').submit();">
+                                        <a>1.9.X</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_version').value = '1.8';document.getElementById('form_version').submit();">
+                                        <a>1.8.X</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_version').value = '1.7';document.getElementById('form_version').submit();">
+                                        <a>1.7.X</a>
+                                    </li>
+                                </ul>
+                            </form>
+                            <div class="filter-version" onclick="openFilter('filter-version')">
+                                <a id="filter-version" class="dropdown-trigger"
+                                    data-target="dropdown-filter-version">Версия</a>
+                            </div>
+                        </div>
+                        <div class="col l2 m4 s6">
+                            <form id="form_mode" action="" method="get"><input id="get_mode" name="mode" class="hidden">
+                                <ul id="dropdown-filter-type" class="dropdown-content">
+                                    <li
+                                        onclick="document.getElementById('get_mode').value = 'VANILLA';document.getElementById('form_mode').submit();">
+                                        <a>Ванилла</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_mode').value = 'ANARCHY';document.getElementById('form_mode').submit();">
+                                        <a>Анархия</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_mode').value = 'MMORPG';document.getElementById('form_mode').submit();">
+                                        <a>MMO-RPG</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_mode').value = 'MINIGAMES';document.getElementById('form_mode').submit();">
+                                        <a>Мини-игры</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_mode').value = 'ADVENTURE';document.getElementById('form_mode').submit();">
+                                        <a>Приключение</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_mode').value = 'CONSTRUCTION';document.getElementById('form_mode').submit();">
+                                        <a>Строительство</a>
+                                    </li>
+                                </ul>
+                            </form>
+                            <div class="filter-type" onclick="openFilter('filter-type')">
+                                <a id="filter-type" class="dropdown-trigger"
+                                    data-target="dropdown-filter-type">Режим</a>
+                            </div>
+                        </div>
+                        <div class="col l2 m4 s6">
+                            <form id="form_attribute" action="" method="get"><input id="get_attribute" name="attribute"
+                                    class="hidden">
+                                <ul id="dropdown-filter-peculiarities" class="dropdown-content">
+                                    <li
+                                        onclick="document.getElementById('get_attribute').value='Кланы';document.getElementById('form_attribute').submit();">
+                                        <a>Кланы</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_attribute').value='Кейсы';document.getElementById('form_attribute').submit();">
+                                        <a>Кейсы</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_attribute').value='Работа';document.getElementById('form_attribute').submit();">
+                                        <a>Работа</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_attribute').value='Друзья';document.getElementById('form_attribute').submit();">
+                                        <a>Друзья</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_attribute').value='Свадьбы';document.getElementById('form_attribute').submit();">
+                                        <a>Свадьбы</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_attribute').value='Магазин';document.getElementById('form_attribute').submit();">
+                                        <a>Магазин</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_attribute').value='Питомцы';document.getElementById('form_attribute').submit();">
+                                        <a>Питомцы</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_attribute').value='Креатив';document.getElementById('form_attribute').submit();">
+                                        <a>Креатив</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_attribute').value='Проходка';document.getElementById('form_attribute').submit();">
+                                        <a>Проходка</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_attribute').value='Экономика';document.getElementById('form_attribute').submit();">
+                                        <a>Экономика</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_attribute').value='Праздники';document.getElementById('form_attribute').submit();">
+                                        <a>Праздники</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_attribute').value='Транспорт';document.getElementById('form_attribute').submit();">
+                                        <a>Транспорт</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_attribute').value='Гриферство';document.getElementById('form_attribute').submit();">
+                                        <a>Гриферство</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_attribute').value='Текстурпак';document.getElementById('form_attribute').submit();">
+                                        <a>Текстурпак</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_attribute').value='Геолокация';document.getElementById('form_attribute').submit();">
+                                        <a>Геолокация</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_attribute').value='Без доната';document.getElementById('form_attribute').submit();">
+                                        <a>Без доната</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_attribute').value='Без привата';document.getElementById('form_attribute').submit();">
+                                        <a>Без привата</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_attribute').value='Без античита';document.getElementById('form_attribute').submit();">
+                                        <a>Без античита</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_attribute').value='Без креатива';document.getElementById('form_attribute').submit();">
+                                        <a>Без креатива</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_attribute').value='Зимний сезон';document.getElementById('form_attribute').submit();">
+                                        <a>Зимний сезон</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_attribute').value='Голосовой чат';document.getElementById('form_attribute').submit();">
+                                        <a>Голосовой чат</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_attribute').value='Система рангов';document.getElementById('form_attribute').submit();">
+                                        <a>Система рангов</a>
+                                    </li>
+                                </ul>
+                            </form>
+                            <div class="filter-peculiarities" onclick="openFilter('filter-peculiarities')">
+                                <a id="filter-peculiarities" class="dropdown-trigger"
+                                    data-target="dropdown-filter-peculiarities">Атрибуты</a>
+                            </div>
+                        </div>
+                        <div class="col l2 m4 s6">
+                            <form id="form_online" action="" method="get"><input id="get_online" name="online"
+                                    class="hidden">
+                                <ul id="dropdown-filter-online" class="dropdown-content">
+                                    <li
+                                        onclick="document.getElementById('get_online').value = 'Больше';document.getElementById('form_online').submit();">
+                                        <a>Больше</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_online').value = 'Меньше';document.getElementById('form_online').submit();">
+                                        <a>Меньше</a>
+                                    </li>
+                                </ul>
+                            </form>
+                            <div class="filter-online" onclick="openFilter('filter-online')">
+                                <a id="filter-online" class="dropdown-trigger"
+                                    data-target="dropdown-filter-online">Онлайн</a>
+                            </div>
+                        </div>
+                        <div class="col l2 m4 s6">
+                            <form id="form_rate" action="" method="get"><input id="get_rate" name="rate" class="hidden">
+                                <ul id="dropdown-filter-rating" class="dropdown-content">
+                                    <li
+                                        onclick="document.getElementById('get_rate').value = 'Больше';document.getElementById('form_rate').submit();">
+                                        <a>Больше</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_rate').value = 'Меньше';document.getElementById('form_rate').submit();">
+                                        <a>Меньше</a>
+                                    </li>
+                                </ul>
+                            </form>
+                            <div class="filter-rating" onclick="openFilter('filter-rating')">
+                                <a id="filter-rating" class="dropdown-trigger"
+                                    data-target="dropdown-filter-rating">Рейтинг</a>
+                            </div>
+                        </div>
+                        <div class="col l2 m4 s6">
+                            <form id="form_date" action="" method="get"><input id="get_date" name="date" class="hidden">
+                                <ul id="dropdown-filter-date" class="dropdown-content">
+                                    <li
+                                        onclick="document.getElementById('get_date').value = 'Новые';document.getElementById('form_date').submit();">
+                                        <a>Новые</a>
+                                    </li>
+                                    <li
+                                        onclick="document.getElementById('get_date').value = 'Старые';document.getElementById('form_date').submit();">
+                                        <a>Старые</a>
+                                    </li>
+                                </ul>
+                            </form>
+                            <div class="filter-date" onclick="openFilter('filter-date')">
+                                <a id="filter-date" class="dropdown-trigger" data-target="dropdown-filter-date">Дата</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="page container">
+                <% if (servers.length> 0) { %>
+                    <% servers.forEach(server=> { %>
+                        <div class="row server-support"
+                            onmouseover="hoverServer('#server-rating-<%= server.id %>', '#server-chart-<%= server.id %>', '#server-verification-<%= server.id %>')"
+                            onmouseleave="unhoverServer('#server-rating-<%= server.id %>', '#server-chart-<%= server.id %>', '#server-verification-<%= server.id %>')">
+                            <div id="server-rating-<%= server.id %>" class="server-rating">
+                                <div class="server-rating-tip"></div><img class="server-rating-icon" src="/img/star.svg">
+                                <%= server.rate %>
+                            </div>
+                            <% if (server.verification) { %>
+                                <div id="server-verification-<%= server.id %>" class="server-verification">
+                                    <img class="server-verification-icon" src="/img/verification.svg">
+                                </div>
+                                <% } %>
+                                    <% if (server.rate> server.rate_old) { %>
+                                        <div id="server-chart-<%= server.id %>" class="server-chart">
+                                            <img class="server-chart-icon"
+                                                src="/img/rate-chart-true.svg">
+                                        </div>
+                                        <% } else if (server.rate < server.rate_old) { %>
+                                            <div id="server-chart-<%= server.id %>" class="server-chart">
+                                                <img class="server-chart-icon" src="/img/rate-chart-false.svg">
+                                            </div>
+                                            <% } %>
+                                                <div class="server" <% if (server.premium_status) { %>type="<%=
+                                                        server.premium_color %>"<% } %>>
+                                                            <% if (server.premium_status) { %>
+                                                                <div class="gradient-<%= server.premium_color %>"></div>
+                                                                <% } %>
+                                                                    <div class="col l4 s12 server-plate-one">
+                                                                        <div class="server-module"
+                                                                            onclick="window.location = '/server/<%= server.id %>'">
+                                                                            <p class="server-title">
+                                                                                <%= server.title.substring(0, 50) %>
+                                                                            </p>
+                                                                            <p
+                                                                                class="server-description text-color-gray">
+                                                                                <%= server.description.substring(0, 50)
+                                                                                    %>
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div
+                                                                        class="col l4 s12 server-plate-two hide-on-med-and-down">
+                                                                        <% if (server.banner == 'default-server-picture.gif') { %>
+                                                                        <div
+                                                                            style="background-image: url('../img/default-server-picture.gif');">
+                                                                        </div>
+                                                                        <% } else { %>
+                                                                        <div
+                                                                            style="background-image: url('media/banners/<%= server.banner %>');">
+                                                                        </div>
+                                                                        <% } %>
+                                                                    </div>
+                                                                    <div class="col l4 s12 server-plate-three">
+                                                                        <div class="row">
+                                                                            <div class="col l2 m2 s2 server-online"
+                                                                                style="padding-top: 8px;">
+                                                                                <i class="material-icons">people</i>
+                                                                                    <p>
+                                                                                        <%= server.current_players %>
+                                                                                    </p>
+                                                                            </div>
+                                                                            <div
+                                                                                class="col l10 m9 s10 server-plate-three-support">
+                                                                                <div class="row">
+                                                                                    <% if (server.launcher) { %>
+                                                                                        <div class="col l12 s12 server-ip"
+                                                                                            onclick="getIP('{{ server.website }}')"
+                                                                                            style="cursor:pointer">
+                                                                                            <h6 class="center">Лаунчер
+                                                                                            </h6>
+                                                                                        </div>
+                                                                                        <% } else { %>
+                                                                                            <% if (server.port=="25565"
+                                                                                                ) { %>
+                                                                                                <div class="col l12 s12 server-ip"
+                                                                                                    onclick="copyIP('#<%= server.id %>')"
+                                                                                                    style="cursor:pointer;">
+                                                                                                    <h6 id="<%= server.id %>"
+                                                                                                        class="center">
+                                                                                                        <%= server.ip %>
+                                                                                                    </h6>
+                                                                                                </div>
+                                                                                                <% } else { %>
+                                                                                                    <div class="col l12 s12 server-ip"
+                                                                                                        onclick="copyIP('#<%= server.ip %>')"
+                                                                                                        style="cursor:pointer;">
+                                                                                                        <h6 id="<%= server.id %>"
+                                                                                                            class="center">
+                                                                                                            <%= server.ip
+                                                                                                                %>:<%=
+                                                                                                                    server.port
+                                                                                                                    %>
+                                                                                                        </h6>
+                                                                                                    </div>
+                                                                                                    <% }} %>
+                                                                                                        <div
+                                                                                                            class="col l12 m12 s12 server-line">
+                                                                                                            <% if
+                                                                                                                (server.premium_status)
+                                                                                                                { %>
+                                                                                                                <% if
+                                                                                                                    (server.rate>
+                                                                                                                    100)
+                                                                                                                    { %>
+                                                                                                                    <div class="server-line-<%= server.premium_color %>"
+                                                                                                                        style="animation:server-line-animation;animation-duration:1.5s;width:100%;">
+                                                                                                                        <style>
+                                                                                                                            @keyframes server-line-animation {
+                                                                                                                                0% {
+                                                                                                                                    width: 0%
+                                                                                                                                }
+
+                                                                                                                                100% {
+                                                                                                                                    width: 100%;
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                        </style>
+                                                                                                                    </div>
+                                                                                                                    <% } else
+                                                                                                                        {
+                                                                                                                        %>
+                                                                                                                        <div class="server-line-<%= server.premium_color %>"
+                                                                                                                            style="animation:server-line-animation;animation-duration:2.5s; width:100%;">
+                                                                                                                            <style>
+                                                                                                                                @keyframes server-line-animation {
+                                                                                                                                    0% {
+                                                                                                                                        width: 0%
+                                                                                                                                    }
+
+                                                                                                                                    100% {
+                                                                                                                                        width: 100%;
+                                                                                                                                    }
+                                                                                                                                }
+                                                                                                                            </style>
+                                                                                                                        </div>
+                                                                                                                        <% }
+                                                                                                                            %>
+                                                                                                                            <% } else
+                                                                                                                                {
+                                                                                                                                %>
+                                                                                                                                <% if
+                                                                                                                                    (server.rate>
+                                                                                                                                    100)
+                                                                                                                                    {
+                                                                                                                                    %>
+                                                                                                                                    <div class="server-line-gray"
+                                                                                                                                        style="width:100%;">
+                                                                                                                                        <style>
+                                                                                                                                            @keyframes server-line-animation {
+                                                                                                                                                0% {
+                                                                                                                                                    width: 0%
+                                                                                                                                                }
+
+                                                                                                                                                100% {
+                                                                                                                                                    width: 100%;
+                                                                                                                                                }
+                                                                                                                                            }
+                                                                                                                                        </style>
+                                                                                                                                    </div>
+                                                                                                                                    <% } else
+                                                                                                                                        {
+                                                                                                                                        %>
+                                                                                                                                        <div class="server-line-gray"
+                                                                                                                                            style="animation:server-line-animation;animation-duration:2.5s; width:100%;">
+                                                                                                                                            <style>
+                                                                                                                                                @keyframes server-line-animation {
+                                                                                                                                                    0% {
+                                                                                                                                                        width: 0%
+                                                                                                                                                    }
+
+                                                                                                                                                    100% {
+                                                                                                                                                        width: 100%;
+                                                                                                                                                    }
+                                                                                                                                                }
+                                                                                                                                            </style>
+                                                                                                                                        </div>
+                                                                                                                                        <% }
+                                                                                                                                            %>
+                                                                                                                                            <% }
+                                                                                                                                                %>
+                                                                                                        </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                </div>
+                        </div>
+
+                        <% }) %>
+                            <% } else { %>
+                                <div class="server-container-servers-empty">
+                                    <img class="privatearea-container-panel-servers-picture-empty"
+                                        src="img/cloud-empty.svg">Ничего
+                                    нет!
+                                </div>
+                                <% } %>
+            </div>
+
+            <div class="container center">
+                <div class="pagination-pages">
+                    <form id="page_form" action="" method="get">
+                        <input id="page" name="page" style="visibility: hidden">
+                        <a class="link active"
+                            onclick="document.getElementById('page').value='1';document.getElementById('page_form').submit();">1</a>
+                        <a class="link"
+                            onclick="document.getElementById('page').value='2';document.getElementById('page_form').submit();">2</a>
+                        <a class="link"
+                            onclick="document.getElementById('page').value='3';document.getElementById('page_form').submit();">3</a>
+                    </form>
+                </div>
+            </div>
+
+            <%- footer %>
+</body>
+</html>

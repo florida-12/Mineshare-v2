@@ -1,0 +1,7 @@
+.env
+backup.js
+backdoor.js
+
+node_modules/
+config/
+media/

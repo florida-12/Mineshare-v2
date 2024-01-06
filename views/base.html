@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+{% load static %}
+{% load socialaccount %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="DLNWD4pudytDWciFfuuFNl1_BPFJm4Wxhv67aBbJSzY" />
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="{% static 'CSS/materialize.min.css' %}" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="{% static 'CSS/styles.css' %}?{% now "U" %}" media="screen,projection">
+
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/tt-norms-medium" type="text/css">
+    <link href="https://fonts.cdnfonts.com/css/tt-norms-pro" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://mineshare.top/">
+    <meta name="robots" content="index, follow" />
+
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/minecraft" type="text/css"/>
+
+    <link rel="icon" href="{% static 'ASSETS/favicon.png' %}">
+    {% if request.path == '/servers/' %}
+    <title>Сервера майнкрафт - мониторинг, статистика, рейтинг серверов Minecraft.</title>
+    {% elif request.path == '/party/' %}
+    <title>Поиск друзей - найти пати для совместной игры в Minecraft.</title>
+    {% elif request.path == '/shop/' %}
+    <title>Mineshare - Магазин</title>
+    {% elif request.path == '/news/' %}
+    <title>Mineshare - Новости</title>
+    {% elif '/partners/' in request.get_full_path %}
+    <title>Mineshare - Партнеры</title>
+    {% elif '/support/' in request.get_full_path %}
+    <title>Mineshare - Поддержка</title>
+    {% elif '/home/about/' in request.get_full_path %}
+    <title>Mineshare - О проекте</title>
+    {% else %}
+    <title>Сервера майнкрафт - мониторинг, статистика, рейтинг серверов Minecraft.</title>
+    {% endif %}
+
+    <meta name="description" content="Мониторинг серверов майнкрафт с честной рейтинговой системой, удобными фильтрами и с отзывчивой администрацией! С нашей гибкой системой добавления проектов, вы сможете быстро и легко настроить ваш сервер для его быстрой раскрутки и дальнейшего продвижения. Mineshare - это быстро, легко, а самое главное - качественно!">
+    <meta name="og:description" content="Мониторинг серверов майнкрафт с честной рейтинговой системой, удобными фильтрами и с отзывчивой администрацией! С нашей гибкой системой добавления проектов, вы сможете быстро и легко настроить ваш сервер для его быстрой раскрутки и дальнейшего продвижения. Mineshare - это быстро, легко, а самое главное - качественно!">
+    <meta name="keywords" content="сервера майнкрафт, майнкрафт, мониторинг, сервер, поиск, поиск серверов, список серверов, сервер майнкрафт, minecraft, мониторинг серверов, ip адреса, сервера minecraft, айпи серверов, топ, список, лучшие сервера, рейтинг">
+    <meta property="og:image" content="https://mineshare.top/static/ASSETS/mineshare-wallpaper-winter.png">
+    <meta property="og:url" content="https://mineshare.top/">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GLWPRL1874"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GLWPRL1874');
+    </script>
+</head>
+<body>
+
+    <div class="container nav-container nav-margin">
+        <div class="row nav-wrapper">
+            <a href="/" class="col l3 brand-logo text-color-black nav-logo left">Mineshare</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger hide-on-med-and-up"><i class="material-icons">menu</i></a>
+            <div class="col l6 container center hide-on-med-and-down nav-selections">
+                <div class="row">
+                    {% if request.path == '/' or request.path == '/servers/' %}<a class="col l3 nav-link nav-link-active nav-text" href="{% url 'servers:servers' %}"><span class="gradient-underline">Серверы</span></a>{% else %}<a class="col l3 nav-link nav-text text-color-black" href="{% url 'servers:servers' %}">Серверы</a>{% endif %}
+                    {% if request.path == '/shop/' %}<a class="col l3 nav-link nav-link-active nav-text" href="{% url 'shop:shop' %}"><span class="gradient-underline">Магазин</span></a>{% else %}<a class="col l3 nav-link nav-text text-color-black" href="{% url 'shop:shop' %}">Магазин</a>{% endif %}
+                    {% if request.path == '/news/' %}<a class="col l3 nav-link nav-link-active nav-text" href="{% url 'news:news' %}"><span class="gradient-underline">Новости</span></a>{% else %}<a class="col l3 nav-link nav-text text-color-black" href="{% url 'news:news' %}">Новости</a>{% endif %}
+                    {% if request.path == '/tournaments/bedwars/' %}<a class="col l3 nav-link nav-link-active nav-text" href="{% url 'tournaments:bedwars' %}"><span class="gradient-underline">Турниры</span></a>{% else %}<a class="col l3 nav-link nav-text text-color-black" href="{% url 'tournaments:bedwars' %}">Турниры</a>{% endif %}
+                </div>
+            </div>
+            {% if user.is_authenticated %}
+            {% if request.path == '/servers/account/' or request.path == '/account/' %}<a class="col l3 nav-text button-nav waves-effect waves-light btn modal-trigger right hide-on-small-and-down" href="{% url 'account:logout' %}">Выйти</a>{% else %}<a class="col l3 nav-text button-nav waves-effect waves-light btn modal-trigger right hide-on-small-and-down" href="{% url 'account:main' %}">Кабинет</a>{% endif %}
+            {% else %}
+            {% if request.path == '/servers/account/' or request.path == '/account/' %}<a class="col l3 nav-text button-nav waves-effect waves-light btn modal-trigger right hide-on-small-and-down" href="{% url 'account:logout' %}">Выйти</a>{% else %}<a id="login-button" class="col l3 nav-text button-nav waves-effect waves-light btn modal-trigger right hide-on-small-and-down" href="#authorization">Войти</a>{% endif %}
+            {% endif %}
+
+            <div onclick="{% if user.is_staff %}window.open('/admin','_self');{% else %}window.open('https://discord.gg/XMPBDRFqbH','_blank');{% endif %}" class="nav-discord hide-on-med-and-down">
+                <div style="width:50px;height:50px;position:absolute;top:50%;left:-10%;transform:translate(-50%,-50%);background:transparent;"></div>
+                {% if user.is_staff %}
+                <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#11B2FF" d="M21.71 20.29L20.29 21.71A1 1 0 0 1 18.88 21.71L7 9.85A3.81 3.81 0 0 1 6 10A4 4 0 0 1 2.22 4.7L4.76 7.24L5.29 6.71L6.71 5.29L7.24 4.76L4.7 2.22A4 4 0 0 1 10 6A3.81 3.81 0 0 1 9.85 7L21.71 18.88A1 1 0 0 1 21.71 20.29M2.29 18.88A1 1 0 0 0 2.29 20.29L3.71 21.71A1 1 0 0 0 5.12 21.71L10.59 16.25L7.76 13.42M20 2L16 4V6L13.83 8.17L15.83 10.17L18 8H20L22 4Z" /></svg>
+                {% else %}
+                <svg width="256px" height="256px" viewBox="0 -28.5 256 256" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid"><g><path d="M216.856339,16.5966031 C200.285002,8.84328665 182.566144,3.2084988 164.041564,0 C161.766523,4.11318106 159.108624,9.64549908 157.276099,14.0464379 C137.583995,11.0849896 118.072967,11.0849896 98.7430163,14.0464379 C96.9108417,9.64549908 94.1925838,4.11318106 91.8971895,0 C73.3526068,3.2084988 55.6133949,8.86399117 39.0420583,16.6376612 C5.61752293,67.146514 -3.4433191,116.400813 1.08711069,164.955721 C23.2560196,181.510915 44.7403634,191.567697 65.8621325,198.148576 C71.0772151,190.971126 75.7283628,183.341335 79.7352139,175.300261 C72.104019,172.400575 64.7949724,168.822202 57.8887866,164.667963 C59.7209612,163.310589 61.5131304,161.891452 63.2445898,160.431257 C105.36741,180.133187 151.134928,180.133187 192.754523,160.431257 C194.506336,161.891452 196.298154,163.310589 198.110326,164.667963 C191.183787,168.842556 183.854737,172.420929 176.223542,175.320965 C180.230393,183.341335 184.861538,190.991831 190.096624,198.16893 C211.238746,191.588051 232.743023,181.531619 254.911949,164.955721 C260.227747,108.668201 245.831087,59.8662432 216.856339,16.5966031 Z M85.4738752,135.09489 C72.8290281,135.09489 62.4592217,123.290155 62.4592217,108.914901 C62.4592217,94.5396472 72.607595,82.7145587 85.4738752,82.7145587 C98.3405064,82.7145587 108.709962,94.5189427 108.488529,108.914901 C108.508531,123.290155 98.3405064,135.09489 85.4738752,135.09489 Z M170.525237,135.09489 C157.88039,135.09489 147.510584,123.290155 147.510584,108.914901 C147.510584,94.5396472 157.658606,82.7145587 170.525237,82.7145587 C183.391518,82.7145587 193.761324,94.5189427 193.539891,108.914901 C193.539891,123.290155 183.391518,135.09489 170.525237,135.09489 Z" fill="#5865F2" fill-rule="nonzero"></path></g></svg>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <ul class="sidenav center" id="mobile-demo">
+        {% if request.path == '/servers/' %}<li><a class="nav-link nav-link-active nav-text" href="{% url 'servers:servers' %}"><span class="gradient-underline">Серверы</span></a></li>{% else %}<li><a class="nav-link nav-text text-color-black" href="{% url 'servers:servers' %}">Серверы</a></li>{% endif %}
+        {% if request.path == '/shop/' %}<li><a class="nav-link nav-link-active nav-text" href="{% url 'shop:shop' %}"><span class="gradient-underline">Серверы</span></a></li>{% else %}<li><a class="nav-link nav-text text-color-black" href="{% url 'shop:shop' %}">Магазин</a></li>{% endif %}
+        {% if request.path == '/news/' %}<li><a class="nav-link nav-link-active nav-text" href="{% url 'news:news' %}"><span class="gradient-underline">Новости</span></a></li>{% else %}<li><a class="nav-link nav-text text-color-black" href="{% url 'news:news' %}">Новости</a></li>{% endif %}
+        <p class="nav-text" style="font-size: 10px;color: lightgray;">Вход в личный кабинет доступен<br>только в ПК версии сайта!</p>
+    </ul>
+
+    <div id="snackbar">Ошибка</div>
+    <div id="snackbar2">Ошибка</div>
+    <div id="authorization" class="modal auth" style="width: 30%;">
+        <div class="modal-content container">
+            <div class="row">
+                <div class="col s12 auth-tabs">
+                    <ul class="tabs">
+                        <li class="tab col s6">
+                            <a id="swap-auth" class="active" href="#auth-container"></a>
+                        </li>
+                        <li class="tab col s6">
+                            <a id="swap-reg" href="#reg-container"></a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="auth-container" class="col s12">
+                    <div class="col l12 m12 s12">
+                        <form class="auth-form" action="{% url 'account:auth' %}" name="logForm" id="logForm" method="post">
+                            {% csrf_token %}
+                            <div class="input-field input-auth">
+                                <input placeholder="Логин" name="username" id="username" type="text" class="validate" minlength="4">
+                            </div>
+
+                            <div class="input-field input-auth">
+                                <input placeholder="Пароль" name="password" id="password" type="password" class="validate" minlength="8" maxlength="30">
+                            </div>
+                            <p class="auth-recovery"><a href="{% url 'account:password_recovery' %}">Забыли пароль?</a></p>
+
+                            <div class="center div-complete-auth">
+                                <i id="alert_error_login" class="material-icons" onclick="$('#logForm').submit();">cancel</i>
+                                <div id="alert_success_login" class="loader-1"><span></span></div>
+                                <input onclick="this.value='';" value="Войти" type="submit" class="nav-text button-auth waves-effect waves-light btn">
+                            </div>
+
+                            <div class="google-auth"><img src="{% static 'ASSETS/google.svg' %}"/><a href="{% provider_login_url 'google'%}?next=/account">Продолжить с Google</a></div>
+                        </form>
+
+                        <p class="auth-change">Если у вас еще нет аккаунта, то вы можете<br> зарегистрироваться <a onclick="regTab()" class="auth-change-link">здесь!</a></p>
+                    </div>
+                </div>
+                <div id="reg-container" class="col l12 m12 s12">
+                    <div class="row" style="margin-bottom: 5px;">
+                        <form class="reg-form" action="{% url 'account:signup' %}" name="regForm" id="regForm" method="post">
+                            {% csrf_token %}
+
+                            <div class="col l12 m12 s12">
+                                <div class="input-field input-reg">
+{#                                    <input placeholder="Логин" id="username1" name="username" type="text" class="validate" minlength="4">#}
+                                    {{ register_form.username }}
+                                </div>
+                            </div>
+
+                            <div class="col l12 m12 s12">
+                                <div class="input-field input-reg">
+                                    {{ register_form.email }}
+{#                                    <input placeholder="Почта" id="email" name="email" type="email" class="validate">#}
+                                </div>
+                            </div>
+
+                            <div class="col l12 m6 s12">
+                                <div class="input-field input-reg">
+                                    {{ register_form.password }}
+{#                                    <input placeholder="Пароль" id="password_" name="password" type="password" class="validate" minlength="8" maxlength="30">#}
+                                </div>
+                            </div>
+
+                            <div class="col l12 m6 s12">
+                                <div class="input-field input-reg input-reg-last">
+                                     {{ register_form.password2 }}
+{#                                    <input placeholder="Повторите пароль" id="password_repeat" name="password2" type="password" class="validate" minlength="8" maxlength="30">#}
+                                </div>
+                            </div>
+
+                            <div class="col l12 div-complete-reg center">
+                                <i id="alert_error" class="material-icons" onclick="$('#regForm').submit();">cancel</i>
+                                <div id="alert_success" class="loader-1"><span></span></div>
+                                <input onmouseenter="document.getElementById(this).focus();" onclick="this.value='';" value="Регистрация" type="submit" class="nav-text button-reg waves-effect waves-light btn">
+
+                                <div class="google-auth"><img src="{% static 'ASSETS/google.svg' %}"/><a href="{% provider_login_url 'google'%}?next=/account">Продолжить с Google</a></div>
+                            </div>
+
+
+
+                            <p class="reg-change">Уже есть аккаунт? <a onclick="authTab()" class="auth-change-link">Авторизуйтесь!</a></p>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% block main %}
+{% endblock main %}
+  <footer class="page-footer transparent shadow-footer">
+      <div class="container footer-links">
+            <div class="row">
+                <div class="col l3 s6">
+                    <h5 class="text-footer-title">Услуги</h5>
+                    <ul>
+                        <li class="footer-link"><a class="text-footer-link" href="{% url 'shop:shop' %}">Продвижение сервера</a></li>
+                        <li class="footer-link"><a class="text-footer-link" href="{% url 'home:partners' %}">Партнёрские программы</a></li>
+                    </ul>
+                </div>
+                <div class="col l3 s6">
+                    <h5 class="text-footer-title">Информация</h5>
+                    <ul>
+                        <li class="footer-link"><a class="text-footer-link" href="{% url 'home:terms' %}">Условия использования</a></li>
+                        <li class="footer-link"><a class="text-footer-link" href="{% url 'home:privacy' %}">Политика конфиденциальности</a></li>
+                    </ul>
+                </div>
+                <div class="col l3 s6">
+                    <h5 class="text-footer-title">Помощь</h5>
+                    <ul>
+                        <li class="footer-link"><a class="text-footer-link" href="{% url 'support:support' %}">Техническая поддержка</a></li>
+                        <li class="footer-link"><a class="text-footer-link" href="{% url 'support:support' %}">Сообщить о нарушении</a></li>
+                    </ul>
+                </div>
+                <div class="col l3 s6">
+                    <h5 class="text-footer-title">Ссылки</h5>
+                    <ul>
+                        <li class="footer-link"><a class="text-footer-link" target="_blank" href="https://discord.gg/c8Ttx9S6S9">Команда разработчиков</a></li>
+                        <li class="footer-link"><a class="text-footer-link" href="{% url 'home:about' %}">Подробности проекта</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div style="width: 100%;height:2px; background: rgb(236, 236, 236);border-radius: 8px;margin-bottom: 20px;"></div>
+        </div>
+
+        <div class="footer-copyright footer-credits">
+            <div class="container text-color-gray">
+                <div class="row">
+                    <div class="col l3 s6">
+                        <p>© Mineshare 2021-2022</p>
+                    </div>
+
+                    <div class="footer-cards col l6 s12 center hide-on-med-and-down" style="margin-top: 6px;">
+                        <img class="footer-img-credit" alt="qiwi" src="{% static 'ASSETS/qiwi.svg' %}" style="margin-left: 30px;">
+                        <img class="footer-img-credit" alt="webmoney" src="{% static 'ASSETS/webmoney.svg' %}">
+                        <img class="footer-img-credit" alt="mastercard" src="{% static 'ASSETS/mastercard.svg' %}">
+                        <img class="footer-img-credit" alt="visa" src="{% static 'ASSETS/visa.svg' %}">
+                        <img class="footer-img-credit" alt="paypal" src="{% static 'ASSETS/paypal.svg' %}">
+                    </div>
+
+                    <div class="col l3 s6" style="margin-top: -2px;">
+                        <p class="right">Язык: Русский (RU)</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+    <script type="text/javascript" src="{% static 'JS/materialize.js' %}"></script>
+    <script type="text/javascript" src="{% static 'JS/jquery-3.6.0.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'JS/script.js' %}"></script>
+    <script type="text/javascript" src="{% static 'JS/support.js' %}?{% now "U" %}"></script>
+    <script type="text/javascript" src="{% static 'JS/AJAX_form.js' %}?{% now "U" %}"></script>
+
+</body>
+</html>

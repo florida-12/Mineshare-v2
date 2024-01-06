@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link type="text/css" rel="stylesheet" href="/css//materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="/css/styles.css" media="screen,projection">
+
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/tt-norms-medium" type="text/css">
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/tt-norms-regular" type="text/css">
+    <link href="https://fonts.cdnfonts.com/css/tt-norms-pro" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+
+    <meta name="description"
+        content="Мониторинг бесплатных серверов Майнкрафт с IP адресами, описаниями и полной статистикой. Лучший рейтинг в русском интернете, удобный поиск по постоянно обновляющейся базе из 5 тысяч отличных серверов!">
+    <meta name="keywords"
+        content="майнкрафт, мониторинг, сервер, поиск, поиск серверов, список серверов, сервер майнкрафт">
+
+    <link rel="icon" href="/img/favicon.svg">
+    <title>Mineshare | Настройки сервера</title>
+</head>
+
+<body>
+    <div class="serverpagecreate-head container">
+        <p>Настройки сервера</p>
+    </div>
+    <% servers.forEach(server=> { %>
+        <form id="edit_form" action="" method="post" enctype="multipart/form-data">
+            <div class="page container">
+                <div class="row">
+                    <div class="col l12 m12 s12">
+                        <div class="serverpagecreate-title">
+                            <input placeholder="Без названия" id="name" name="title" value="<%= server.title %>" />
+                        </div>
+                    </div>
+
+                    <div class="col l12 m12 s12">
+                        <textarea maxlength="1600" placeholder="Описание" id="desc" name="description"
+                            onkeyup="textAreaAdjust(this)"
+                            class="serverpagecreate-description"><%= server.description %></textarea>
+                    </div>
+
+                    <div class="col l4 m4 s12">
+                        <div class="serverpage-type">
+                            <i onclick="$(this).next().click()" class="arrow-left material-icons">chevron_left</i>
+                            <p onclick="changeType(this,'type')">
+                                <%= server.mode %>
+                            </p><input name="mode" id="type" class="hidden" value="<%= server.mode %>" readonly>
+                            <i onclick="$(this).prev().prev().click()"
+                                class="arrow-right material-icons">chevron_right</i>
+                        </div>
+                    </div>
+
+                    <div class="col l4 m4 s12">
+                        <div class="serverpage-version">
+                            <i onclick="$(this).next().click()" class="arrow-left material-icons">chevron_left</i>
+                            <p onclick="changeVersion(this,'version')">
+                                <%= server.version %>
+                            </p><input name="version" id="version" class="hidden" value="<%= server.version %>"
+                                readonly>
+                            <i onclick="$(this).prev().prev().click()"
+                                class="arrow-right material-icons">chevron_right</i>
+                        </div>
+                    </div>
+
+                    <div class="col l4 m4 s12">
+                        <div class="serverpage-license">
+                            <i onclick="$(this).next().click()" class="arrow-left material-icons">chevron_left</i>
+                            <% if (!server.license) { %>
+                                <p onclick="changeLicense(this,'license')">Без лицензии</p><input name="license"
+                                    id="license" class="hidden" value="Без лицензии" readonly>
+                                <% } else { %>
+                                    <p onclick="changeLicense(this,'license')">Лицензия</p><input name="license"
+                                        id="license" class="hidden" value="Лицензия" readonly>
+                                    <% } %>
+                                        <i onclick="$(this).prev().prev().click()"
+                                            class="arrow-right material-icons">chevron_right</i>
+                        </div>
+                    </div>
+
+                    <div class="col l12 m12 s12 ">
+                        <div id="tags" class="serverpagecreate-tags center">
+                            <% tags.forEach(tag=> { %>
+                                <% if (server_tags.some(tagObj => tagObj.tag_id === tag.name)) { %>
+                                    <div class="tag">
+                                        <input type="checkbox" name="tags" value="<%= tag.name %>" class="filled-in"
+                                            checked="checked">
+                                        <p class="title">
+                                            <%= tag.friendly_name %>&nbsp;&nbsp;
+                                        </p>
+                                        <p class="icon"><i class="fa-solid <%= tag.name %>"></i></p>
+                                    </div>
+                                    <% } else { %>
+                                        <div class="tag">
+                                            <input type="checkbox" name="tags" value="<%= tag.name %>"
+                                                class="filled-in">
+                                            <p class="title">
+                                                <%= tag.friendly_name %>&nbsp;&nbsp;
+                                            </p>
+                                            <p class="icon"><i class="fa-solid <%= tag.name %>"></i></p>
+                                        </div>
+                                        <% } %>
+                                            <% }); %>
+                        </div>
+                    </div>
+
+                    <style>
+                        #text,
+                        #id_title,
+                        .file-path-wrapper a,
+                        .file-path-wrapper br {
+                            visibility: hidden;
+                            position: absolute
+                        }
+                    </style>
+                    <div class="col l6 m12 s12">
+                        <div class="serverpage-picture">
+                            <p id="something">Изображение (Баннер)</p>
+                            <div class="file-field input-field">
+                                <div onclick="document.getElementById('id_image').click();"
+                                    class="btn waves-effect waves-light">
+                                    <span>Добавить</span>
+                                </div>
+                                <div class="file-path-wrapper prefix-clear">
+                                    <input class="file-path validate" type="text" placeholder="Картинка (380 x 80)">
+                                    <input type="file" name="banner" accept=".jpg, .png, .jpeg, .gif|image/*"
+                                        id="id_image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col l6 m12 s12">
+                        <div class="serverpage-illustration">
+                            <p>Иллюстрации (О проекте)
+                            </p>
+                            <div class="file-field input-field">
+                                <div class="btn waves-effect waves-light">
+                                    <span>Добавить</span>
+                                    <input id="id_illustration" name="illustrations" type="file"
+                                        accept=".png, .jpg, .jpeg|image/*" multiple>
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text" placeholder="До 6-ти изображений">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col l6 m12 s12">
+                        <div class="serverpage-launcher">
+                            <p>Лаунчер (Если свой)</p>
+                            <div class="input-field input-website">
+                                <input placeholder="Ссылка на сайт (для скачивания)" name="website" id="website"
+                                    type="url" class="validate" maxlength="80" value="<%= server.website %>">
+                            </div>
+                        </div>
+                    </div>
+
+                    <% if (server.premium_status) { %>
+                        <div class="col l6 m12 s12">
+                            <div class="serverpage-gradient">
+                                <p id="gradient-text">Текущий градиент: <%= server.premium_color %>
+                                </p><input name="premium_color" id="gradient" class="hidden"
+                                    value="<%= server.premium_color %>" readonly>
+
+                                <div class="row">
+                                    <div class="col l2 m2 s4">
+                                        <div onclick="changeGradient('blue')" class="serverpage-gradient-blue"></div>
+                                    </div>
+                                    <div class="col l2 m2 s4">
+                                        <div onclick="changeGradient('red')" class="serverpage-gradient-red"></div>
+                                    </div>
+                                    <div class="col l2 m2 s4">
+                                        <div onclick="changeGradient('purple')" class="serverpage-gradient-purple">
+                                        </div>
+                                    </div>
+                                    <div class="col l2 m2 s4">
+                                        <div onclick="changeGradient('orange')" class="serverpage-gradient-orange">
+                                        </div>
+                                    </div>
+                                    <div class="col l2 m2 s4">
+                                        <div onclick="changeGradient('green')" class="serverpage-gradient-green"></div>
+                                    </div>
+                                    <div class="col l2 m2 s4">
+                                        <div onclick="changeGradient('pink')" class="serverpage-gradient-pink"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+
+                </div>
+            </div>
+
+            <div class="serverpagecreate-footer container">
+                <div class="center">
+                    <input id="edit_save" type="submit" class="button-save waves-effect waves-light btn"
+                        value="Сохранить">
+                </div>
+            </div>
+
+        </form>
+        <% }); %>
+            <div style="width: 100%; height: 10px;"></div>
+
+            <script type="text/javascript" src="/js/materialize.js"></script>
+            <script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
+            <script type="text/javascript" src="/js/script.js"></script>
+            <script type="text/javascript" src="/js/support.js"></script>
+            <script type="text/javascript">
+                window.onload = function () {
+                    element = document.getElementById("desc");
+                    element.style.height = "1px";
+                    element.style.height = (2 + element.scrollHeight) + "px";
+
+                    var elements = document.getElementsByClassName('prefix-clear');
+                    elements[0].innerHTML = elements[0].innerHTML.replace(/:/g, '');
+                };
+            </script>
+</body>
+
+</html>
