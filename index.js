@@ -468,6 +468,19 @@ app.get('/server/:id', (req, res) => {
     });
 });
 
+app.get('/tournaments/bedwars', (req, res) => {
+    if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
+
+    res.render('bedwars', { user: req.user, footer: footer_html});
+});
+
+app.get('/shop', (req, res) => {
+    if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
+    
+    res.render('shop', { user: req.user, footer: footer_html});
+});
+
+
 async function startServer() {
     try {
         // Загрузка закрытого ключа и сертификата

@@ -5,9 +5,7 @@
     <meta charset="UTF-8">
     <meta name="google-site-verification" content="DLNWD4pudytDWciFfuuFNl1_BPFJm4Wxhv67aBbJSzY" />
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="/css/materialize.min.css" media="screen,projection" />
     <link type="text/css" rel="stylesheet" href="/css/styles.css" media="screen,projection">
 
@@ -42,11 +40,11 @@
                     class="material-icons">menu</i></a>
             <div class="col l6 container center hide-on-med-and-down nav-selections">
                 <div class="row">
-                    <a class="col l3 nav-link nav-link-active nav-text" href="/"><span
-                            class="gradient-underline">Серверы</span></a>
-                    <a class="col l3 nav-link nav-text text-color-black" href="tournaments/bedwars">Турниры</a>
-                    <a class="col l3 nav-link nav-text text-color-black" href="shop">Магазин</a>
-                    <a class="col l3 nav-link nav-text text-color-black" href="news">Новости</a>
+                    <a class="col l3 nav-link nav-text text-color-black" href="/">Серверы</a>
+                    <a class="col l3 nav-link nav-text text-color-black" href="/tournaments/bedwars">Турниры</a>
+                    <a class="col l3 nav-link nav-link-active nav-text" href="/shop"><span
+                            class="gradient-underline">Магазин</span></a>
+                    <a class="col l3 nav-link nav-text text-color-black" href="/news">Новости</a>
                 </div>
             </div>
             <% if (user) { %>
@@ -76,9 +74,9 @@
         </div>
     </div>
     <ul class="sidenav center" id="mobile-demo">
-        <li><a class="nav-link nav-link-active nav-text" href="/"><span class="gradient-underline">Серверы</span></a>
-        </li>
-        <li><a class="nav-link nav-text text-color-black" href="shop">Магазин</a></li>
+        <li><a class="nav-link nav-text text-color-black" href="/">Серверы</a></li>
+        <li><a class="nav-link nav-link-active nav-text" href="shop"><span
+                    class="gradient-underline"></span>Магазин</span></a></li>
         <li><a class="nav-link nav-text text-color-black" href="news">Новости</a></li>
         <p class="nav-text" style="font-size: 10px;color: lightgray;">Вход в личный кабинет доступен<br>только в ПК
             версии сайта!</p>
@@ -121,8 +119,8 @@
                                     class="nav-text button-auth waves-effect waves-light btn">
                             </div>
 
-                            <div class="google-auth" style="filter: grayscale(1);"><img src="img/google.svg"><a
-                                    style="color: #6c6c6c;">Продолжить с Google</a></div>
+                            <div class="google-auth" onclick="window.location = '/auth/google';"><img
+                                    src="img/google.svg"><a>Продолжить с Google</a></div>
                         </form>
 
                         <p class="auth-change">Если у вас еще нет аккаунта, то вы можете<br> зарегистрироваться <a
@@ -160,8 +158,8 @@
                                 <input onmouseenter="document.getElementById(this).focus();" value="Регистрация"
                                     type="submit" class="nav-text button-reg waves-effect waves-light btn">
 
-                                <div class="google-auth" style="filter: grayscale(1);"><img src="img/google.svg"><a
-                                        style="color: #6c6c6c;">Продолжить с Google</a>
+                                <div class="google-auth" onclick="window.location = '/auth/google';"><img
+                                        src="img/google.svg"><a>Продолжить с Google</a>
                                 </div>
                             </div>
 
@@ -175,181 +173,54 @@
         </div>
     </div>
 
-    <div class="page container">
-        <% servers.forEach(server=> { %>
-            <div class="row">
-                <div class="col l12 m12 s12">
-                    <p class="serverpage-title">
-                        <%= server.title %>
-                            <% if (server.verification) { %>
-                                <i class="serverpage-verification-icon material-icons right tooltipped"
-                                    data-position="top" data-tooltip="Верифицированный проект">verified_user</i>
-                                <% } %>
-                    </p>
+    <div class="container shop-subscription">
+
+        <div class="row">
+            <div class="col l12 m12 s12">
+                <div class="shop-subscription-premium">
+                    <h1 class="shop-subscription-premium-title">Не хватает онлайна? Оформи PREMIUM подписку!</h1>
+                    <object class="shop-subscription-picture hide-on-small-and-down" width="100%" type="image/svg+xml"
+                        data="/img/premium-card.svg"></object>
+                    <object class="shop-subscription-picture hide-on-med-and-up" width="100%" type="image/svg+xml"
+                        data="/img/premium-card-mobile.svg" style="margin-bottom:-5px;"></object>
                 </div>
-
-                <div class="col l9 m12 s12">
-                    <div class="serverpage-description">
-                        <pre><%- server.description %></pre>
-                    </div>
-                </div>
-
-                <div class="col l3 m4 s6">
-                    <div class="serverpage-status">
-                        <div class="tooltip hide-on-med-and-down"><svg class="arrow" viewBox="0 0 54 54">
-                                <path style="fill:#11B2FF;"
-                                    d="M14.456,26.159l21.087-12.175C36.191,13.611,37,14.078,37,14.825v24.349c0,0.747-0.809,1.215-1.456,0.841L14.456,27.841C13.809,27.467,13.809,26.533,14.456,26.159z" />
-                            </svg>Статус</div>
-                        <% if (server.online_status) { %>
-                            <p><i
-                                    class="material-icons serverpage-status-icon-online">brightness_1</i>&nbsp;&nbsp;Онлайн
-                            </p>
-                            <% } else { %>
-                                <p><i
-                                        class="material-icons serverpage-status-icon-offline">brightness_1</i>&nbsp;&nbsp;Оффлайн
-                                </p>
-                                <% } %>
-                    </div>
-                </div>
-
-                <div class="col l3 m4 s6">
-                    <div class="serverpage-online">
-                        <div class="tooltip hide-on-med-and-down"><svg class="arrow" viewBox="0 0 54 54">
-                                <path style="fill:#11B2FF;"
-                                    d="M14.456,26.159l21.087-12.175C36.191,13.611,37,14.078,37,14.825v24.349c0,0.747-0.809,1.215-1.456,0.841L14.456,27.841C13.809,27.467,13.809,26.533,14.456,26.159z" />
-                            </svg>Онлайн</div>
-                        <% if (server.current_players> server.max_players) { %>
-                            <p>
-                                <%= server.current_players %> из <%= server.current_players + 1 %>
-                            </p>
-                            <% } else { %>
-                                <p>
-                                    <%= server.current_players %> из <%= server.max_players %>
-                                </p>
-                                <% } %>
-                    </div>
-                </div>
-
-                <div class="col l3 m4 s12">
-                    <div class="serverpage-rating">
-                        <div class="tooltip hide-on-med-and-down"><svg class="arrow" viewBox="0 0 54 54">
-                                <path style="fill:#11B2FF;"
-                                    d="M14.456,26.159l21.087-12.175C36.191,13.611,37,14.078,37,14.825v24.349c0,0.747-0.809,1.215-1.456,0.841L14.456,27.841C13.809,27.467,13.809,26.533,14.456,26.159z" />
-                            </svg>Рейтинг</div>
-                        <p><img class="serverpage-rating-icon" src="/img/star.svg">&nbsp;&nbsp;<%= server.rate %>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col l3 m4 s12">
-                    <div class="serverpage-version">
-                        <div class="tooltip hide-on-med-and-down"><svg class="arrow" viewBox="0 0 54 54">
-                                <path style="fill:#11B2FF;"
-                                    d="M14.456,26.159l21.087-12.175C36.191,13.611,37,14.078,37,14.825v24.349c0,0.747-0.809,1.215-1.456,0.841L14.456,27.841C13.809,27.467,13.809,26.533,14.456,26.159z" />
-                            </svg>Версия</div>
-                        <p>
-                            <%= server.version %>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col l3 m4 s12">
-                    <div class="serverpage-type">
-                        <div class="tooltip hide-on-med-and-down"><svg class="arrow" viewBox="0 0 54 54">
-                                <path style="fill:#11B2FF;"
-                                    d="M14.456,26.159l21.087-12.175C36.191,13.611,37,14.078,37,14.825v24.349c0,0.747-0.809,1.215-1.456,0.841L14.456,27.841C13.809,27.467,13.809,26.533,14.456,26.159z" />
-                            </svg>Режим</div>
-                        <p>
-                            <%= server.mode %>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col l3 m4 s12">
-                    <div class="serverpage-license">
-                        <% if (server.license) { %>
-                            <p>Лицензия</p>
-                            <% } else { %>
-                                <p>Без лицензии</p>
-                                <% } %>
-                    </div>
-                </div>
-
-                <% if (tags) { %>
-                    <div class="col l12 m12 s12">
-                        <div class="serverpage-tags center">
-                            <% tags.forEach(tag=> { %>
-                                <div class="tag">
-                                    <p class="title">
-                                        <%= tag.friendly_name %>&nbsp;&nbsp;
-                                    </p>
-                                    <p class="icon"><i class="fa-solid <%= tag.name %>"></i></p>
-                                </div>
-                                <% }); %>
-                        </div>
-                    </div>
-                    <% } %>
-
-                        <% if (illustrations.length==5) { %>
-                            <div class="col l6 m6 s12">
-                                <div class="serverpage-illustration-vs">
-                                    <img class="materialboxed" src="/media/illustrations/<%= illustration.image %>">
-                                </div>
-                            </div>
-                            <div class="col l6 m6 s12">
-                                <div class="serverpage-illustration-vs">
-                                    <img class="materialboxed" src="/media/illustrations/<%= illustration.image %>">
-                                </div>
-                            </div>
-                            <div class="col l4 m6 s12">
-                                <div class="serverpage-illustration-vs">
-                                    <img class="materialboxed" src="/media/illustrations/<%= illustration.image %>">
-                                </div>
-                            </div>
-                            <div class="col l4 m6 s12">
-                                <div class="serverpage-illustration-vs">
-                                    <img class="materialboxed" src="/media/illustrations/<%= illustration.image %>">
-                                </div>
-                            </div>
-                            <div class="col l4 m6 s12">
-                                <div class="serverpage-illustration-vs">
-                                    <img class="materialboxed" src="/media/illustrations/<%= illustration.image %>">
-                                </div>
-                            </div>
-                            <% } else if (illustrations.length % 3==0) { %>
-                                <% illustrations.forEach(illustration=> { %>
-                                    <div class="col l4 m6 s12">
-                                        <div class="serverpage-illustration-vs">
-                                            <img class="materialboxed"
-                                                src="/media/illustrations/<%= illustration.image %>">
-                                        </div>
-                                    </div>
-                                    <% }); %>
-                                        <% } else if (illustrations.length % 2==0) { %>
-                                            <% illustrations.forEach(illustration=> { %>
-                                                <div class="col l6 m6 s12">
-                                                    <div class="serverpage-illustration-vs">
-                                                        <img class="materialboxed"
-                                                            src="/media/illustrations/<%= illustration.image %>">
-                                                    </div>
-                                                </div>
-                                                <% }); %>
-                                                    <% } else { %>
-                                                        <% illustrations.forEach(illustration=> { %>
-                                                            <div class="col l12 m12 s12">
-                                                                <div class="serverpage-illustration-vs">
-                                                                    <img class="materialboxed"
-                                                                        src="/media/illustrations/<%= illustration.image %>">
-                                                                </div>
-                                                            </div>
-                                                            <% }); %>
-                                                                <% } %>
-
             </div>
-            <% }); %>
+
+            <div class="col l3 m6 s12">
+                <div class="shop-subscription-benefits">
+                    <p class="shop-subscription-benefits-title-picture">Гифки</p>
+                    <p class="shop-subscription-benefits-description-picture">Возможность поставить собственную
+                        GIF-анимацию вместо картинки</p>
+                </div>
+            </div>
+
+            <div class="col l3 m6 s12">
+                <div class="shop-subscription-benefits">
+                    <p class="shop-subscription-benefits-title-color">Градиент</p>
+                    <p class="shop-subscription-benefits-description-color">Выбери один из градиентов, чтобы выделиться
+                        среди отсальных проектов</p>
+                </div>
+            </div>
+
+            <div class="col l3 m6 s12">
+                <div class="shop-subscription-benefits">
+                    <p class="shop-subscription-benefits-title-factor">Множитель</p>
+                    <p class="shop-subscription-benefits-description-factor">Ускоренный рост популярности сервера, при
+                        помощи множителя очков</p>
+                </div>
+            </div>
+
+            <div class="col l3 m6 s12">
+                <div class="shop-subscription-benefits">
+                    <p class="shop-subscription-benefits-title-rating">Рейтинг</p>
+                    <p class="shop-subscription-benefits-description-rating">Дополнительные рейтинговые быллы, которые
+                        продвинут статус проекта</p>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <%- footer %>
 </body>
-
 </html>
