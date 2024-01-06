@@ -360,8 +360,6 @@ app.get('/account/server/:id/edit', isAuthenticated, (req, res) => {
 });
 
 app.post('/account/server/:id/edit', isAuthenticated, multerParser, upload.fields([{ name: 'banner', maxCount: 1 }, { name: 'illustrations', maxCount: 6 }]), (req, res) => {
-    let banner = 'default-server-picture.gif';
-    if (req.files['banner']) banner = req.files['banner'][0].filename;
     let { title, description, mode, version, license, website, premium_color } = req.body;
     if (license == 'Без лицензии') {
         license = false;
@@ -369,7 +367,16 @@ app.post('/account/server/:id/edit', isAuthenticated, multerParser, upload.field
         license = true;
     }
 
-    pool.query(`UPDATE servers SET title = $1, description = $2, mode = $3, version = $4, license = $5, website = $6, banner = $7, premium_color = $8 WHERE id = $9;`, [title, description, mode, version, license, website, banner, premium_color, req.params.id], (err, result) => {
+    if (req.files['banner']) {
+        pool.query(`UPDATE servers SET banner = $1 WHERE id = $2;`, [req.files['banner'][0].filename, req.params.id], (err, result) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('Internal Server Error');
+            }
+        });
+    }
+
+    pool.query(`UPDATE servers SET title = $1, description = $2, mode = $3, version = $4, license = $5, website = $6, premium_color = $7 WHERE id = $8;`, [title, description, mode, version, license, website, premium_color, req.params.id], (err, result) => {
         if (err) {
             console.error(err);
             return res.status(500).send('Internal Server Error');
