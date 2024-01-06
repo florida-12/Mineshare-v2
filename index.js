@@ -140,7 +140,7 @@ passport.use(new LocalStrategy({
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT,
     clientSecret: process.env.GOOGLE_SECRET,
-    callbackURL: 'https://127.0.0.1/auth/google/callback',
+    callbackURL: '/auth/google/callback',
 },
     async (accessToken, refreshToken, profile, done) => {
         try {
@@ -151,10 +151,8 @@ passport.use(new GoogleStrategy({
                 return done(null, userResult.rows[0]);
             } else {
                 const password = await generatePassword();   //random password
-                let regip = req.headers['x-forwarded-for'];
-                if (regip == undefined) regip = '0.0.0.0';
 
-                const newUserResult = await pool.query('INSERT INTO users (email, password, regip) VALUES ($1, $2, $3) RETURNING *', [profile.emails[0].value, password, regip]);
+                const newUserResult = await pool.query('INSERT INTO users (email, password, regip) VALUES ($1, $2, $3) RETURNING *', [profile.emails[0].value, password, 'GOOGLE']);
 
                 return done(null, newUserResult.rows[0]);
             }
