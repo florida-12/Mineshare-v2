@@ -360,7 +360,7 @@ app.get('/account/server/:id/edit', isAuthenticated, (req, res) => {
 });
 
 app.post('/account/server/:id/edit', isAuthenticated, multerParser, upload.fields([{ name: 'banner', maxCount: 1 }, { name: 'illustrations', maxCount: 6 }]), (req, res) => {
-    let { title, description, mode, version, license, website, premium_color } = req.body;
+    let { title, description, mode, version, license, tags, website, premium_color } = req.body;
     if (license == 'Без лицензии') {
         license = false;
     } else {
@@ -373,6 +373,23 @@ app.post('/account/server/:id/edit', isAuthenticated, multerParser, upload.field
                 console.error(err);
                 return res.status(500).send('Internal Server Error');
             }
+        });
+    }
+
+    if (tags) {
+        pool.query(`DELETE FROM servers_tags WHERE server_id = $1;`, [req.params.id], (err) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('Internal Server Error');
+            }
+
+            tags.forEach(tag => {
+                pool.query(`INSERT INTO servers_tags (server_id, tag_id) VALUES ($1, $2);`, [req.params.id, tag], (err) => {
+                    if (err) {
+                        console.error(err);
+                    }
+                }); 
+            });
         });
     }
 
