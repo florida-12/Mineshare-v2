@@ -5597,9 +5597,8 @@ input[value="Подтвердить"] {
     left: 84%;
 }
 
-.party-container:hover .party-button {
-    width: 260px !important;
-    height: 54px;
+.party-container .party-button:hover {
+    background: linear-gradient(98.44deg, #76c1e5 0%, #008ccc 100%), #267bb7;
 }
 
 .party-container .party-img-1 {
@@ -5654,9 +5653,9 @@ input[value="Подтвердить"] {
 }
 
 .tournament-subtitle {
-    font-family: 'Montserrat';
+    font-family: 'TT Norms Pro', sans-serif;
     font-size: 26px;
-    font-weight: 700;
+    font-weight: 800;
     color: #ffffff;
     position: absolute;
     top: 13%;
@@ -5681,20 +5680,50 @@ input[value="Подтвердить"] {
     font-weight: 500;
 }
 
+.tournament-subtitle1 {
+    font-family: 'Montserrat';
+    font-size: 26px;
+    font-weight: 700;
+    color: #ffffff;
+    position: absolute;
+    top: 13%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 0;
+}
+
+.tournament-line1 {
+    font-family: 'Montserrat';
+    font-size: 26px;
+    font-weight: 700;
+    color: #ffffff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 0;
+}
+
+.tournament-title1 span {
+    font-weight: 500;
+}
+
 .party-container .party-button {
-    width: 230px !important;
-    height: 54px;
+    width: 200px !important;
+    height: 50px;
     border-radius: 10px !important;
     text-transform: none;
-    font-size: 19px;
-    font-family: 'TTNormsMedium';
-    background: radial-gradient(circle at 10% 20%, rgb(238, 56, 56) 0%, rgba(206, 21, 0, 0.92) 90.1%);
-    box-shadow: 0px 0px 7px rgb(255, 55, 55, 0.4);
+    font-size: 15px;
+    font-family: 'TT Norms Pro', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    background: linear-gradient(98.44deg, #8DEBFF 0%, #00ABFF 100%), #339DFF;
+    border-bottom: 6px solid rgba(0,0,0,.15);
     margin-right: 10px;
-    line-height: 50px;
+    line-height: 43px;
     z-index: 110;
     position: absolute;
-    top: 76%;
+    top: 80%;
     left: 50%;
     transform: translate(-50%, -50%);
     transition: 0.4s;
