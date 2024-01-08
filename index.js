@@ -305,7 +305,7 @@ app.post('/account/server-create', isAuthenticated, async (req, res) => {
             return res.status(500).send('Internal Server Error');
         }
 
-        pool.query(`INSERT INTO servers (title, description, ip, port, mode, version, license, owner) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id;`, [title, description, data.rows[0].ip, data.rows[0].port, mode, version, license, req.user.id], async (err, result) => {
+        pool.query(`INSERT INTO servers (title, description, ip, port, mode, version, license, premium_color, owner) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id;`, [title, description, data.rows[0].ip, data.rows[0].port, mode, version, license, 'blue', req.user.id], async (err, result) => {
             if (err) {
                 console.error(err);
                 return res.status(500).send('Internal Server Error');
@@ -338,6 +338,10 @@ app.get('/account/server/:id/edit', isAuthenticated, (req, res) => {
         }
 
         if (server.rows.length > 0) {
+            if (server.rows[0].owner != req.user.id) {
+                res.redirect('/account');
+            }
+
             pool.query(`SELECT * FROM tags;`, (err, tags) => {
                 if (err) {
                     console.error(err);
