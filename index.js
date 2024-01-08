@@ -434,7 +434,7 @@ app.get('/media/illustrations/:uuid', async (req, res) => {
 });
 
 app.get('/', (req, res) => {
-    pool.query(`SELECT * FROM servers`, (err, result) => {
+    pool.query(`SELECT * FROM servers ORDER BY -rate;`, (err, result) => {
         if (err) {
             console.error(err);
             return res.status(500).send('Internal Server Error');
@@ -483,6 +483,12 @@ app.get('/server/:id', (req, res) => {
             }
         });
     });
+});
+
+app.get('/tournaments', (req, res) => {
+    if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
+
+    res.render('tournaments', { user: req.user, footer: footer_html });
 });
 
 app.get('/tournaments/bedwars', (req, res) => {

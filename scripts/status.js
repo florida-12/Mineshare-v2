@@ -38,11 +38,11 @@ async function checkServersOnline() {
 
     await client.connect();
 
-    const result = await client.query('SELECT ip FROM servers;');
+    const result = await client.query('SELECT ip, port FROM servers;');
     const servers = result.rows;
 
     for (const server of servers) {
-      const serverUrl = `https://api.mcstatus.io/v2/status/java/${server.ip}`;
+      const serverUrl = `https://api.mcstatus.io/v2/status/java/${server.ip}:${server.port}`;
 
       try {
         const response = await axios.get(serverUrl);

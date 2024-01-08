@@ -164,17 +164,12 @@
         </div>
     </div>
 
-    <div id="create-server" class="modal auth" style="max-height:71%;padding-top:50px;">
-        <div class="modal-content container" style="padding-bottom:0">
+    <div id="create-server" class="modal auth" style="width: 440px; max-height:70%;padding-top:30px;">
+        <div class="modal-content container" style="padding-bottom:0;">
             <div class="row" style="padding-bottom:0;margin-bottom:0">
                 <form action="server-check" id="server_status" name="server_status" method="post">
                     <div id="create-server-one-container" class="col s12 create-server-one-container-background">
-                        <div class="col l2 m1 hide-on-small-only"></div>
-                        <div class="col l8 m10 s12" style="height: 100%;">
-                            <div class="input-field input-create-server input-create-server-top">
-                                <input placeholder="Название" name="name" type="text" class="validate">
-                            </div>
-
+                        <div>
                             <div class="input-field input-create-server">
                                 <input placeholder="IP-адрес" name="ip" type="text" class="validate"
                                     onkeyup="this.value = this.value.toLowerCase();" required>
@@ -186,17 +181,11 @@
                             </div>
 
                             <div class="center div-complete">
-                                <i id="alert_error_server" class="material-icons"
-                                    onclick="$('#server_status').submit();">cancel</i>
-                                <div id="alert_success_server" class="loader-1"><span></span></div>
-                                <input type="submit" class="button-complete waves-effect waves-light btn" value="Далее"
-                                    onclick="this.value='';">
+                                <button class="button-complete">Далее</button>
                             </div>
                         </div>
-                        <div class="col l2 m1 hide-on-small-only"></div>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
