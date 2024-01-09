@@ -243,21 +243,40 @@ app.get('/account', isAuthenticated, (req, res) => {
 });
 
 app.post('/account/server-check', isAuthenticated, async (req, res) => {
-    let { ip, port } = req.body;
-    if (!port) port = '25565';
-
     try {
+        let { ip, port } = req.body;
+        if (!port) port = '25565';
+
+        const serverQueryResult = await new Promise((resolve, reject) => {
+            pool.query(`SELECT * FROM servers WHERE ip = $1 AND port = $2;`, [ip, port], (err, server) => {
+                if (err) {
+                    console.error(err);
+                    reject(err);
+                } else {
+                    resolve(server);
+                }
+            });
+        });
+
+        if (serverQueryResult.rows.length > 0) {
+            return res.send('Сервер с таким IP-адресом уже существует');
+        }
+
         const response = await axios.get(`https://api.mcstatus.io/v2/status/java/${ip}:${port}`);
 
         if (response.data.online) {
-            pool.query(`INSERT INTO servers_buffer (ip, port, owner) VALUES ($1, $2, $3);`, [ip, port, req.user.id], (err, result) => {
-                if (err) {
-                    console.error(err);
-                    return res.status(500).send('Internal Server Error');
-                }
-
-                res.redirect('/account/server-create');
+            await new Promise((resolve, reject) => {
+                pool.query(`INSERT INTO servers_buffer (ip, port, owner) VALUES ($1, $2, $3);`, [ip, port, req.user.id], (err, result) => {
+                    if (err) {
+                        console.error(err);
+                        reject(err);
+                    } else {
+                        resolve(result);
+                    }
+                });
             });
+
+            res.redirect('/account/server-create');
         } else {
             res.redirect('/account');
         }
@@ -393,7 +412,7 @@ app.post('/account/server/:id/edit', isAuthenticated, multerParser, upload.field
                     if (err) {
                         console.error(err);
                     }
-                }); 
+                });
             });
         });
     }
@@ -552,17 +571,17 @@ app.get('/obs/bedwars/4x2', (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
     const jsonData = [
-        { username: 'SteveBomb', hp: Math.floor(Math.random() * 21).toString(), skin: 'f757bd31-9fda-4112-ad9b-e2ae1015bf6e', team: 'blue'},
-        { username: 'Alexa500', hp: Math.floor(Math.random() * 21).toString(), skin: '1d8e2124-bad7-473a-bd97-c2481e943a59', team: 'blue'},
-        { username: 'Lololo228', hp: Math.floor(Math.random() * 21).toString(), skin: '664b5930-6b14-4f8a-aaf1-dae7edafac91', team: 'blue'},
-        { username: 'Creeper44', hp: Math.floor(Math.random() * 21).toString(), skin: '664b5930-6b14-4f8a-aaf1-dae7edafac91', team: 'blue'},
-        { username: 'li_88888888', hp: Math.floor(Math.random() * 21).toString(), skin: '0054354f-8bf7-41ad-84a0-e80508dd61bb', team: 'red'},
-        { username: 'TurboTurbo', hp: Math.floor(Math.random() * 21).toString(), skin: 'a3c76ff9-abc5-4853-a2f8-74e49d89daf2', team: 'red'},
-        { username: 'MarkusHOPE', hp: Math.floor(Math.random() * 21).toString(), skin: '5c7cc4de-aee2-44e0-a7b7-fa6557ff944d', team: 'red'},
-        { username: 'PedroRemond', hp: Math.floor(Math.random() * 21).toString(), skin: 'aeb5e52a-8f4a-4dcf-9387-88738b70098d', team: 'red'}
-      ];
-    
-      res.send(jsonData);
+        { username: 'SteveBomb', hp: Math.floor(Math.random() * 21).toString(), skin: 'f757bd31-9fda-4112-ad9b-e2ae1015bf6e', team: 'blue' },
+        { username: 'Alexa500', hp: Math.floor(Math.random() * 21).toString(), skin: '1d8e2124-bad7-473a-bd97-c2481e943a59', team: 'blue' },
+        { username: 'Lololo228', hp: Math.floor(Math.random() * 21).toString(), skin: '664b5930-6b14-4f8a-aaf1-dae7edafac91', team: 'blue' },
+        { username: 'Creeper44', hp: Math.floor(Math.random() * 21).toString(), skin: '664b5930-6b14-4f8a-aaf1-dae7edafac91', team: 'blue' },
+        { username: 'li_88888888', hp: Math.floor(Math.random() * 21).toString(), skin: '0054354f-8bf7-41ad-84a0-e80508dd61bb', team: 'red' },
+        { username: 'TurboTurbo', hp: Math.floor(Math.random() * 21).toString(), skin: 'a3c76ff9-abc5-4853-a2f8-74e49d89daf2', team: 'red' },
+        { username: 'MarkusHOPE', hp: Math.floor(Math.random() * 21).toString(), skin: '5c7cc4de-aee2-44e0-a7b7-fa6557ff944d', team: 'red' },
+        { username: 'PedroRemond', hp: Math.floor(Math.random() * 21).toString(), skin: 'aeb5e52a-8f4a-4dcf-9387-88738b70098d', team: 'red' }
+    ];
+
+    res.send(jsonData);
 });
 
 
