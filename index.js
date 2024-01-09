@@ -439,7 +439,7 @@ app.get('/media/illustrations/:uuid', async (req, res) => {
 });
 
 app.get('/', (req, res) => {
-    pool.query(`SELECT * FROM servers ORDER BY -rate;`, (err, result) => {
+    pool.query(`SELECT * FROM servers WHERE ban = false ORDER BY -rate;`, (err, result) => {
         if (err) {
             console.error(err);
             return res.status(500).send('Internal Server Error');
