@@ -468,6 +468,267 @@ app.get('/', (req, res) => {
     });
 });
 
+app.get('/1.20', (req, res) => {
+    if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
+
+    pool.query(`SELECT * FROM servers WHERE ban = false AND version = '1.20.X' ORDER BY -rate;`, (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+    });
+});
+
+app.get('/1.19', (req, res) => {
+    if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
+
+    pool.query(`SELECT * FROM servers WHERE ban = false AND version = '1.19.X' ORDER BY -rate;`, (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+    });
+});
+
+app.get('/1.18', (req, res) => {
+    if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
+
+    pool.query(`SELECT * FROM servers WHERE ban = false AND version = '1.18.X' ORDER BY -rate;`, (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+    });
+});
+
+app.get('/1.17', (req, res) => {
+    if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
+
+    pool.query(`SELECT * FROM servers WHERE ban = false AND version = '1.17.X' ORDER BY -rate;`, (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+    });
+});
+
+app.get('/1.16', (req, res) => {
+    if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
+
+    pool.query(`SELECT * FROM servers WHERE ban = false AND version = '1.16.X' ORDER BY -rate;`, (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+    });
+});
+
+app.get('/1.15', (req, res) => {
+    if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
+
+    pool.query(`SELECT * FROM servers WHERE ban = false AND version = '1.15.X' ORDER BY -rate;`, (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+    });
+});
+
+app.get('/1.14', (req, res) => {
+    if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
+
+    pool.query(`SELECT * FROM servers WHERE ban = false AND version = '1.14.X' ORDER BY -rate;`, (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+    });
+});
+
+app.get('/1.13', (req, res) => {
+    if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
+
+    pool.query(`SELECT * FROM servers WHERE ban = false AND version = '1.13.X' ORDER BY -rate;`, (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+    });
+});
+
+app.get('/1.12', (req, res) => {
+    if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
+
+    pool.query(`SELECT * FROM servers WHERE ban = false AND version = '1.12.X' ORDER BY -rate;`, (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+    });
+});
+
+app.get('/1.11', (req, res) => {
+    if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
+
+    pool.query(`SELECT * FROM servers WHERE ban = false AND version = '1.11.X' ORDER BY -rate;`, (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+    });
+});
+
+app.get('/1.10', (req, res) => {
+    if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
+
+    pool.query(`SELECT * FROM servers WHERE ban = false AND version = '1.10.X' ORDER BY -rate;`, (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+    });
+});
+
+app.get('/1.9', (req, res) => {
+    if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
+
+    pool.query(`SELECT * FROM servers WHERE ban = false AND version = '1.9.X' ORDER BY -rate;`, (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+    });
+});
+
+app.get('/1.8', (req, res) => {
+    if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
+
+    pool.query(`SELECT * FROM servers WHERE ban = false AND version = '1.8.X' ORDER BY -rate;`, (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+    });
+});
+
+
+app.get('/1.7', (req, res) => {
+    if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
+
+    pool.query(`SELECT * FROM servers WHERE ban = false AND version = '1.7.X' ORDER BY -rate;`, (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+    });
+});
+
+app.get('/vanilla', (req, res) => {
+    if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
+
+    pool.query(`SELECT * FROM servers WHERE ban = false AND mode = 'Ванилла' ORDER BY -rate;`, (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+    });
+});
+
+app.get('/anarchy', (req, res) => {
+    if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
+
+    pool.query(`SELECT * FROM servers WHERE ban = false AND mode = 'Анархия' ORDER BY -rate;`, (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+    });
+});
+
+app.get('/mmo-rpg', (req, res) => {
+    if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
+
+    pool.query(`SELECT * FROM servers WHERE ban = false AND mode = 'MMO-RPG' ORDER BY -rate;`, (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+    });
+});
+
+app.get('/mini-games', (req, res) => {
+    if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
+
+    pool.query(`SELECT * FROM servers WHERE ban = false AND mode = 'Мини-игры' ORDER BY -rate;`, (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+    });
+});
+
+app.get('/adventure', (req, res) => {
+    if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
+
+    pool.query(`SELECT * FROM servers WHERE ban = false AND mode = 'Приключение' ORDER BY -rate;`, (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+    });
+});
+
+app.get('/construction', (req, res) => {
+    if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
+
+    pool.query(`SELECT * FROM servers WHERE ban = false AND mode = 'Строительство' ORDER BY -rate;`, (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+    });
+});
+
 app.get('/server/:id', (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 

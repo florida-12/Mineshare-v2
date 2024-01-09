@@ -210,63 +210,48 @@
                     </div>
                     <div style="margin-left: -10px;margin-right: -10px;">
                         <div class="col l2 m4 s6">
-                            <form id="form_version" action="" method="get"><input id="get_version" name="version"
-                                    class="hidden">
+                            <form>
                                 <ul id="dropdown-filter-version" class="dropdown-content">
-                                    <li
-                                        onclick="document.getElementById('get_version').value = '1.20';document.getElementById('form_version').submit();">
+                                    <li onclick="window.location = '/1.20/';">
                                         <a>1.20.X</a>
                                     </li>
-                                    <li
-                                        onclick="document.getElementById('get_version').value = '1.19';document.getElementById('form_version').submit();">
+                                    <li onclick="window.location = '/1.19/';">
                                         <a>1.19.X</a>
                                     </li>
-                                    <li
-                                        onclick="document.getElementById('get_version').value = '1.18';document.getElementById('form_version').submit();">
+                                    <li onclick="window.location = '/1.18/';">
                                         <a>1.18.X</a>
                                     </li>
-                                    <li
-                                        onclick="document.getElementById('get_version').value = '1.17';document.getElementById('form_version').submit();">
+                                    <li onclick="window.location = '/1.17/';">
                                         <a>1.17.X</a>
                                     </li>
-                                    <li
-                                        onclick="document.getElementById('get_version').value = '1.16';document.getElementById('form_version').submit();">
+                                    <li onclick="window.location = '/1.16/';">
                                         <a>1.16.X</a>
                                     </li>
-                                    <li
-                                        onclick="document.getElementById('get_version').value = '1.15';document.getElementById('form_version').submit();">
+                                    <li onclick="window.location = '/1.15/';">
                                         <a>1.15.X</a>
                                     </li>
-                                    <li
-                                        onclick="document.getElementById('get_version').value = '1.14';document.getElementById('form_version').submit();">
+                                    <li onclick="window.location = '/1.14/';">
                                         <a>1.14.X</a>
                                     </li>
-                                    <li
-                                        onclick="document.getElementById('get_version').value = '1.13';document.getElementById('form_version').submit();">
+                                    <li onclick="window.location = '/1.13/';">
                                         <a>1.13.X</a>
                                     </li>
-                                    <li
-                                        onclick="document.getElementById('get_version').value = '1.12';document.getElementById('form_version').submit();">
+                                    <li onclick="window.location = '/1.12/';">
                                         <a>1.12.X</a>
                                     </li>
-                                    <li
-                                        onclick="document.getElementById('get_version').value = '1.11';document.getElementById('form_version').submit();">
+                                    <li onclick="window.location = '/1.11/';">
                                         <a>1.11.X</a>
                                     </li>
-                                    <li
-                                        onclick="document.getElementById('get_version').value = '1.10';document.getElementById('form_version').submit();">
+                                    <li onclick="window.location = '/1.10/';">
                                         <a>1.10.X</a>
                                     </li>
-                                    <li
-                                        onclick="document.getElementById('get_version').value = '1.9';document.getElementById('form_version').submit();">
+                                    <li onclick="window.location = '/1.9/';">
                                         <a>1.9.X</a>
                                     </li>
-                                    <li
-                                        onclick="document.getElementById('get_version').value = '1.8';document.getElementById('form_version').submit();">
+                                    <li onclick="window.location = '/1.8/';">
                                         <a>1.8.X</a>
                                     </li>
-                                    <li
-                                        onclick="document.getElementById('get_version').value = '1.7';document.getElementById('form_version').submit();">
+                                    <li onclick="window.location = '/1.7/';">
                                         <a>1.7.X</a>
                                     </li>
                                 </ul>
@@ -277,30 +262,24 @@
                             </div>
                         </div>
                         <div class="col l2 m4 s6">
-                            <form id="form_mode" action="" method="get"><input id="get_mode" name="mode" class="hidden">
+                            <form>
                                 <ul id="dropdown-filter-type" class="dropdown-content">
-                                    <li
-                                        onclick="document.getElementById('get_mode').value = 'VANILLA';document.getElementById('form_mode').submit();">
+                                    <li onclick="window.location = '/vanilla/';">
                                         <a>Ванилла</a>
                                     </li>
-                                    <li
-                                        onclick="document.getElementById('get_mode').value = 'ANARCHY';document.getElementById('form_mode').submit();">
+                                    <li onclick="window.location = '/anarchy/';">
                                         <a>Анархия</a>
                                     </li>
-                                    <li
-                                        onclick="document.getElementById('get_mode').value = 'MMORPG';document.getElementById('form_mode').submit();">
+                                    <li onclick="window.location = '/mmo-rpg/';">
                                         <a>MMO-RPG</a>
                                     </li>
-                                    <li
-                                        onclick="document.getElementById('get_mode').value = 'MINIGAMES';document.getElementById('form_mode').submit();">
+                                    <li onclick="window.location = '/mini-games/';">
                                         <a>Мини-игры</a>
                                     </li>
-                                    <li
-                                        onclick="document.getElementById('get_mode').value = 'ADVENTURE';document.getElementById('form_mode').submit();">
+                                    <li onclick="window.location = '/adventure/';">
                                         <a>Приключение</a>
                                     </li>
-                                    <li
-                                        onclick="document.getElementById('get_mode').value = 'CONSTRUCTION';document.getElementById('form_mode').submit();">
+                                    <li onclick="window.location = '/construction/';">
                                         <a>Строительство</a>
                                     </li>
                                 </ul>
@@ -663,7 +642,7 @@
                             <% } else { %>
                                 <div class="server-container-servers-empty">
                                     <img class="privatearea-container-panel-servers-picture-empty"
-                                        src="img/cloud-empty.svg">Ничего
+                                        src="/img/cloud-empty.svg">Ничего
                                     нет!
                                 </div>
                                 <% } %>
