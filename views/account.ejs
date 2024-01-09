@@ -164,7 +164,7 @@
         </div>
     </div>
 
-    <div id="create-server" class="modal auth" style="width: 440px; max-height:70%;padding-top:30px;">
+    <div id="create-server" class="modal auth" style="width: 440px; max-height:70%; padding-top:10px;">
         <div class="modal-content container" style="padding-bottom:0;">
             <div class="row" style="padding-bottom:0;margin-bottom:0">
                 <form action="server-check" id="server_status" name="server_status" method="post">
@@ -289,7 +289,7 @@
                                         <%= server.title %>
                                     </p>
                                     <p class="privatearea-container-panel-server-subtitle">
-                                        <%= server.description.substring(0, 280) %>
+                                        <%= server.description.substring(0, 250) %>...
                                     </p>
                                 </div>
                                 <div class="col l3 m12 s12">

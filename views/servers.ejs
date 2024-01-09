@@ -502,12 +502,12 @@
                                                                         <div class="server-module"
                                                                             onclick="window.location = '/server/<%= server.id %>'">
                                                                             <p class="server-title">
-                                                                                <%= server.title.substring(0, 50) %>
+                                                                                <%= server.title.substring(0, 35) %><% if (server.title.length > 35) { %>..<% } %>
                                                                             </p>
                                                                             <p
                                                                                 class="server-description text-color-gray">
-                                                                                <%= server.description.substring(0, 50)
-                                                                                    %>
+                                                                                <%= server.description.substring(0, 110)
+                                                                                    %>..
                                                                             </p>
                                                                         </div>
                                                                     </div>

@@ -370,6 +370,7 @@ app.post('/account/server/:id/edit', isAuthenticated, multerParser, upload.field
     } else {
         license = true;
     }
+    if (!premium_color) premium_color = 'blue';
 
     if (req.files['banner']) {
         pool.query(`UPDATE servers SET banner = $1 WHERE id = $2;`, [req.files['banner'][0].filename, req.params.id], (err, result) => {
