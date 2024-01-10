@@ -119,7 +119,8 @@
                                     class="nav-text button-auth waves-effect waves-light btn">
                             </div>
 
-                            <div class="google-auth" onclick="window.location = '/auth/google';"><img src="img/google.svg"><a>Продолжить с Google</a></div>
+                            <div class="google-auth" onclick="window.location = '/auth/google';"><img
+                                    src="img/google.svg"><a>Продолжить с Google</a></div>
                         </form>
 
                         <p class="auth-change">Если у вас еще нет аккаунта, то вы можете<br> зарегистрироваться <a
@@ -151,13 +152,21 @@
                                 </div>
                             </div>
 
+                            <div class="col l12 m6 s12">
+                                <label class="rules">Four
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+
                             <div class="col l12 div-complete-reg center">
                                 <i id="alert_error" class="material-icons" onclick="$('#regForm').submit();">cancel</i>
                                 <div id="alert_success" class="loader-1"><span></span></div>
                                 <input onmouseenter="document.getElementById(this).focus();" value="Регистрация"
                                     type="submit" class="nav-text button-reg waves-effect waves-light btn">
 
-                                <div class="google-auth" onclick="window.location = '/auth/google';"><img src="img/google.svg"><a>Продолжить с Google</a>
+                                <div class="google-auth" onclick="window.location = '/auth/google';"><img
+                                        src="img/google.svg"><a>Продолжить с Google</a>
                                 </div>
                             </div>
 
@@ -190,7 +199,8 @@
                 <p class="tournament-title"><span
                         style="background: radial-gradient(circle at 10% 20%, rgb(238, 56, 56) 0%, rgba(206, 21, 0, 0.92) 90.1%);background-clip: text;-webkit-text-fill-color: transparent;color:#ff0033">BED</span>WARS
                 </p>-->
-                <img style="position: absolute; top: 38%; left: 50%; transform: translate(-50%, -50%);" src="/img/bedwars-logo-alt.png">
+                <img style="position: absolute; top: 38%; left: 50%; transform: translate(-50%, -50%);"
+                    src="/img/bedwars-logo-alt.png">
                 <!--<p class="tournament-line"><span>———</span>—————<span>———<br></span></p>-->
                 <a class="party-button waves-effect waves-light btn" href="/tournaments/bedwars">Подробнее</a>
             </div>
@@ -454,7 +464,8 @@
                             onmouseover="hoverServer('#server-rating-<%= server.id %>', '#server-chart-<%= server.id %>', '#server-verification-<%= server.id %>')"
                             onmouseleave="unhoverServer('#server-rating-<%= server.id %>', '#server-chart-<%= server.id %>', '#server-verification-<%= server.id %>')">
                             <div id="server-rating-<%= server.id %>" class="server-rating">
-                                <div class="server-rating-tip"></div><img class="server-rating-icon" src="/img/star.svg">
+                                <div class="server-rating-tip"></div><img class="server-rating-icon"
+                                    src="/img/star.svg">
                                 <%= server.rate %>
                             </div>
                             <% if (server.verification) { %>
@@ -464,8 +475,7 @@
                                 <% } %>
                                     <% if (server.rate> server.rate_old) { %>
                                         <div id="server-chart-<%= server.id %>" class="server-chart">
-                                            <img class="server-chart-icon"
-                                                src="/img/rate-chart-true.svg">
+                                            <img class="server-chart-icon" src="/img/rate-chart-true.svg">
                                         </div>
                                         <% } else if (server.rate < server.rate_old) { %>
                                             <div id="server-chart-<%= server.id %>" class="server-chart">
@@ -481,7 +491,9 @@
                                                                         <div class="server-module"
                                                                             onclick="window.location = '/server/<%= server.id %>'">
                                                                             <p class="server-title">
-                                                                                <%= server.title.substring(0, 35) %><% if (server.title.length > 35) { %>..<% } %>
+                                                                                <%= server.title.substring(0, 35) %>
+                                                                                    <% if (server.title.length> 35) {
+                                                                                        %>..<% } %>
                                                                             </p>
                                                                             <p
                                                                                 class="server-description text-color-gray">
@@ -492,24 +504,26 @@
                                                                     </div>
                                                                     <div
                                                                         class="col l4 s12 server-plate-two hide-on-med-and-down">
-                                                                        <% if (server.banner == 'default-server-picture.gif') { %>
-                                                                        <div
-                                                                            style="background-image: url('../img/default-server-picture.gif');">
-                                                                        </div>
-                                                                        <% } else { %>
-                                                                        <div
-                                                                            style="background-image: url('media/banners/<%= server.banner %>');">
-                                                                        </div>
-                                                                        <% } %>
+                                                                        <% if
+                                                                            (server.banner=='default-server-picture.gif'
+                                                                            ) { %>
+                                                                            <div
+                                                                                style="background-image: url('../img/default-server-picture.gif');">
+                                                                            </div>
+                                                                            <% } else { %>
+                                                                                <div
+                                                                                    style="background-image: url('../media/banners/<%= server.banner %>');">
+                                                                                </div>
+                                                                                <% } %>
                                                                     </div>
                                                                     <div class="col l4 s12 server-plate-three">
                                                                         <div class="row">
                                                                             <div class="col l2 m2 s2 server-online"
                                                                                 style="padding-top: 8px;">
                                                                                 <i class="material-icons">people</i>
-                                                                                    <p>
-                                                                                        <%= server.current_players %>
-                                                                                    </p>
+                                                                                <p>
+                                                                                    <%= server.current_players %>
+                                                                                </p>
                                                                             </div>
                                                                             <div
                                                                                 class="col l10 m9 s10 server-plate-three-support">
@@ -664,4 +678,5 @@
 
             <%- footer %>
 </body>
+
 </html>
