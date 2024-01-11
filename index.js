@@ -788,6 +788,19 @@ app.get('/shop', (req, res) => {
     res.render('shop', { user: req.user, footer: footer_html });
 });
 
+app.get('/news', (req, res) => {
+    if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
+
+    pool.query(`SELECT * FROM news ORDER BY regdate;`, (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        res.render('news', { user: req.user, news: result.rows, footer: footer_html });
+    });
+});
+
 app.get('/terms', (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 

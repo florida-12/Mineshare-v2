@@ -4217,17 +4217,17 @@ rain {
     z-index: 2;
 }
 
-.article-title .material-icons {
+.article-title i {
     font-size: 26px;
     color: #ddd;
     position: absolute;
     top: 50%;
-    left: 96.5%;
+    left: 97%;
     transform: translate(-50%, -50%);
 }
 
 @media only screen and (max-width: 1400px) {
-    .article-title .material-icons {
+    .article-title i {
         font-size: 26px;
         color: #ddd;
         position: absolute;
@@ -4238,7 +4238,7 @@ rain {
 }
 
 @media only screen and (max-width: 1200px) {
-    .article-title .material-icons {
+    .article-title i {
         font-size: 26px;
         color: #ddd;
         position: absolute;
@@ -4305,7 +4305,7 @@ rain {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     font-family: 'Nunito Sans', sans-serif;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 15px;
     overflow: hidden;
     padding-top: 15px;
     padding-left: 20px;
@@ -4322,15 +4322,32 @@ rain {
     pointer-events: none;
 }
 
+.article-image {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.article-image img {
+    width: 100%;
+    border-radius: 6px;
+}
+
 .article-gradient {
-    width: 1000px;
+    width: 1100px;
     height: 400px;
     z-index: 1;
-    background: linear-gradient(85.62deg, #11B2FF 20%, #87E4F6 56.66%);
+    background: #0EB1FF;
     position: absolute;
-    transform: rotate(-60deg);
-    margin-left: -30%;
-    margin-top: -25%;
+    left: -500px;
+    transform: rotate(-90deg);
 }
 
 .server-support {
@@ -4344,7 +4361,7 @@ rain {
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.08);
     position: relative;
     overflow: hidden;
-    transition: 0.1s;
+    transition: 0.05s;
     margin-top: 25px;
     padding-top: 20px !important;
     padding-right: 20px !important;
@@ -4353,7 +4370,7 @@ rain {
 
 .server:hover {
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
-    transform: perspective(1000px) translate3d(0, 0, 20px);
+    transform: perspective(100px) translateZ(2px);
 }
 
 .server[type="Голубой"]:hover {

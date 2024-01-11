@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="DLNWD4pudytDWciFfuuFNl1_BPFJm4Wxhv67aBbJSzY" />
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="/css/styles.css" media="screen,projection">
+
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/tt-norms-medium" type="text/css">
+    <link href="https://fonts.cdnfonts.com/css/tt-norms-pro" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://mineshare.top/">
+    <meta name="robots" content="index, follow" />
+
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/minecraft" type="text/css" />
+
+    <link rel="icon" href="/img/favicon.png">
+    <title>Сервера майнкрафт - мониторинг, статистика, рейтинг серверов Minecraft.</title>
+
+    <meta name="description"
+        content="Мониторинг серверов майнкрафт с честной рейтинговой системой, удобными фильтрами и с отзывчивой администрацией! С нашей гибкой системой добавления проектов, вы сможете быстро и легко настроить ваш сервер для его быстрой раскрутки и дальнейшего продвижения. Mineshare - это быстро, легко, а самое главное - качественно!">
+    <meta name="og:description"
+        content="Мониторинг серверов майнкрафт с честной рейтинговой системой, удобными фильтрами и с отзывчивой администрацией! С нашей гибкой системой добавления проектов, вы сможете быстро и легко настроить ваш сервер для его быстрой раскрутки и дальнейшего продвижения. Mineshare - это быстро, легко, а самое главное - качественно!">
+    <meta name="keywords"
+        content="сервера майнкрафт, майнкрафт, мониторинг, сервер, поиск, поиск серверов, список серверов, сервер майнкрафт, minecraft, мониторинг серверов, ip адреса, сервера minecraft, айпи серверов, топ, список, лучшие сервера, рейтинг">
+    <meta property="og:image" content="https://mineshare.top/assets/img/mineshare-wallpaper-winter.png">
+    <meta property="og:url" content="https://mineshare.top/">
+</head>
+
+<body>
+
+    <div class="container nav-container nav-margin">
+        <div class="row nav-wrapper">
+            <a href="/" class="col l3 brand-logo text-color-black nav-logo left">Mineshare</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger hide-on-med-and-up"><i
+                    class="material-icons">menu</i></a>
+            <div class="col l6 container center hide-on-med-and-down nav-selections">
+                <div class="row">
+                    <a class="col l3 nav-link nav-link-active nav-text" href="/"><span
+                            class="gradient-underline">Серверы</span></a>
+                    <a class="col l3 nav-link nav-text text-color-black" href="/tournaments">Турниры</a>
+                    <a class="col l3 nav-link nav-text text-color-black" href="/shop">Магазин</a>
+                    <a class="col l3 nav-link nav-text text-color-black" href="/news">Новости</a>
+                </div>
+            </div>
+            <% if (user) { %>
+                <a class="col l3 nav-text button-nav waves-effect waves-light btn modal-trigger right hide-on-small-and-down"
+                    href="/account">Кабинет</a>
+                <% } else { %>
+                    <a id="login-button"
+                        class="col l3 nav-text button-nav waves-effect waves-light btn modal-trigger right hide-on-small-and-down"
+                        href="#authorization">Войти</a>
+                    <% } %>
+
+                        <div onclick="window.open('https://discord.gg/c6uCxFWTxC','_blank');"
+                            class="nav-discord hide-on-med-and-down">
+                            <div
+                                style="width:50px;height:50px;position:absolute;top:50%;left:-10%;transform:translate(-50%,-50%);background:transparent;">
+                            </div>
+                            <svg width="256px" height="256px" viewBox="0 -28.5 256 256"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                preserveAspectRatio="xMidYMid">
+                                <g>
+                                    <path
+                                        d="M216.856339,16.5966031 C200.285002,8.84328665 182.566144,3.2084988 164.041564,0 C161.766523,4.11318106 159.108624,9.64549908 157.276099,14.0464379 C137.583995,11.0849896 118.072967,11.0849896 98.7430163,14.0464379 C96.9108417,9.64549908 94.1925838,4.11318106 91.8971895,0 C73.3526068,3.2084988 55.6133949,8.86399117 39.0420583,16.6376612 C5.61752293,67.146514 -3.4433191,116.400813 1.08711069,164.955721 C23.2560196,181.510915 44.7403634,191.567697 65.8621325,198.148576 C71.0772151,190.971126 75.7283628,183.341335 79.7352139,175.300261 C72.104019,172.400575 64.7949724,168.822202 57.8887866,164.667963 C59.7209612,163.310589 61.5131304,161.891452 63.2445898,160.431257 C105.36741,180.133187 151.134928,180.133187 192.754523,160.431257 C194.506336,161.891452 196.298154,163.310589 198.110326,164.667963 C191.183787,168.842556 183.854737,172.420929 176.223542,175.320965 C180.230393,183.341335 184.861538,190.991831 190.096624,198.16893 C211.238746,191.588051 232.743023,181.531619 254.911949,164.955721 C260.227747,108.668201 245.831087,59.8662432 216.856339,16.5966031 Z M85.4738752,135.09489 C72.8290281,135.09489 62.4592217,123.290155 62.4592217,108.914901 C62.4592217,94.5396472 72.607595,82.7145587 85.4738752,82.7145587 C98.3405064,82.7145587 108.709962,94.5189427 108.488529,108.914901 C108.508531,123.290155 98.3405064,135.09489 85.4738752,135.09489 Z M170.525237,135.09489 C157.88039,135.09489 147.510584,123.290155 147.510584,108.914901 C147.510584,94.5396472 157.658606,82.7145587 170.525237,82.7145587 C183.391518,82.7145587 193.761324,94.5189427 193.539891,108.914901 C193.539891,123.290155 183.391518,135.09489 170.525237,135.09489 Z"
+                                        fill="#7289da" fill-rule="nonzero"></path>
+                                </g>
+                            </svg>
+                        </div>
+        </div>
+    </div>
+    <ul class="sidenav center" id="mobile-demo">
+        <li><a class="nav-link nav-link-active nav-text" href="/"><span class="gradient-underline">Серверы</span></a>
+        </li>
+        <li><a class="nav-link nav-text text-color-black" href="/shop">Магазин</a></li>
+        <li><a class="nav-link nav-text text-color-black" href="/news">Новости</a></li>
+        <p class="nav-text" style="font-size: 10px;color: lightgray;">Вход в личный кабинет доступен<br>только в ПК
+            версии сайта!</p>
+    </ul>
+
+    <div id="snackbar">Ошибка</div>
+    <div id="snackbar2">Ошибка</div>
+    <div id="authorization" class="modal auth" style="width: 30%;">
+        <div class="modal-content container">
+            <div class="row">
+                <div class="col s12 auth-tabs">
+                    <ul class="tabs">
+                        <li class="tab col s6">
+                            <a id="swap-auth" class="active" href="#auth-container"></a>
+                        </li>
+                        <li class="tab col s6">
+                            <a id="swap-reg" href="#reg-container"></a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="auth-container" class="col s12">
+                    <div class="col l12 m12 s12">
+                        <form class="auth-form" action="/login" name="logForm" id="logForm" method="post">
+                            <div class="input-field input-auth">
+                                <input placeholder="Email" name="email" type="email" class="validate" required>
+                            </div>
+
+                            <div class="input-field input-auth">
+                                <input placeholder="Пароль" name="password" id="password" type="password"
+                                    class="validate" minlength="8" maxlength="30" required>
+                            </div>
+                            <p class="auth-recovery"><a href="">Забыли пароль?</a>
+                            </p>
+
+                            <div class="center div-complete-auth">
+                                <i id="alert_error_login" class="material-icons"
+                                    onclick="$('#logForm').submit();">cancel</i>
+                                <div id="alert_success_login" class="loader-1"><span></span></div>
+                                <input value="Войти" type="submit"
+                                    class="nav-text button-auth waves-effect waves-light btn">
+                            </div>
+
+                            <div class="google-auth" onclick="window.location = '/auth/google';"><img
+                                    src="img/google.svg"><a>Продолжить с Google</a></div>
+                        </form>
+
+                        <p class="auth-change">Если у вас еще нет аккаунта, то вы можете<br> зарегистрироваться <a
+                                onclick="regTab()" class="auth-change-link">здесь!</a></p>
+                    </div>
+                </div>
+                <div id="reg-container" class="col l12 m12 s12">
+                    <div class="row" style="margin-bottom: 5px;">
+                        <form class="reg-form" action="/register" name="regForm" id="regForm" method="post">
+
+                            <div class="col l12 m12 s12">
+                                <div class="input-field input-reg">
+                                    <input placeholder="Email" id="email" name="email" type="email" class="validate"
+                                        required>
+                                </div>
+                            </div>
+
+                            <div class="col l12 m6 s12">
+                                <div class="input-field input-reg">
+                                    <input placeholder="Пароль" id="password" name="password" type="password"
+                                        class="validate" minlength="8" maxlength="30" required>
+                                </div>
+                            </div>
+
+                            <div class="col l12 m6 s12">
+                                <div class="input-field input-reg input-reg-last">
+                                    <input placeholder="Повтор пароля" id="password_repeat" name="password_repeat"
+                                        type="password" class="validate" minlength="8" maxlength="30" required>
+                                </div>
+                            </div>
+
+                            <div class="col l12 m6 s12">
+                                <label class="rules">Four
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+
+                            <div class="col l12 div-complete-reg center">
+                                <i id="alert_error" class="material-icons" onclick="$('#regForm').submit();">cancel</i>
+                                <div id="alert_success" class="loader-1"><span></span></div>
+                                <input onmouseenter="document.getElementById(this).focus();" value="Регистрация"
+                                    type="submit" class="nav-text button-reg waves-effect waves-light btn">
+
+                                <div class="google-auth" onclick="window.location = '/auth/google';"><img
+                                        src="img/google.svg"><a>Продолжить с Google</a>
+                                </div>
+                            </div>
+
+                            <p class="reg-change">Уже есть аккаунт? <a onclick="authTab()"
+                                    class="auth-change-link">Авторизуйтесь!</a></p>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page container">
+
+        <% news.forEach(function(article, index) { %>
+            <div class="row article">
+                <div class="article-gradient"></div>
+
+                <div class="col l12 s12">
+                    <% if (index==0) { %>
+                        <p class="article-title">
+                            <%= article.title %><i class="material-icons hide-on-med-and-down"
+                                    style="color:#FFA500">whatshot</i>
+                        </p>
+                        <% } else { %>
+                            <p class="article-title">
+                                <%= article.title %><i class="material-icons hide-on-med-and-down">library_books</i>
+                            </p>
+                            <% } %>
+                </div>
+
+                <div class="col l8 s12">
+                    <p
+                        class="article-description"><%- article.description %></p>
+                </div>
+                <div class="col l4 s12">
+                    <div class="article-image">
+                        <img src="<%= article.image %>">
+                    </div>
+                </div>
+            </div>
+            <% if (index!=news.length - 1) { %>
+                <div
+                    style="width: 100%;height:2px; background:#dddddd;border-radius:8px;margin-top:40px;margin-bottom:40px;">
+                </div>
+                <% } %>
+                    <% }); %>
+
+    </div>
+
+    <%- footer %>
+
+</body>
+
+</html>
