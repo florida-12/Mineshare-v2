@@ -15,6 +15,9 @@ const pgSession = require('connect-pg-simple')(session);
 const multer = require('multer');
 const bcrypt = require('bcrypt');
 const axios = require('axios');
+const { SitemapStream, streamToPromise } = require('sitemap')
+const { createGzip } = require('zlib')
+const { Readable } = require('stream')
 const app = express();
 
 
@@ -82,6 +85,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 let footer_html;
+let sitemap;
 
 fs.readFile(path.join(__dirname, 'views/footer.ejs'), 'utf-8')
     .then(content => {
@@ -854,6 +858,59 @@ app.get('/privacy', (req, res) => {
         }
     });
 });
+
+app.get('/sitemap.xml', function (req, res) {
+    res.header('Content-Type', 'application/xml');
+    res.header('Content-Encoding', 'gzip');
+    // if we have a cached entry send it
+    if (sitemap) {
+        res.send(sitemap)
+        return
+    }
+
+    try {
+        const smStream = new SitemapStream({ hostname: 'https://mineshare.top/' })
+        const pipeline = smStream.pipe(createGzip())
+
+        smStream.write({ url: '/', lastmod: '2024-01-11', changefreq: 'daily', priority: 1 })
+        smStream.write({ url: '/terms', lastmod: '2024-01-11', changefreq: 'weekly', priority: 0.8 })
+        smStream.write({ url: '/privacy', lastmod: '2024-01-11', changefreq: 'weekly', priority: 0.8 })
+        smStream.write({ url: '/tournaments', lastmod: '2024-01-11', changefreq: 'weekly', priority: 0.9 })
+        smStream.write({ url: '/tournament/bedwars', lastmod: '2024-01-11', changefreq: 'weekly', priority: 0.8 })
+        smStream.write({ url: '/shop', lastmod: '2024-01-11', changefreq: 'weekly', priority: 0.9 })
+        smStream.write({ url: '/news', lastmod: '2024-01-11', changefreq: 'weekly', priority: 0.9 })
+        smStream.write({ url: '/1.20', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
+        smStream.write({ url: '/1.19', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
+        smStream.write({ url: '/1.18', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
+        smStream.write({ url: '/1.17', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
+        smStream.write({ url: '/1.16', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
+        smStream.write({ url: '/1.15', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
+        smStream.write({ url: '/1.14', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
+        smStream.write({ url: '/1.13', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
+        smStream.write({ url: '/1.12', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
+        smStream.write({ url: '/1.11', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
+        smStream.write({ url: '/1.10', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
+        smStream.write({ url: '/1.9', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
+        smStream.write({ url: '/1.8', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
+        smStream.write({ url: '/1.7', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
+        smStream.write({ url: '/vanilla', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
+        smStream.write({ url: '/anarchy', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
+        smStream.write({ url: '/mmo-rpg', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
+        smStream.write({ url: '/mini-games', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
+        smStream.write({ url: '/adventure', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
+        smStream.write({ url: '/construction', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
+
+        // cache the response
+        streamToPromise(pipeline).then(sm => sitemap = sm)
+        // make sure to attach a write stream such as streamToPromise before ending
+        smStream.end()
+        // stream write the response
+        pipeline.pipe(res).on('error', (e) => { throw e })
+    } catch (e) {
+        console.error(e)
+        res.status(500).end()
+    }
+})
 
 app.get('/obs/bedwars/4x2', (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');

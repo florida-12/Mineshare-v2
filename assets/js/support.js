@@ -1,7 +1,7 @@
 function copyIP(element) {
     var $tmp = $("<textarea>");
     $("body").append($tmp);
-    $tmp.val($(element).text()).select();
+    $tmp.val($(element).text().trim()).select();
     document.execCommand("copy");
     $tmp.remove();
     var x = document.getElementById("snackbar2");
