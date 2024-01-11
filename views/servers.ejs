@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="google-site-verification" content="DLNWD4pudytDWciFfuuFNl1_BPFJm4Wxhv67aBbJSzY" />
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <link type="text/css" rel="stylesheet" href="/css/materialize.min.css" media="screen,projection" />
     <link type="text/css" rel="stylesheet" href="/css/styles.css" media="screen,projection">
 
@@ -208,249 +210,256 @@
             <div class="search-container container">
                 <div class="row">
                     <div class="col l12 s12">
-                        <form action=""
-                            style="background:#fff;margin-right: -10px;margin-left: -10px;border-radius: 12px;box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.05);"
-                            method="get">
-                            <div class="input-field input-search">
-                                <input name="search" id="search" type="search" required>
-                                <label class="label-icon icon-search right" for="search"><i
-                                        class="material-icons">search</i></label>
+                        <div class="row" style="margin-bottom: 0;">
+                            <div class="col l9 s12">
+                                <form action=""
+                                    style="background:#fff; border-radius: 12px;box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.05);"
+                                    method="get">
+                                    <div class="input-field input-search">
+                                        <input name="search" id="search" type="search" required>
+                                        <label class="label-icon icon-search right" for="search"><i
+                                                class="material-icons">search</i></label>
+                                    </div>
+                                </form>
                             </div>
-                        </form>
+                            <div class="col l3 s12">
+                                <button id="random" class="button-random-server" onclick="randomServer();">Случайный
+                                    сервер<i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+                            </div>
+                        </div>
+
+
                     </div>
-                    <div style="margin-left: -10px;margin-right: -10px;">
-                        <div class="col l2 m4 s6">
-                            <form>
-                                <ul id="dropdown-filter-version" class="dropdown-content">
-                                    <li onclick="window.location = '/1.20/';">
-                                        <a>1.20.X</a>
-                                    </li>
-                                    <li onclick="window.location = '/1.19/';">
-                                        <a>1.19.X</a>
-                                    </li>
-                                    <li onclick="window.location = '/1.18/';">
-                                        <a>1.18.X</a>
-                                    </li>
-                                    <li onclick="window.location = '/1.17/';">
-                                        <a>1.17.X</a>
-                                    </li>
-                                    <li onclick="window.location = '/1.16/';">
-                                        <a>1.16.X</a>
-                                    </li>
-                                    <li onclick="window.location = '/1.15/';">
-                                        <a>1.15.X</a>
-                                    </li>
-                                    <li onclick="window.location = '/1.14/';">
-                                        <a>1.14.X</a>
-                                    </li>
-                                    <li onclick="window.location = '/1.13/';">
-                                        <a>1.13.X</a>
-                                    </li>
-                                    <li onclick="window.location = '/1.12/';">
-                                        <a>1.12.X</a>
-                                    </li>
-                                    <li onclick="window.location = '/1.11/';">
-                                        <a>1.11.X</a>
-                                    </li>
-                                    <li onclick="window.location = '/1.10/';">
-                                        <a>1.10.X</a>
-                                    </li>
-                                    <li onclick="window.location = '/1.9/';">
-                                        <a>1.9.X</a>
-                                    </li>
-                                    <li onclick="window.location = '/1.8/';">
-                                        <a>1.8.X</a>
-                                    </li>
-                                    <li onclick="window.location = '/1.7/';">
-                                        <a>1.7.X</a>
-                                    </li>
-                                </ul>
-                            </form>
-                            <div class="filter-version" onclick="openFilter('filter-version')">
-                                <a id="filter-version" class="dropdown-trigger"
-                                    data-target="dropdown-filter-version">Версия</a>
-                            </div>
+                    <div class="col l2 m4 s6">
+                        <form>
+                            <ul id="dropdown-filter-version" class="dropdown-content">
+                                <li onclick="window.location = '/1.20/';">
+                                    <a>1.20.X</a>
+                                </li>
+                                <li onclick="window.location = '/1.19/';">
+                                    <a>1.19.X</a>
+                                </li>
+                                <li onclick="window.location = '/1.18/';">
+                                    <a>1.18.X</a>
+                                </li>
+                                <li onclick="window.location = '/1.17/';">
+                                    <a>1.17.X</a>
+                                </li>
+                                <li onclick="window.location = '/1.16/';">
+                                    <a>1.16.X</a>
+                                </li>
+                                <li onclick="window.location = '/1.15/';">
+                                    <a>1.15.X</a>
+                                </li>
+                                <li onclick="window.location = '/1.14/';">
+                                    <a>1.14.X</a>
+                                </li>
+                                <li onclick="window.location = '/1.13/';">
+                                    <a>1.13.X</a>
+                                </li>
+                                <li onclick="window.location = '/1.12/';">
+                                    <a>1.12.X</a>
+                                </li>
+                                <li onclick="window.location = '/1.11/';">
+                                    <a>1.11.X</a>
+                                </li>
+                                <li onclick="window.location = '/1.10/';">
+                                    <a>1.10.X</a>
+                                </li>
+                                <li onclick="window.location = '/1.9/';">
+                                    <a>1.9.X</a>
+                                </li>
+                                <li onclick="window.location = '/1.8/';">
+                                    <a>1.8.X</a>
+                                </li>
+                                <li onclick="window.location = '/1.7/';">
+                                    <a>1.7.X</a>
+                                </li>
+                            </ul>
+                        </form>
+                        <div class="filter-version" onclick="openFilter('filter-version')">
+                            <a id="filter-version" class="dropdown-trigger"
+                                data-target="dropdown-filter-version">Версия</a>
                         </div>
-                        <div class="col l2 m4 s6">
-                            <form>
-                                <ul id="dropdown-filter-type" class="dropdown-content">
-                                    <li onclick="window.location = '/vanilla/';">
-                                        <a>Ванилла</a>
-                                    </li>
-                                    <li onclick="window.location = '/anarchy/';">
-                                        <a>Анархия</a>
-                                    </li>
-                                    <li onclick="window.location = '/mmo-rpg/';">
-                                        <a>MMO-RPG</a>
-                                    </li>
-                                    <li onclick="window.location = '/mini-games/';">
-                                        <a>Мини-игры</a>
-                                    </li>
-                                    <li onclick="window.location = '/adventure/';">
-                                        <a>Приключение</a>
-                                    </li>
-                                    <li onclick="window.location = '/construction/';">
-                                        <a>Строительство</a>
-                                    </li>
-                                </ul>
-                            </form>
-                            <div class="filter-type" onclick="openFilter('filter-type')">
-                                <a id="filter-type" class="dropdown-trigger"
-                                    data-target="dropdown-filter-type">Режим</a>
-                            </div>
+                    </div>
+                    <div class="col l2 m4 s6">
+                        <form>
+                            <ul id="dropdown-filter-type" class="dropdown-content">
+                                <li onclick="window.location = '/vanilla/';">
+                                    <a>Ванилла</a>
+                                </li>
+                                <li onclick="window.location = '/anarchy/';">
+                                    <a>Анархия</a>
+                                </li>
+                                <li onclick="window.location = '/mmo-rpg/';">
+                                    <a>MMO-RPG</a>
+                                </li>
+                                <li onclick="window.location = '/mini-games/';">
+                                    <a>Мини-игры</a>
+                                </li>
+                                <li onclick="window.location = '/adventure/';">
+                                    <a>Приключение</a>
+                                </li>
+                                <li onclick="window.location = '/construction/';">
+                                    <a>Строительство</a>
+                                </li>
+                            </ul>
+                        </form>
+                        <div class="filter-type" onclick="openFilter('filter-type')">
+                            <a id="filter-type" class="dropdown-trigger" data-target="dropdown-filter-type">Режим</a>
                         </div>
-                        <div class="col l2 m4 s6">
-                            <form id="form_attribute" action="" method="get"><input id="get_attribute" name="attribute"
-                                    class="hidden">
-                                <ul id="dropdown-filter-peculiarities" class="dropdown-content">
-                                    <li
-                                        onclick="document.getElementById('get_attribute').value='Кланы';document.getElementById('form_attribute').submit();">
-                                        <a>Кланы</a>
-                                    </li>
-                                    <li
-                                        onclick="document.getElementById('get_attribute').value='Кейсы';document.getElementById('form_attribute').submit();">
-                                        <a>Кейсы</a>
-                                    </li>
-                                    <li
-                                        onclick="document.getElementById('get_attribute').value='Работа';document.getElementById('form_attribute').submit();">
-                                        <a>Работа</a>
-                                    </li>
-                                    <li
-                                        onclick="document.getElementById('get_attribute').value='Друзья';document.getElementById('form_attribute').submit();">
-                                        <a>Друзья</a>
-                                    </li>
-                                    <li
-                                        onclick="document.getElementById('get_attribute').value='Свадьбы';document.getElementById('form_attribute').submit();">
-                                        <a>Свадьбы</a>
-                                    </li>
-                                    <li
-                                        onclick="document.getElementById('get_attribute').value='Магазин';document.getElementById('form_attribute').submit();">
-                                        <a>Магазин</a>
-                                    </li>
-                                    <li
-                                        onclick="document.getElementById('get_attribute').value='Питомцы';document.getElementById('form_attribute').submit();">
-                                        <a>Питомцы</a>
-                                    </li>
-                                    <li
-                                        onclick="document.getElementById('get_attribute').value='Креатив';document.getElementById('form_attribute').submit();">
-                                        <a>Креатив</a>
-                                    </li>
-                                    <li
-                                        onclick="document.getElementById('get_attribute').value='Проходка';document.getElementById('form_attribute').submit();">
-                                        <a>Проходка</a>
-                                    </li>
-                                    <li
-                                        onclick="document.getElementById('get_attribute').value='Экономика';document.getElementById('form_attribute').submit();">
-                                        <a>Экономика</a>
-                                    </li>
-                                    <li
-                                        onclick="document.getElementById('get_attribute').value='Праздники';document.getElementById('form_attribute').submit();">
-                                        <a>Праздники</a>
-                                    </li>
-                                    <li
-                                        onclick="document.getElementById('get_attribute').value='Транспорт';document.getElementById('form_attribute').submit();">
-                                        <a>Транспорт</a>
-                                    </li>
-                                    <li
-                                        onclick="document.getElementById('get_attribute').value='Гриферство';document.getElementById('form_attribute').submit();">
-                                        <a>Гриферство</a>
-                                    </li>
-                                    <li
-                                        onclick="document.getElementById('get_attribute').value='Текстурпак';document.getElementById('form_attribute').submit();">
-                                        <a>Текстурпак</a>
-                                    </li>
-                                    <li
-                                        onclick="document.getElementById('get_attribute').value='Геолокация';document.getElementById('form_attribute').submit();">
-                                        <a>Геолокация</a>
-                                    </li>
-                                    <li
-                                        onclick="document.getElementById('get_attribute').value='Без доната';document.getElementById('form_attribute').submit();">
-                                        <a>Без доната</a>
-                                    </li>
-                                    <li
-                                        onclick="document.getElementById('get_attribute').value='Без привата';document.getElementById('form_attribute').submit();">
-                                        <a>Без привата</a>
-                                    </li>
-                                    <li
-                                        onclick="document.getElementById('get_attribute').value='Без античита';document.getElementById('form_attribute').submit();">
-                                        <a>Без античита</a>
-                                    </li>
-                                    <li
-                                        onclick="document.getElementById('get_attribute').value='Без креатива';document.getElementById('form_attribute').submit();">
-                                        <a>Без креатива</a>
-                                    </li>
-                                    <li
-                                        onclick="document.getElementById('get_attribute').value='Зимний сезон';document.getElementById('form_attribute').submit();">
-                                        <a>Зимний сезон</a>
-                                    </li>
-                                    <li
-                                        onclick="document.getElementById('get_attribute').value='Голосовой чат';document.getElementById('form_attribute').submit();">
-                                        <a>Голосовой чат</a>
-                                    </li>
-                                    <li
-                                        onclick="document.getElementById('get_attribute').value='Система рангов';document.getElementById('form_attribute').submit();">
-                                        <a>Система рангов</a>
-                                    </li>
-                                </ul>
-                            </form>
-                            <div class="filter-peculiarities" onclick="openFilter('filter-peculiarities')">
-                                <a id="filter-peculiarities" class="dropdown-trigger"
-                                    data-target="dropdown-filter-peculiarities">Атрибуты</a>
-                            </div>
+                    </div>
+                    <div class="col l2 m4 s6">
+                        <form id="form_attribute" action="" method="get"><input id="get_attribute" name="attribute"
+                                class="hidden">
+                            <ul id="dropdown-filter-peculiarities" class="dropdown-content">
+                                <li
+                                    onclick="document.getElementById('get_attribute').value='Кланы';document.getElementById('form_attribute').submit();">
+                                    <a>Кланы</a>
+                                </li>
+                                <li
+                                    onclick="document.getElementById('get_attribute').value='Кейсы';document.getElementById('form_attribute').submit();">
+                                    <a>Кейсы</a>
+                                </li>
+                                <li
+                                    onclick="document.getElementById('get_attribute').value='Работа';document.getElementById('form_attribute').submit();">
+                                    <a>Работа</a>
+                                </li>
+                                <li
+                                    onclick="document.getElementById('get_attribute').value='Друзья';document.getElementById('form_attribute').submit();">
+                                    <a>Друзья</a>
+                                </li>
+                                <li
+                                    onclick="document.getElementById('get_attribute').value='Свадьбы';document.getElementById('form_attribute').submit();">
+                                    <a>Свадьбы</a>
+                                </li>
+                                <li
+                                    onclick="document.getElementById('get_attribute').value='Магазин';document.getElementById('form_attribute').submit();">
+                                    <a>Магазин</a>
+                                </li>
+                                <li
+                                    onclick="document.getElementById('get_attribute').value='Питомцы';document.getElementById('form_attribute').submit();">
+                                    <a>Питомцы</a>
+                                </li>
+                                <li
+                                    onclick="document.getElementById('get_attribute').value='Креатив';document.getElementById('form_attribute').submit();">
+                                    <a>Креатив</a>
+                                </li>
+                                <li
+                                    onclick="document.getElementById('get_attribute').value='Проходка';document.getElementById('form_attribute').submit();">
+                                    <a>Проходка</a>
+                                </li>
+                                <li
+                                    onclick="document.getElementById('get_attribute').value='Экономика';document.getElementById('form_attribute').submit();">
+                                    <a>Экономика</a>
+                                </li>
+                                <li
+                                    onclick="document.getElementById('get_attribute').value='Праздники';document.getElementById('form_attribute').submit();">
+                                    <a>Праздники</a>
+                                </li>
+                                <li
+                                    onclick="document.getElementById('get_attribute').value='Транспорт';document.getElementById('form_attribute').submit();">
+                                    <a>Транспорт</a>
+                                </li>
+                                <li
+                                    onclick="document.getElementById('get_attribute').value='Гриферство';document.getElementById('form_attribute').submit();">
+                                    <a>Гриферство</a>
+                                </li>
+                                <li
+                                    onclick="document.getElementById('get_attribute').value='Текстурпак';document.getElementById('form_attribute').submit();">
+                                    <a>Текстурпак</a>
+                                </li>
+                                <li
+                                    onclick="document.getElementById('get_attribute').value='Геолокация';document.getElementById('form_attribute').submit();">
+                                    <a>Геолокация</a>
+                                </li>
+                                <li
+                                    onclick="document.getElementById('get_attribute').value='Без доната';document.getElementById('form_attribute').submit();">
+                                    <a>Без доната</a>
+                                </li>
+                                <li
+                                    onclick="document.getElementById('get_attribute').value='Без привата';document.getElementById('form_attribute').submit();">
+                                    <a>Без привата</a>
+                                </li>
+                                <li
+                                    onclick="document.getElementById('get_attribute').value='Без античита';document.getElementById('form_attribute').submit();">
+                                    <a>Без античита</a>
+                                </li>
+                                <li
+                                    onclick="document.getElementById('get_attribute').value='Без креатива';document.getElementById('form_attribute').submit();">
+                                    <a>Без креатива</a>
+                                </li>
+                                <li
+                                    onclick="document.getElementById('get_attribute').value='Зимний сезон';document.getElementById('form_attribute').submit();">
+                                    <a>Зимний сезон</a>
+                                </li>
+                                <li
+                                    onclick="document.getElementById('get_attribute').value='Голосовой чат';document.getElementById('form_attribute').submit();">
+                                    <a>Голосовой чат</a>
+                                </li>
+                                <li
+                                    onclick="document.getElementById('get_attribute').value='Система рангов';document.getElementById('form_attribute').submit();">
+                                    <a>Система рангов</a>
+                                </li>
+                            </ul>
+                        </form>
+                        <div class="filter-peculiarities" onclick="openFilter('filter-peculiarities')">
+                            <a id="filter-peculiarities" class="dropdown-trigger"
+                                data-target="dropdown-filter-peculiarities">Атрибуты</a>
                         </div>
-                        <div class="col l2 m4 s6">
-                            <form id="form_online" action="" method="get"><input id="get_online" name="online"
-                                    class="hidden">
-                                <ul id="dropdown-filter-online" class="dropdown-content">
-                                    <li
-                                        onclick="document.getElementById('get_online').value = 'Больше';document.getElementById('form_online').submit();">
-                                        <a>Больше</a>
-                                    </li>
-                                    <li
-                                        onclick="document.getElementById('get_online').value = 'Меньше';document.getElementById('form_online').submit();">
-                                        <a>Меньше</a>
-                                    </li>
-                                </ul>
-                            </form>
-                            <div class="filter-online" onclick="openFilter('filter-online')">
-                                <a id="filter-online" class="dropdown-trigger"
-                                    data-target="dropdown-filter-online">Онлайн</a>
-                            </div>
+                    </div>
+                    <div class="col l2 m4 s6">
+                        <form id="form_online" action="" method="get"><input id="get_online" name="online"
+                                class="hidden">
+                            <ul id="dropdown-filter-online" class="dropdown-content">
+                                <li
+                                    onclick="document.getElementById('get_online').value = 'Больше';document.getElementById('form_online').submit();">
+                                    <a>Больше</a>
+                                </li>
+                                <li
+                                    onclick="document.getElementById('get_online').value = 'Меньше';document.getElementById('form_online').submit();">
+                                    <a>Меньше</a>
+                                </li>
+                            </ul>
+                        </form>
+                        <div class="filter-online" onclick="openFilter('filter-online')">
+                            <a id="filter-online" class="dropdown-trigger"
+                                data-target="dropdown-filter-online">Онлайн</a>
                         </div>
-                        <div class="col l2 m4 s6">
-                            <form id="form_rate" action="" method="get"><input id="get_rate" name="rate" class="hidden">
-                                <ul id="dropdown-filter-rating" class="dropdown-content">
-                                    <li
-                                        onclick="document.getElementById('get_rate').value = 'Больше';document.getElementById('form_rate').submit();">
-                                        <a>Больше</a>
-                                    </li>
-                                    <li
-                                        onclick="document.getElementById('get_rate').value = 'Меньше';document.getElementById('form_rate').submit();">
-                                        <a>Меньше</a>
-                                    </li>
-                                </ul>
-                            </form>
-                            <div class="filter-rating" onclick="openFilter('filter-rating')">
-                                <a id="filter-rating" class="dropdown-trigger"
-                                    data-target="dropdown-filter-rating">Рейтинг</a>
-                            </div>
+                    </div>
+                    <div class="col l2 m4 s6">
+                        <form id="form_rate" action="" method="get"><input id="get_rate" name="rate" class="hidden">
+                            <ul id="dropdown-filter-rating" class="dropdown-content">
+                                <li
+                                    onclick="document.getElementById('get_rate').value = 'Больше';document.getElementById('form_rate').submit();">
+                                    <a>Больше</a>
+                                </li>
+                                <li
+                                    onclick="document.getElementById('get_rate').value = 'Меньше';document.getElementById('form_rate').submit();">
+                                    <a>Меньше</a>
+                                </li>
+                            </ul>
+                        </form>
+                        <div class="filter-rating" onclick="openFilter('filter-rating')">
+                            <a id="filter-rating" class="dropdown-trigger"
+                                data-target="dropdown-filter-rating">Рейтинг</a>
                         </div>
-                        <div class="col l2 m4 s6">
-                            <form id="form_date" action="" method="get"><input id="get_date" name="date" class="hidden">
-                                <ul id="dropdown-filter-date" class="dropdown-content">
-                                    <li
-                                        onclick="document.getElementById('get_date').value = 'Новые';document.getElementById('form_date').submit();">
-                                        <a>Новые</a>
-                                    </li>
-                                    <li
-                                        onclick="document.getElementById('get_date').value = 'Старые';document.getElementById('form_date').submit();">
-                                        <a>Старые</a>
-                                    </li>
-                                </ul>
-                            </form>
-                            <div class="filter-date" onclick="openFilter('filter-date')">
-                                <a id="filter-date" class="dropdown-trigger" data-target="dropdown-filter-date">Дата</a>
-                            </div>
+                    </div>
+                    <div class="col l2 m4 s6">
+                        <form id="form_date" action="" method="get"><input id="get_date" name="date" class="hidden">
+                            <ul id="dropdown-filter-date" class="dropdown-content">
+                                <li
+                                    onclick="document.getElementById('get_date').value = 'Новые';document.getElementById('form_date').submit();">
+                                    <a>Новые</a>
+                                </li>
+                                <li
+                                    onclick="document.getElementById('get_date').value = 'Старые';document.getElementById('form_date').submit();">
+                                    <a>Старые</a>
+                                </li>
+                            </ul>
+                        </form>
+                        <div class="filter-date" onclick="openFilter('filter-date')">
+                            <a id="filter-date" class="dropdown-trigger" data-target="dropdown-filter-date">Дата</a>
                         </div>
                     </div>
 
@@ -675,8 +684,24 @@
                     </form>
                 </div>
             </div>
-
             <%- footer %>
+
+            <script type="text/javascript">
+                function randomServer() {
+                    $('#random').attr('disabled', true);
+                    $('#random').html(`
+                        <div class="button-random-loader"><div class="progress"><div class="indeterminate"></div></div></div>
+                        `)
+                    setTimeout(function() {
+                        window.location = '/random';
+                    }, 100);
+                    setTimeout(function() {
+                        $('#random').html(`Случайный
+                                    сервер<i class="fa-solid fa-arrow-right-from-bracket"></i>`);
+                    }, 2000);
+                    $('#random').attr('disabled', false);
+                }
+            </script>
 </body>
 
 </html>

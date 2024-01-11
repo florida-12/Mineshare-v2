@@ -468,6 +468,20 @@ app.get('/', (req, res) => {
     });
 });
 
+app.get('/random', (req, res) => {
+    pool.query(`SELECT id FROM servers WHERE ban = false;`, (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        const servers = result.rows.map(row => row.id);
+        const server = servers[Math.floor(Math.random() * servers.length)];
+
+        res.redirect(`/server/${server}`);
+    });
+});
+
 app.get('/1.20', (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 

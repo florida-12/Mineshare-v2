@@ -2018,6 +2018,47 @@ rain {
     margin-top: 8px;
 }
 
+.button-random-server {
+    width: 100%; 
+    height: 45px;
+    position: relative;
+    background: linear-gradient(98.44deg, #8DEBFF 0%, #00ABFF 100%), #339DFF;
+    box-shadow: 0px 0px 10px rgba(113, 212, 255, 0.5);
+    border-radius: 12px; border: none; color: #fff;
+    font-family: 'TT Norms Pro', sans-serif;
+    font-weight: 700;
+    line-height: 5%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+.button-random-server:hover {
+    background: linear-gradient(98.44deg, #76c1e5 0%, #008ccc 100%), #267bb7;
+}
+
+.button-random-server i {
+    font-size: 14px; 
+    margin-left: 7px;
+    margin-right: -10px;
+}
+
+.button-random-loader {
+    width: 80%;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.button-random-loader .progress {
+    background-color: #fff;
+}
+
+.button-random-loader .progress .indeterminate {
+    background-color: #3A4E57;
+}
+
 .create-server-agree {
     font-family: 'Nunito Sans', sans-serif;
     font-weight: 600;
@@ -2234,8 +2275,6 @@ rain {
 
 .search-container form {
     background: #fff;
-    margin-right: -10px;
-    margin-left: -10px;
     border-radius: 12px;
     box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.05);
 }
