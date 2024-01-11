@@ -31,6 +31,17 @@
         content="сервера майнкрафт, майнкрафт, мониторинг, сервер, поиск, поиск серверов, список серверов, сервер майнкрафт, minecraft, мониторинг серверов, ip адреса, сервера minecraft, айпи серверов, топ, список, лучшие сервера, рейтинг">
     <meta property="og:image" content="https://mineshare.top/assets/img/mineshare-wallpaper-winter.png">
     <meta property="og:url" content="https://mineshare.top/">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P324YETMRL">
+    </script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-P324YETMRL');
+    </script>
 </head>
 
 <body>
@@ -204,7 +215,7 @@
                 <img style="position: absolute; top: 38%; left: 50%; transform: translate(-50%, -50%);"
                     src="/img/bedwars-logo-alt.png">
                 <!--<p class="tournament-line"><span>———</span>—————<span>———<br></span></p>-->
-                <a class="party-button waves-effect waves-light btn" href="/tournaments/bedwars">Подробнее</a>
+                <a class="party-button waves-effect waves-light btn" href="/tournament/bedwars">Подробнее</a>
             </div>
 
             <div class="search-container container">
@@ -686,22 +697,22 @@
             </div>
             <%- footer %>
 
-            <script type="text/javascript">
-                function randomServer() {
-                    $('#random').attr('disabled', true);
-                    $('#random').html(`
+                <script type="text/javascript">
+                    function randomServer() {
+                        $('#random').attr('disabled', true);
+                        $('#random').html(`
                         <div class="button-random-loader"><div class="progress"><div class="indeterminate"></div></div></div>
                         `)
-                    setTimeout(function() {
-                        window.location = '/random';
-                    }, 100);
-                    setTimeout(function() {
-                        $('#random').html(`Случайный
+                        setTimeout(function () {
+                            window.location = '/random';
+                        }, 100);
+                        setTimeout(function () {
+                            $('#random').html(`Случайный
                                     сервер<i class="fa-solid fa-arrow-right-from-bracket"></i>`);
-                    }, 2000);
-                    $('#random').attr('disabled', false);
-                }
-            </script>
+                        }, 2000);
+                        $('#random').attr('disabled', false);
+                    }
+                </script>
 </body>
 
 </html>

@@ -790,7 +790,7 @@ app.get('/tournaments', (req, res) => {
     res.render('tournaments', { user: req.user, footer: footer_html });
 });
 
-app.get('/tournaments/bedwars', (req, res) => {
+app.get('/tournament/bedwars', (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
     res.render('bedwars', { user: req.user, footer: footer_html });
