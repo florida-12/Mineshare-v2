@@ -289,7 +289,7 @@ app.post('/account/server-check', isAuthenticated, async (req, res) => {
 app.get('/account/server-create', isAuthenticated, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
-    pool.query(`SELECT * FROM servers_buffer WHERE owner = $1;`, [req.user.id], (err, result) => {
+    pool.query(`SELECT * FROM servers_buffer WHERE owner = $1 ORDER BY -id LIMIT 1;`, [req.user.id], (err, result) => {
         if (err) {
             console.error(err);
             return res.status(500).send('Internal Server Error');
@@ -340,7 +340,7 @@ app.post('/account/server-create', isAuthenticated, async (req, res) => {
                 });
             });
 
-            result = await pool.query('DELETE FROM servers_buffer WHERE id = $1;', [server_id]);
+            result = await pool.query('DELETE FROM servers_buffer WHERE owner = $1;', [req.user.id]);
 
             res.redirect('/account');
         });

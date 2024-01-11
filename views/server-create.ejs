@@ -21,14 +21,6 @@
         content="майнкрафт, мониторинг, сервер, поиск, поиск серверов, список серверов, сервер майнкрафт">
     <meta name="author" content="Florida" />
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-210918680-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'UA-210918680-1');
-    </script>
-
     <link rel="icon" href="/img/favicon.svg">
     <title>Mineshare - Лучший мониторинг серверов!</title>
 </head>
@@ -37,7 +29,7 @@
     <div class="serverpagecreate-head container">
         <p>Настройки сервера</p>
     </div>
-    <form action="" method="post">
+    <form id="form" action="" method="post">
         <div class="page container">
 
             <div class="row">
@@ -68,17 +60,19 @@
 
                 <div class="col l4 m4 s12">
                     <div class="serverpage-license">
-                        <p onclick="changeLicense(this,'license')">Без лицензии</p><input name="license"
-                            id="license" class="hidden" value="Без лицензии" readonly>
+                        <p onclick="changeLicense(this,'license')">Без лицензии</p><input name="license" id="license"
+                            class="hidden" value="Без лицензии" readonly>
                     </div>
                 </div>
 
                 <div class="col l12 m12 s12 ">
                     <div class="serverpagecreate-tags center">
-                        <% tags.forEach(tag => { %>
+                        <% tags.forEach(tag=> { %>
                             <div class="tag">
                                 <input type="checkbox" name="tags" value="<%= tag.name %>" class="filled-in">
-                                <p class="title"><%= tag.friendly_name %>&nbsp;&nbsp;</p>
+                                <p class="title">
+                                    <%= tag.friendly_name %>&nbsp;&nbsp;
+                                </p>
                                 <p class="icon"><i class="fa-solid <%= tag.name %>"></i></p>
                             </div>
                             <% }); %>
@@ -90,7 +84,7 @@
 
         <div class="serverpagecreate-footer container">
             <div class="center">
-                <button class="button-publish" type="submit">Опубликовать</button>
+                <button id="publish" class="button-publish" type="submit" onclick="submitForm();">Опубликовать</button>
             </div>
         </div>
     </form>
@@ -101,11 +95,13 @@
     <script type="text/javascript" src="/js/script.js"></script>
     <script type="text/javascript" src="/js/support.js"></script>
     <script type="text/javascript">
-        window.onload = function () {
-            element = document.getElementById("desc");
-            element.style.height = "1px";
-            element.style.height = (2 + element.scrollHeight) + "px";
-        };
+        function submitForm() {
+            $('#publish').attr('disabled', true);
+            $('#form').submit();
+            $('#publish').html(`
+            <div class="button-publish-loader"><div class="progress"><div class="indeterminate"></div></div></div>
+            `)
+        }
     </script>
 </body>
 

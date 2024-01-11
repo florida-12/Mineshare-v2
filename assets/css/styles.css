@@ -4057,7 +4057,7 @@ rain {
 .button-publish {
     width: 200px !important;
     height: 50px;
-    border-radius: 10px !important;
+    position: relative;
     color: #fff;
     font-size: 15px;
     font-family: 'TT Norms Pro', sans-serif;
@@ -4065,6 +4065,7 @@ rain {
     text-transform: uppercase;
     background: linear-gradient(98.44deg, #8DEBFF 0%, #00ABFF 100%), #339DFF;
     box-shadow: 0px 0px 15px rgba(113, 212, 255, 0.6);
+    border-radius: 10px !important;
     border: none;
     border-bottom: 6px solid rgba(0, 0, 0, .15);
     line-height: 43px;
@@ -4077,6 +4078,22 @@ rain {
 
 .button-publish:hover {
     background: linear-gradient(98.44deg, #76c1e5 0%, #008ccc 100%), #267bb7;
+}
+
+.button-publish-loader {
+    width: 160px;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.button-publish-loader .progress {
+    background-color: #fff;
+}
+
+.button-publish-loader .progress .indeterminate {
+    background-color: #3A4E57;
 }
 
 .serverpagecreate-description {
