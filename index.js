@@ -186,7 +186,13 @@ passport.deserializeUser(async (id, done) => {
     }
 });
 
-app.post('/register', async (req, res) => {
+app.post('/register', recaptcha.middleware.verify, async (req, res) => {
+    if (req.recaptcha.error) {
+        return res.send('Проверка reCaptcha не удалась');
+    } else {
+        return res.send('Все хорошо');
+    }
+
     const { email, password, password_repeat } = req.body;
 
     if (password != password_repeat) return res.status(400).json({ message: 'Password mismatch.' });
@@ -250,7 +256,7 @@ app.get('/account', isAuthenticated, (req, res) => {
                     console.error(err);
                     return res.status(500).send('Internal Server Error');
                 }
-        
+
                 return res.render('account', { url: req.url, user: req.user, servers: result.rows, admin_servers: admin_servers.rows, footer: footer_html });
             });
         } else {
