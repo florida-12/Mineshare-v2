@@ -69,7 +69,7 @@ app.use(passport.session());
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         if (file.fieldname === 'banner') {
-            cb(null, 'media/banners/');
+            cb(null, 'media/pictures/');
         } else if (file.fieldname === 'illustrations') {
             cb(null, 'media/illustrations/');
         } else {
@@ -450,8 +450,8 @@ app.post('/account/server/:id/edit', isAuthenticated, multerParser, upload.field
     });
 });
 
-app.get('/media/banners/:uuid', async (req, res) => {
-    const imagePath = path.join(__dirname, '/media/banners/', `${req.params.uuid}`);
+app.get('/media/pictures/:uuid', async (req, res) => {
+    const imagePath = path.join(__dirname, '/media/pictures/', `${req.params.uuid}`);
 
     try {
         await fs.access(imagePath);
