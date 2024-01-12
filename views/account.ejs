@@ -6,6 +6,8 @@
     <meta name="google-site-verification" content="DLNWD4pudytDWciFfuuFNl1_BPFJm4Wxhv67aBbJSzY" />
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <link type="text/css" rel="stylesheet" href="/css/materialize.min.css" media="screen,projection" />
     <link type="text/css" rel="stylesheet" href="/css/styles.css" media="screen,projection">
 
@@ -282,51 +284,53 @@
             <div class="col l12 m12 s12 privatearea-container-panel" style="padding-bottom: 20px;">
                 <% if (servers.length> 0) { %>
                     <% servers.forEach(function(server, index) { %>
-                        <div class="privatearea-container-panel-server"<% if (servers.length == (index + 1)) { %>style="margin-bottom: -20px;<% } %> <% if (server.ban) { %>style="margin-top: 52px;<% } %>">
-                            <div class="row">
-                                <div class="col l9 m12 s12">
-                                    <p class="privatearea-container-panel-server-title">
-                                        <%= server.title %>
-                                    </p>
-                                    <p class="privatearea-container-panel-server-subtitle">
-                                        <%= server.description.substring(0, 250) %>...
-                                    </p>
-                                </div>
-                                <div class="col l3 m12 s12">
-                                    <% if (server.ban) { %>
-                                        <div class="privatearea-container-panel-server-blocked">
-                                            <p>Сервер заблокирован</p>
-                                        </div>
-                                        <% } %>
-                                            <div class="row">
-                                                <div class="col l10 m11 s10">
-                                                    <a class="privatearea-container-panel-server-button-open btn waves-effect waves-light"
-                                                        href="/server/<%= server.id %>/">Просмотр</a>
-                                                </div>
-
-                                                <div class="col l2 m1 s2">
-                                                    <a class="privatearea-container-panel-server-button-create right"
-                                                        href="/account/server/<%= server.id %>/edit/"><img
-                                                            src="/img/edit.svg"></a>
-                                                </div>
-
-                                                <div class="col l10 m11 s10">
-                                                    <a class="privatearea-container-panel-server-button-promote btn waves-effect waves-light modal-trigger"
-                                                        href="#use-boost">Раскрутить</a>
-                                                </div>
-
-                                                <div class="col l2 m1 s2">
-                                                    <a class="privatearea-container-panel-server-button-delete right"
-                                                        href="{% url 'account:main' %}server/{{ server.id }}/delete/">
-                                                        <svg viewBox="0 0 24 24">
-                                                            <path
-                                                                d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z" />
-                                                        </svg>
-                                                    </a>
-                                                </div>
+                        <div class="privatearea-container-panel-server" <% if (servers.length==(index + 1)) { %>
+                            style="margin-bottom: -20px;<% } %>
+                                <% if (server.ban) { %>style="margin-top: 52px;<% } %>">
+                                        <div class="row">
+                                            <div class="col l9 m12 s12">
+                                                <p class="privatearea-container-panel-server-title">
+                                                    <%= server.title %>
+                                                </p>
+                                                <p class="privatearea-container-panel-server-subtitle">
+                                                    <%= server.description.substring(0, 250) %>...
+                                                </p>
                                             </div>
-                                </div>
-                            </div>
+                                            <div class="col l3 m12 s12">
+                                                <% if (server.ban) { %>
+                                                    <div class="privatearea-container-panel-server-blocked">
+                                                        <p>Сервер заблокирован</p>
+                                                    </div>
+                                                    <% } %>
+                                                        <div class="row">
+                                                            <div class="col l10 m11 s10">
+                                                                <a class="privatearea-container-panel-server-button-open btn waves-effect waves-light"
+                                                                    href="/server/<%= server.id %>/">Просмотр</a>
+                                                            </div>
+
+                                                            <div class="col l2 m1 s2">
+                                                                <a class="privatearea-container-panel-server-button-create right"
+                                                                    href="/account/server/<%= server.id %>/edit/"><img
+                                                                        src="/img/edit.svg"></a>
+                                                            </div>
+
+                                                            <div class="col l10 m11 s10">
+                                                                <a class="privatearea-container-panel-server-button-promote btn waves-effect waves-light modal-trigger"
+                                                                    href="#use-boost">Раскрутить</a>
+                                                            </div>
+
+                                                            <div class="col l2 m1 s2">
+                                                                <a class="privatearea-container-panel-server-button-delete right"
+                                                                    href="{% url 'account:main' %}server/{{ server.id }}/delete/">
+                                                                    <svg viewBox="0 0 24 24">
+                                                                        <path
+                                                                            d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z" />
+                                                                    </svg>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                            </div>
+                                        </div>
                         </div>
                         <% }); %>
                             <% } else { %>
@@ -339,7 +343,71 @@
         </div>
     </div>
 
-    <%- footer %>
+    <% if (admin_servers) { %>
+        <div class="container privatearea-container">
+            <div class="row">
+                <div class="col l12 m12 s12 privatearea-container-panel">
+                    <div
+                        style="background: #fff; box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05); border-radius: 8px; padding-left: 20px; padding-right: 20px;">
+                        <table style="font-family: 'TT Norms Pro', sans-serif;">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Название</th>
+                                    <th>IP</th>
+                                    <th>Рейтинг</th>
+                                    <th>Премиум</th>
+                                    <th>Владелец</th>
+                                    <th>Бан</th>
+                                </tr>
+                            </thead>
+
+                            <style>
+                                .td-id:hover {text-decoration: underline;}
+                            </style>
+                            <tbody>
+                                <% admin_servers.forEach(function(server, index) { %>
+                                    <tr>
+                                        <td class="td-id" style="font-weight: 700; cursor: pointer; user-select: none;" onclick="window.location = '/server/<%= server.id %>';">
+                                            <%= server.id %>
+                                        </td>
+                                        <td style="border-left: 1px solid rgba(0, 0, 0, 0.12);">
+                                            <%= server.title.substring(0, 40); %>..
+                                        </td>
+                                        <td>
+                                            <%= server.ip %>:<%= server.port %>
+                                        </td>
+                                        <td>
+                                            <%= server.rate %>
+                                        </td>
+                                        <td>
+                                            <% if (!server.premium_status) { %>
+                                                <i class="fa-solid fa-circle-check" style="color: #0F9D58;"></i>
+                                                <% } else { %>
+                                                    <i class="fa-solid fa-circle-xmark" style="color: #FF3E30;"></i>
+                                                    <% } %>
+                                        </td>
+                                        <td>
+                                            ID: <%= server.owner %>
+                                        </td>
+                                        <td>
+                                            <% if (!server.ban) { %>
+                                                <i class="fa-solid fa-circle-check" style="color: #0F9D58;"></i>
+                                                <% } else { %>
+                                                    <i class="fa-solid fa-ban" style="color: #FF3E30;"></i>
+                                                    <% } %>
+                                        </td>
+                                    </tr>
+                                    <% }); %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% } %>
+
+            <%- footer %>
 </body>
 
 </html>

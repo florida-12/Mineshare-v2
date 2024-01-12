@@ -236,13 +236,24 @@ function isAuthenticated(req, res, next) {
 app.get('/account', isAuthenticated, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
-    pool.query(`SELECT * FROM servers WHERE owner = $1`, [req.user.id], (err, result) => {
+    pool.query(`SELECT * FROM servers WHERE owner = $1;`, [req.user.id], (err, result) => {
         if (err) {
             console.error(err);
             return res.status(500).send('Internal Server Error');
         }
 
-        res.render('account', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+        if (req.user.admin) {
+            pool.query(`SELECT * FROM servers ORDER BY -id;`, (err, admin_servers) => {
+                if (err) {
+                    console.error(err);
+                    return res.status(500).send('Internal Server Error');
+                }
+        
+                return res.render('account', { url: req.url, user: req.user, servers: result.rows, admin_servers: admin_servers.rows, footer: footer_html });
+            });
+        } else {
+            res.render('account', { url: req.url, user: req.user, servers: result.rows, admin_servers: null, footer: footer_html });
+        }
     });
 });
 
