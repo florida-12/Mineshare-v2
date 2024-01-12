@@ -1394,6 +1394,11 @@ body {
     animation: cloud-bg 60s linear infinite;
 }
 
+.auth .modal-content {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
 .boost {
     width: 500px;
     background: #fff;
@@ -1695,7 +1700,7 @@ rain {
     }
 
     .input-reg-last {
-        margin-bottom: 50px !important;
+        margin-bottom: 30px;
     }
 
     .button-reg {
@@ -1996,6 +2001,10 @@ rain {
     padding-bottom: 5px;
     margin-bottom: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.input-reg-last {
+    margin-bottom: 30px;
 }
 
 .input-field input {
@@ -5258,7 +5267,7 @@ rain {
     background: linear-gradient(98.44deg, #8DEBFF 0%, #00ABFF 100%), #339DFF;
     box-shadow: 0px 0px 17px rgba(113, 212, 255, 0.75);
     padding: 7px;
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
 .button-reg:hover {

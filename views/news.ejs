@@ -119,7 +119,7 @@
                             </div>
 
                             <div class="google-auth" onclick="window.location = '/auth/google';"><img
-                                    src="img/google.svg"><a>Продолжить с Google</a></div>
+                                    src="/img/google.svg"><a>Продолжить с Google</a></div>
                         </form>
 
                         <p class="auth-change">Если у вас еще нет аккаунта, то вы можете<br> зарегистрироваться <a
@@ -152,10 +152,9 @@
                             </div>
 
                             <div class="col l12 m6 s12">
-                                <label class="rules">Four
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
+                                <div style="display: flex; align-items: center; justify-content: center;">
+                                    <%- captcha %>
+                                </div>                             
                             </div>
 
                             <div class="col l12 div-complete-reg center">
@@ -165,7 +164,7 @@
                                     type="submit" class="nav-text button-reg waves-effect waves-light btn">
 
                                 <div class="google-auth" onclick="window.location = '/auth/google';"><img
-                                        src="img/google.svg"><a>Продолжить с Google</a>
+                                        src="/img/google.svg"><a>Продолжить с Google</a>
                                 </div>
                             </div>
 

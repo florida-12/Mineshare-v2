@@ -121,8 +121,8 @@
                                     class="nav-text button-auth waves-effect waves-light btn">
                             </div>
 
-                            <div class="google-auth" style="filter: grayscale(1);"><img src="img/google.svg"><a
-                                    style="color: #6c6c6c;">Продолжить с Google</a></div>
+                            <div class="google-auth" onclick="window.location = '/auth/google';"><img
+                                src="/img/google.svg"><a>Продолжить с Google</a></div>
                         </form>
 
                         <p class="auth-change">Если у вас еще нет аккаунта, то вы можете<br> зарегистрироваться <a
@@ -154,14 +154,20 @@
                                 </div>
                             </div>
 
+                            <div class="col l12 m6 s12">
+                                <div style="display: flex; align-items: center; justify-content: center;">
+                                    <%- captcha %>
+                                </div>
+                            </div>
+
                             <div class="col l12 div-complete-reg center">
                                 <i id="alert_error" class="material-icons" onclick="$('#regForm').submit();">cancel</i>
                                 <div id="alert_success" class="loader-1"><span></span></div>
                                 <input onmouseenter="document.getElementById(this).focus();" value="Регистрация"
                                     type="submit" class="nav-text button-reg waves-effect waves-light btn">
 
-                                <div class="google-auth" style="filter: grayscale(1);"><img src="img/google.svg"><a
-                                        style="color: #6c6c6c;">Продолжить с Google</a>
+                                <div class="google-auth" onclick="window.location = '/auth/google';"><img
+                                        src="/img/google.svg"><a>Продолжить с Google</a>
                                 </div>
                             </div>
 

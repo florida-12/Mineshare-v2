@@ -189,8 +189,6 @@ passport.deserializeUser(async (id, done) => {
 app.post('/register', recaptcha.middleware.verify, async (req, res) => {
     if (req.recaptcha.error) {
         return res.send('Проверка reCaptcha не удалась');
-    } else {
-        return res.send('Все хорошо');
     }
 
     const { email, password, password_repeat } = req.body;
@@ -505,7 +503,7 @@ app.get('/random', (req, res) => {
     });
 });
 
-app.get('/1.20', (req, res) => {
+app.get('/1.20', recaptcha.middleware.render, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
     pool.query(`SELECT * FROM servers WHERE ban = false AND version = '1.20.X' ORDER BY -rate;`, (err, result) => {
@@ -514,11 +512,11 @@ app.get('/1.20', (req, res) => {
             return res.status(500).send('Internal Server Error');
         }
 
-        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html, captcha: res.recaptcha });
     });
 });
 
-app.get('/1.19', (req, res) => {
+app.get('/1.19', recaptcha.middleware.render, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
     pool.query(`SELECT * FROM servers WHERE ban = false AND version = '1.19.X' ORDER BY -rate;`, (err, result) => {
@@ -527,11 +525,11 @@ app.get('/1.19', (req, res) => {
             return res.status(500).send('Internal Server Error');
         }
 
-        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html, captcha: res.recaptcha });
     });
 });
 
-app.get('/1.18', (req, res) => {
+app.get('/1.18', recaptcha.middleware.render, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
     pool.query(`SELECT * FROM servers WHERE ban = false AND version = '1.18.X' ORDER BY -rate;`, (err, result) => {
@@ -540,11 +538,11 @@ app.get('/1.18', (req, res) => {
             return res.status(500).send('Internal Server Error');
         }
 
-        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html, captcha: res.recaptcha });
     });
 });
 
-app.get('/1.17', (req, res) => {
+app.get('/1.17', recaptcha.middleware.render, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
     pool.query(`SELECT * FROM servers WHERE ban = false AND version = '1.17.X' ORDER BY -rate;`, (err, result) => {
@@ -553,11 +551,11 @@ app.get('/1.17', (req, res) => {
             return res.status(500).send('Internal Server Error');
         }
 
-        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html, captcha: res.recaptcha });
     });
 });
 
-app.get('/1.16', (req, res) => {
+app.get('/1.16', recaptcha.middleware.render, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
     pool.query(`SELECT * FROM servers WHERE ban = false AND version = '1.16.X' ORDER BY -rate;`, (err, result) => {
@@ -566,11 +564,11 @@ app.get('/1.16', (req, res) => {
             return res.status(500).send('Internal Server Error');
         }
 
-        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html, captcha: res.recaptcha });
     });
 });
 
-app.get('/1.15', (req, res) => {
+app.get('/1.15', recaptcha.middleware.render, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
     pool.query(`SELECT * FROM servers WHERE ban = false AND version = '1.15.X' ORDER BY -rate;`, (err, result) => {
@@ -579,11 +577,11 @@ app.get('/1.15', (req, res) => {
             return res.status(500).send('Internal Server Error');
         }
 
-        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html, captcha: res.recaptcha });
     });
 });
 
-app.get('/1.14', (req, res) => {
+app.get('/1.14', recaptcha.middleware.render, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
     pool.query(`SELECT * FROM servers WHERE ban = false AND version = '1.14.X' ORDER BY -rate;`, (err, result) => {
@@ -592,11 +590,11 @@ app.get('/1.14', (req, res) => {
             return res.status(500).send('Internal Server Error');
         }
 
-        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html, captcha: res.recaptcha });
     });
 });
 
-app.get('/1.13', (req, res) => {
+app.get('/1.13', recaptcha.middleware.render, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
     pool.query(`SELECT * FROM servers WHERE ban = false AND version = '1.13.X' ORDER BY -rate;`, (err, result) => {
@@ -605,11 +603,11 @@ app.get('/1.13', (req, res) => {
             return res.status(500).send('Internal Server Error');
         }
 
-        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html, captcha: res.recaptcha });
     });
 });
 
-app.get('/1.12', (req, res) => {
+app.get('/1.12', recaptcha.middleware.render, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
     pool.query(`SELECT * FROM servers WHERE ban = false AND version = '1.12.X' ORDER BY -rate;`, (err, result) => {
@@ -618,11 +616,11 @@ app.get('/1.12', (req, res) => {
             return res.status(500).send('Internal Server Error');
         }
 
-        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html, captcha: res.recaptcha });
     });
 });
 
-app.get('/1.11', (req, res) => {
+app.get('/1.11', recaptcha.middleware.render, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
     pool.query(`SELECT * FROM servers WHERE ban = false AND version = '1.11.X' ORDER BY -rate;`, (err, result) => {
@@ -631,11 +629,11 @@ app.get('/1.11', (req, res) => {
             return res.status(500).send('Internal Server Error');
         }
 
-        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html, captcha: res.recaptcha });
     });
 });
 
-app.get('/1.10', (req, res) => {
+app.get('/1.10', recaptcha.middleware.render, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
     pool.query(`SELECT * FROM servers WHERE ban = false AND version = '1.10.X' ORDER BY -rate;`, (err, result) => {
@@ -644,11 +642,11 @@ app.get('/1.10', (req, res) => {
             return res.status(500).send('Internal Server Error');
         }
 
-        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html, captcha: res.recaptcha });
     });
 });
 
-app.get('/1.9', (req, res) => {
+app.get('/1.9', recaptcha.middleware.render, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
     pool.query(`SELECT * FROM servers WHERE ban = false AND version = '1.9.X' ORDER BY -rate;`, (err, result) => {
@@ -657,11 +655,11 @@ app.get('/1.9', (req, res) => {
             return res.status(500).send('Internal Server Error');
         }
 
-        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html, captcha: res.recaptcha });
     });
 });
 
-app.get('/1.8', (req, res) => {
+app.get('/1.8', recaptcha.middleware.render, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
     pool.query(`SELECT * FROM servers WHERE ban = false AND version = '1.8.X' ORDER BY -rate;`, (err, result) => {
@@ -670,12 +668,12 @@ app.get('/1.8', (req, res) => {
             return res.status(500).send('Internal Server Error');
         }
 
-        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html, captcha: res.recaptcha });
     });
 });
 
 
-app.get('/1.7', (req, res) => {
+app.get('/1.7', recaptcha.middleware.render, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
     pool.query(`SELECT * FROM servers WHERE ban = false AND version = '1.7.X' ORDER BY -rate;`, (err, result) => {
@@ -684,11 +682,11 @@ app.get('/1.7', (req, res) => {
             return res.status(500).send('Internal Server Error');
         }
 
-        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html, captcha: res.recaptcha });
     });
 });
 
-app.get('/vanilla', (req, res) => {
+app.get('/vanilla', recaptcha.middleware.render, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
     pool.query(`SELECT * FROM servers WHERE ban = false AND mode = 'Ванилла' ORDER BY -rate;`, (err, result) => {
@@ -697,11 +695,11 @@ app.get('/vanilla', (req, res) => {
             return res.status(500).send('Internal Server Error');
         }
 
-        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html, captcha: res.recaptcha });
     });
 });
 
-app.get('/anarchy', (req, res) => {
+app.get('/anarchy', recaptcha.middleware.render, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
     pool.query(`SELECT * FROM servers WHERE ban = false AND mode = 'Анархия' ORDER BY -rate;`, (err, result) => {
@@ -710,11 +708,11 @@ app.get('/anarchy', (req, res) => {
             return res.status(500).send('Internal Server Error');
         }
 
-        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html, captcha: res.recaptcha });
     });
 });
 
-app.get('/mmo-rpg', (req, res) => {
+app.get('/mmo-rpg', recaptcha.middleware.render, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
     pool.query(`SELECT * FROM servers WHERE ban = false AND mode = 'MMO-RPG' ORDER BY -rate;`, (err, result) => {
@@ -723,11 +721,11 @@ app.get('/mmo-rpg', (req, res) => {
             return res.status(500).send('Internal Server Error');
         }
 
-        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html, captcha: res.recaptcha });
     });
 });
 
-app.get('/mini-games', (req, res) => {
+app.get('/mini-games', recaptcha.middleware.render, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
     pool.query(`SELECT * FROM servers WHERE ban = false AND mode = 'Мини-игры' ORDER BY -rate;`, (err, result) => {
@@ -736,11 +734,11 @@ app.get('/mini-games', (req, res) => {
             return res.status(500).send('Internal Server Error');
         }
 
-        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html, captcha: res.recaptcha });
     });
 });
 
-app.get('/adventure', (req, res) => {
+app.get('/adventure', recaptcha.middleware.render, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
     pool.query(`SELECT * FROM servers WHERE ban = false AND mode = 'Приключение' ORDER BY -rate;`, (err, result) => {
@@ -749,11 +747,11 @@ app.get('/adventure', (req, res) => {
             return res.status(500).send('Internal Server Error');
         }
 
-        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html, captcha: res.recaptcha });
     });
 });
 
-app.get('/construction', (req, res) => {
+app.get('/construction', recaptcha.middleware.render, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
     pool.query(`SELECT * FROM servers WHERE ban = false AND mode = 'Строительство' ORDER BY -rate;`, (err, result) => {
@@ -762,11 +760,11 @@ app.get('/construction', (req, res) => {
             return res.status(500).send('Internal Server Error');
         }
 
-        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html, captcha: res.recaptcha });
     });
 });
 
-app.get('/server/:id', (req, res) => {
+app.get('/server/:id', recaptcha.middleware.render, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
     pool.query(`SELECT * FROM servers WHERE id = $1;`, [req.params.id], (err, result) => {
@@ -793,39 +791,39 @@ app.get('/server/:id', (req, res) => {
                     pool.query(`SELECT image FROM servers_illustrations WHERE server_id = $1;`, [req.params.id], (err, illustrations) => {
                         if (err) console.error('Error executing query:', err);
 
-                        res.render('server', { user: req.user, servers: servers, tags: tags.rows, illustrations: illustrations.rows, footer: footer_html });
+                        res.render('server', { user: req.user, servers: servers, tags: tags.rows, illustrations: illustrations.rows, footer: footer_html, captcha: res.recaptcha });
                     });
                 });
             } else {
                 pool.query(`SELECT image FROM servers_illustrations WHERE server_id = $1 LIMIT 6;`, [req.params.id], (err, illustrations) => {
                     if (err) console.error('Error executing query:', err);
 
-                    res.render('server', { user: req.user, servers: servers, tags: null, illustrations: illustrations.rows, footer: footer_html });
+                    res.render('server', { user: req.user, servers: servers, tags: null, illustrations: illustrations.rows, footer: footer_html, captcha: res.recaptcha });
                 });
             }
         });
     });
 });
 
-app.get('/tournaments', (req, res) => {
+app.get('/tournaments', recaptcha.middleware.render, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
-    res.render('tournaments', { user: req.user, footer: footer_html });
+    res.render('tournaments', { user: req.user, footer: footer_html, captcha: res.recaptcha });
 });
 
-app.get('/tournament/bedwars', (req, res) => {
+app.get('/tournament/bedwars', recaptcha.middleware.render, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
-    res.render('bedwars', { user: req.user, footer: footer_html });
+    res.render('bedwars', { user: req.user, footer: footer_html, captcha: res.recaptcha });
 });
 
-app.get('/shop', (req, res) => {
+app.get('/shop', recaptcha.middleware.render, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
-    res.render('shop', { user: req.user, footer: footer_html });
+    res.render('shop', { user: req.user, footer: footer_html, captcha: res.recaptcha });
 });
 
-app.get('/news', (req, res) => {
+app.get('/news', recaptcha.middleware.render, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
     pool.query(`SELECT * FROM news ORDER BY regdate;`, (err, result) => {
@@ -834,7 +832,7 @@ app.get('/news', (req, res) => {
             return res.status(500).send('Internal Server Error');
         }
 
-        res.render('news', { user: req.user, news: result.rows, footer: footer_html });
+        res.render('news', { user: req.user, news: result.rows, footer: footer_html, captcha: res.recaptcha });
     });
 });
 
