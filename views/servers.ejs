@@ -98,7 +98,7 @@
     <div id="snackbar">Ошибка</div>
     <div id="snackbar2">Ошибка</div>
     <div id="authorization" class="modal auth" style="width: 30%;">
-        <div class="modal-content container">
+        <div class="modal-content container" style="padding-top: 0; padding-bottom: 0;">
             <div class="row">
                 <div class="col s12 auth-tabs">
                     <ul class="tabs">
@@ -159,17 +159,23 @@
                             </div>
 
                             <div class="col l12 m6 s12">
-                                <div class="input-field input-reg input-reg-last">
+                                <div class="input-field input-reg input-reg-last" style="margin-bottom: 30px;">
                                     <input placeholder="Повтор пароля" id="password_repeat" name="password_repeat"
                                         type="password" class="validate" minlength="8" maxlength="30" required>
                                 </div>
+                            </div>
+
+                            <div class="col l12 m6 s12">
+                                <div style="display: flex; align-items: center; justify-content: center;">
+                                    <%- captcha %>
+                                </div>                             
                             </div>
 
                             <div class="col l12 div-complete-reg center">
                                 <i id="alert_error" class="material-icons" onclick="$('#regForm').submit();">cancel</i>
                                 <div id="alert_success" class="loader-1"><span></span></div>
                                 <input onmouseenter="document.getElementById(this).focus();" value="Регистрация"
-                                    type="submit" class="nav-text button-reg waves-effect waves-light btn">
+                                    type="submit" class="nav-text button-reg waves-effect waves-light btn" style="margin-top: 40px;">
 
                                 <div class="google-auth" onclick="window.location = '/auth/google';"><img
                                         src="img/google.svg"><a>Продолжить с Google</a>

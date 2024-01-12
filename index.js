@@ -7,6 +7,7 @@ const fs = require('fs/promises');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const Recaptcha = require('express-recaptcha').RecaptchaV2;
 const session = require('express-session');
 const flash = require('express-flash');
 const { v4: uuidv4 } = require('uuid');
@@ -26,12 +27,12 @@ dotenv.config();
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-const multerParser = bodyParser.text({ type: '/' });
 app.use(express.static(path.join(__dirname, 'assets')));
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+const recaptcha = new Recaptcha(process.env.RECAPTCHA_SITE_KEY, process.env.RECAPTCHA_SECRET_KEY);
 
 const pool = new pg.Pool({
     user: process.env.DATABASE_USER,
@@ -66,6 +67,7 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
+const multerParser = bodyParser.text({ type: '/' });
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         if (file.fieldname === 'banner') {
@@ -472,14 +474,14 @@ app.get('/media/illustrations/:uuid', async (req, res) => {
     }
 });
 
-app.get('/', (req, res) => {
+app.get('/', recaptcha.middleware.render, (req, res) => {
     pool.query(`SELECT * FROM servers WHERE ban = false ORDER BY -rate;`, (err, result) => {
         if (err) {
             console.error(err);
             return res.status(500).send('Internal Server Error');
         }
 
-        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html });
+        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html, captcha: res.recaptcha });
     });
 });
 
@@ -880,7 +882,7 @@ app.get('/sitemap.xml', function (req, res) {
     }
 
     try {
-        const smStream = new SitemapStream({ hostname: 'https://mineshare.top/' })
+        const smStream = new SitemapStream({ hostname: 'https://mineshare.top' })
         const pipeline = smStream.pipe(createGzip())
 
         smStream.write({ url: '/', lastmod: '2024-01-11', changefreq: 'daily', priority: 1 })
@@ -911,6 +913,7 @@ app.get('/sitemap.xml', function (req, res) {
         smStream.write({ url: '/adventure', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
         smStream.write({ url: '/construction', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
 
+        smStream.write({ url: '/hello', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8, img: [{ url: 'https://mineshare.top/media/pictures/1db268dd-09e3-450d-8596-4f44ab60aced.gif', caption: 'go.playmine.org' }] })
         // cache the response
         streamToPromise(pipeline).then(sm => sitemap = sm)
         // make sure to attach a write stream such as streamToPromise before ending
