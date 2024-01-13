@@ -1831,7 +1831,7 @@ rain {
     }
 
     .button-complete {
-        margin-top: 220px !important;
+        margin-top: 50px !important;
     }
 
     .div-complete .material-icons {
@@ -5257,16 +5257,17 @@ rain {
 
 .button-reg {
     width: 180px;
-    height: 51px;
     border-radius: 10px !important;
     font-family: 'TTNormsMedium';
     color: #fff;
     font-style: normal;
     text-transform: none;
-    font-size: 19px;
+    font-size: 18.5px;
+    line-height: 0;
     background: linear-gradient(98.44deg, #8DEBFF 0%, #00ABFF 100%), #339DFF;
     box-shadow: 0px 0px 17px rgba(113, 212, 255, 0.75);
-    padding: 7px;
+    padding-top: 25px;
+    padding-bottom: 27px;
     margin-top: 40px;
 }
 

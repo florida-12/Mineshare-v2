@@ -167,7 +167,7 @@
     </div>
 
     <div id="create-server" class="modal auth" style="width: 440px; max-height:70%; padding-top:10px;">
-        <div class="modal-content container" style="padding-bottom:0;">
+        <div class="modal-content container" style="padding-top: 26px; padding-bottom:0;">
             <div class="row" style="padding-bottom:0;margin-bottom:0">
                 <form action="server-check" id="server_status" name="server_status" method="post">
                     <div id="create-server-one-container" class="col s12 create-server-one-container-background">
@@ -182,9 +182,25 @@
                                     oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
                             </div>
 
+                            <div style="
+                            background-color: #c7edff;
+                            font-family: 'TT Norms Pro', sans-serif;
+                            color: #0EB1FF;
+                            font-size: 12px;
+                            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+                            border-radius: 10px;
+                            border: 1.5px solid #0EB1FF;
+                            padding-top: 10px;
+                            padding-left: 12px;
+                            padding-right: 12px;
+                            padding-bottom: 12px;
+                            display: inline-flex;">
+                            Пожалуйста, убедитесь в том, что ваш сервер запущен и нормально функционирует, а также у него должен быть открыт query-порт
+                            </div>
+
                             <div class="center div-complete">
                                 <button class="button-complete">Далее</button>
-                            </div>
+                            </div>                         
                         </div>
                     </div>
                 </form>
