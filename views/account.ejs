@@ -187,7 +187,6 @@
                             font-family: 'TT Norms Pro', sans-serif;
                             color: #0EB1FF;
                             font-size: 12px;
-                            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
                             border-radius: 10px;
                             border: 1.5px solid #0EB1FF;
                             padding-top: 10px;
@@ -397,7 +396,7 @@
                                             <%= server.rate %>
                                         </td>
                                         <td>
-                                            <% if (!server.premium_status) { %>
+                                            <% if (server.premium_status) { %>
                                                 <i class="fa-solid fa-circle-check" style="color: #0F9D58;"></i>
                                                 <% } else { %>
                                                     <i class="fa-solid fa-circle-xmark" style="color: #FF3E30;"></i>

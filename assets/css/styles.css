@@ -1394,6 +1394,14 @@ body {
     animation: cloud-bg 60s linear infinite;
 }
 
+.auth::-webkit-scrollbar {
+    width: 5px;
+}
+
+.auth::-webkit-scrollbar-thumb {
+    background: #aaa;
+}
+
 .auth .modal-content {
     padding-top: 0;
     padding-bottom: 0;
