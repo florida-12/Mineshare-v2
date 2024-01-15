@@ -368,12 +368,13 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Название</th>
+                                    <th style="padding-left: 12px;">Название</th>
                                     <th>IP</th>
-                                    <th>Рейтинг</th>
-                                    <th>Премиум</th>
-                                    <th>Владелец</th>
-                                    <th>Бан</th>
+                                    <th style="padding-left: 12px;">Рейтинг</th>
+                                    <th style="padding-left: 12px;">Премиум</th>
+                                    <th style="padding-left: 12px;">Владелец</th>
+                                    <th style="padding-left: 12px;">Бан</th>
+                                    <th style="padding-left: 12px;">Дата</th>
                                 </tr>
                             </thead>
 
@@ -386,31 +387,34 @@
                                         <td class="td-id" style="font-weight: 700; cursor: pointer; user-select: none;" onclick="window.location = '/server/<%= server.id %>';">
                                             <%= server.id %>
                                         </td>
-                                        <td style="border-left: 1px solid rgba(0, 0, 0, 0.12);">
+                                        <td style="border-left: 1px solid rgba(0, 0, 0, 0.12); padding-left: 12px;">
                                             <%= server.title.substring(0, 40); %>..
                                         </td>
                                         <td>
                                             <%= server.ip %>:<%= server.port %>
                                         </td>
-                                        <td>
+                                        <td style="padding-left: 12px;">
                                             <%= server.rate %>
                                         </td>
-                                        <td>
+                                        <td style="padding-left: 12px;">
                                             <% if (server.premium_status) { %>
                                                 <i class="fa-solid fa-circle-check" style="color: #0F9D58;"></i>
                                                 <% } else { %>
                                                     <i class="fa-solid fa-circle-xmark" style="color: #FF3E30;"></i>
                                                     <% } %>
                                         </td>
-                                        <td>
+                                        <td style="padding-left: 12px;">
                                             ID: <%= server.owner %>
                                         </td>
-                                        <td>
+                                        <td style="padding-left: 12px;">
                                             <% if (!server.ban) { %>
                                                 <i class="fa-solid fa-circle-check" style="color: #0F9D58;"></i>
                                                 <% } else { %>
                                                     <i class="fa-solid fa-ban" style="color: #FF3E30;"></i>
                                                     <% } %>
+                                        </td>
+                                        <td style="border-left: 1px solid rgba(0, 0, 0, 0.12); padding-left: 12px;">
+                                            <%= server.regdate %>
                                         </td>
                                     </tr>
                                     <% }); %>

@@ -17,6 +17,7 @@ const multer = require('multer');
 const bcrypt = require('bcrypt');
 const axios = require('axios');
 const { SitemapStream, streamToPromise } = require('sitemap')
+const moment = require('moment-timezone');
 const { createGzip } = require('zlib')
 const { Readable } = require('stream')
 const app = express();
@@ -254,6 +255,16 @@ app.get('/account', isAuthenticated, (req, res) => {
                     console.error(err);
                     return res.status(500).send('Internal Server Error');
                 }
+
+                admin_servers.rows.forEach(server => {
+                    const regdate = new Date(server.regdate);
+            
+                    const moscowTime = moment.tz(regdate, 'Europe/Moscow');
+
+                    const formattedDate = moscowTime.locale('ru').format('DD MMMM (HH:mm)');
+
+                    server.regdate = formattedDate;
+                });
 
                 return res.render('account', { url: req.url, user: req.user, servers: result.rows, admin_servers: admin_servers.rows, footer: footer_html });
             });
