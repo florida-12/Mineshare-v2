@@ -2036,12 +2036,14 @@ rain {
 }
 
 .button-random-server {
-    width: 100%; 
+    width: 100%;
     height: 45px;
     position: relative;
     background: linear-gradient(98.44deg, #8DEBFF 0%, #00ABFF 100%), #339DFF;
     box-shadow: 0px 0px 10px rgba(113, 212, 255, 0.5);
-    border-radius: 12px; border: none; color: #fff;
+    border-radius: 12px;
+    border: none;
+    color: #fff;
     font-family: 'TT Norms Pro', sans-serif;
     font-weight: 700;
     line-height: 5%;
@@ -2055,7 +2057,7 @@ rain {
 }
 
 .button-random-server i {
-    font-size: 14px; 
+    font-size: 14px;
     margin-left: 7px;
     margin-right: -10px;
 }
@@ -4519,7 +4521,7 @@ rain {
 }
 
 .server-rating-icon {
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 .server-rating-tip {
@@ -6696,5 +6698,49 @@ input[value="Подтвердить"] {
     to {
         bottom: 0;
         opacity: 0;
+    }
+}
+
+@keyframes horizontal-shaking {
+    0% {
+        transform: translate(-50%, -50%) translateX(0)
+    }
+
+    25% {
+        transform: translate(-50%, -50%) translateX(5px)
+    }
+
+    50% {
+        transform: translate(-50%, -50%) translateX(-5px)
+    }
+
+    75% {
+        transform: translate(-50%, -50%) translateX(5px)
+    }
+
+    100% {
+        transform: translate(-50%, -50%) translateX(0)
+    }
+}
+
+@keyframes move-shaking {
+    0% {
+        transform: translate(-50%, -50%) translate(0, 0) rotate(0deg);
+    }
+
+    25% {
+        transform: translate(-50%, -50%) translate(5px, 5px) rotate(5deg);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) translate(0, 0) rotate(0eg);
+    }
+
+    75% {
+        transform: translate(-50%, -50%) translate(-5px, 5px) rotate(-5deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) translate(0, 0) rotate(0deg);
     }
 }

@@ -520,8 +520,9 @@
                                                 <img class="server-chart-icon" src="/img/rate-chart-false.svg">
                                             </div>
                                             <% } %>
+                                                <% if (server.boost_status) { %><div style="position: absolute; top: -12.5px; left: 50%; background: #0006b1; border-radius: 6px 6px 0 0; color: #fff; font-family: 'TT Norms Pro', sans-serif; font-size: 12px; font-weight: 500; transform: translate(-50%, -50%); padding-top: 3px; padding-left: 15px; padding-right: 10px; padding-bottom: 4px; user-select: none; animation: horizontal-shaking infinite 0.7s;">Грозовая туча<i style="font-size: 10.5px; margin-left: 5px;" class="fa-solid fa-cloud-bolt"></i></div><% } %>
                                                 <div class="server" <% if (server.premium_status) { %>type="<%=
-                                                        server.premium_color %>"<% } %>>
+                                                        server.premium_color %>"<% } %> <% if (server.boost_status) { %>style="margin-top: 50px;"<% } %>>
                                                             <% if (server.premium_status) { %>
                                                                 <div class="gradient-<%= server.premium_color %>"></div>
                                                                 <% } %>

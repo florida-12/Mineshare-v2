@@ -25,11 +25,17 @@ async function checkRating() {
 
                 if (server.banner != 'default-server-picture.gif') rate = rate + 10;
                 if (server.premium_status) rate = rate + 10;
+                if (server.boost_status) rate = rate + 50;
                 if (server.verification) rate = rate + 10;
+                if (server.online_status) rate = rate + 10;
                 if (server.current_players >= 5) rate = rate + 10;
                 if (server.current_players >= 40) rate = rate + 10;
                 if (server.current_players >= 100) rate = rate + 10;
 
+                const illustrations = await client.query(`SELECT * FROM servers_illustrations WHERE server_id = $1 LIMIT 6;`, [server.id]);
+                if (illustrations.rows.length > 0) rate = rate + illustrations.rows.length;
+
+                if (rate > 110) rate = 110;
                 console.log(`${server.ip}: ${rate}★`);
                 await client.query(`UPDATE servers SET rate = $1 WHERE ip = $2;`, [rate, server.ip]);
             } catch (error) {
