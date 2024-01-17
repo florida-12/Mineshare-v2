@@ -490,14 +490,25 @@ app.get('/media/illustrations/:uuid', async (req, res) => {
 });
 
 app.get('/', recaptcha.middleware.render, (req, res) => {
-    pool.query(`SELECT * FROM servers WHERE ban = false ORDER BY -rate;`, (err, result) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).send('Internal Server Error');
-        }
-
-        res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html, captcha: res.recaptcha });
-    });
+    if (!req.query.search) {
+        pool.query(`SELECT * FROM servers WHERE ban = false ORDER BY -rate;`, (err, result) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('Internal Server Error');
+            }
+    
+            res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html, captcha: res.recaptcha });
+        });
+    } else {
+        pool.query(`SELECT * FROM servers WHERE LOWER(title) LIKE '%${req.query.search.toLowerCase()}%' AND ban = false ORDER BY -rate;`, (err, result) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('Internal Server Error');
+            }
+    
+            res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html, captcha: res.recaptcha });
+        });
+    }
 });
 
 app.get('/random', (req, res) => {
