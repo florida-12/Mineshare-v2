@@ -258,7 +258,7 @@ app.get('/account', isAuthenticated, (req, res) => {
 
                 admin_servers.rows.forEach(server => {
                     const regdate = new Date(server.regdate);
-            
+
                     const moscowTime = moment.tz(regdate, 'Europe/Moscow');
 
                     const formattedDate = moscowTime.locale('ru').format('DD MMMM (HH:mm)');
@@ -496,7 +496,7 @@ app.get('/', recaptcha.middleware.render, (req, res) => {
                 console.error(err);
                 return res.status(500).send('Internal Server Error');
             }
-    
+
             res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html, captcha: res.recaptcha });
         });
     } else {
@@ -505,7 +505,7 @@ app.get('/', recaptcha.middleware.render, (req, res) => {
                 console.error(err);
                 return res.status(500).send('Internal Server Error');
             }
-    
+
             res.render('servers', { url: req.url, user: req.user, servers: result.rows, footer: footer_html, captcha: res.recaptcha });
         });
     }
@@ -903,52 +903,60 @@ app.get('/sitemap.xml', function (req, res) {
     res.header('Content-Encoding', 'gzip');
     // if we have a cached entry send it
     if (sitemap) {
-        res.send(sitemap)
-        return
+        return res.send(sitemap);
     }
 
+    const currentDate = new Date().toISOString();
+
     try {
-        const smStream = new SitemapStream({ hostname: 'https://mineshare.top' })
-        const pipeline = smStream.pipe(createGzip())
+        const smStream = new SitemapStream({ hostname: 'https://mineshare.top' });
+        const pipeline = smStream.pipe(createGzip());
 
-        smStream.write({ url: '/', lastmod: '2024-01-11', changefreq: 'daily', priority: 1 })
-        smStream.write({ url: '/terms', lastmod: '2024-01-11', changefreq: 'weekly', priority: 0.8 })
-        smStream.write({ url: '/privacy', lastmod: '2024-01-11', changefreq: 'weekly', priority: 0.8 })
-        smStream.write({ url: '/tournaments', lastmod: '2024-01-11', changefreq: 'weekly', priority: 0.9 })
-        smStream.write({ url: '/tournament/bedwars', lastmod: '2024-01-11', changefreq: 'weekly', priority: 0.8 })
-        smStream.write({ url: '/shop', lastmod: '2024-01-11', changefreq: 'weekly', priority: 0.9 })
-        smStream.write({ url: '/news', lastmod: '2024-01-11', changefreq: 'weekly', priority: 0.9 })
-        smStream.write({ url: '/1.20', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
-        smStream.write({ url: '/1.19', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
-        smStream.write({ url: '/1.18', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
-        smStream.write({ url: '/1.17', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
-        smStream.write({ url: '/1.16', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
-        smStream.write({ url: '/1.15', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
-        smStream.write({ url: '/1.14', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
-        smStream.write({ url: '/1.13', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
-        smStream.write({ url: '/1.12', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
-        smStream.write({ url: '/1.11', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
-        smStream.write({ url: '/1.10', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
-        smStream.write({ url: '/1.9', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
-        smStream.write({ url: '/1.8', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
-        smStream.write({ url: '/1.7', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
-        smStream.write({ url: '/vanilla', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
-        smStream.write({ url: '/anarchy', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
-        smStream.write({ url: '/mmo-rpg', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
-        smStream.write({ url: '/mini-games', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
-        smStream.write({ url: '/adventure', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
-        smStream.write({ url: '/construction', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8 })
-
-        smStream.write({ url: '/hello', lastmod: '2024-01-11', changefreq: 'daily', priority: 0.8, img: [{ url: 'https://mineshare.top/media/pictures/1db268dd-09e3-450d-8596-4f44ab60aced.gif', caption: 'go.playmine.org' }] })
+        smStream.write({ url: '/', lastmod: currentDate, changefreq: 'daily', priority: 1, img: [{ url: 'https://mineshare.top/media/pictures/1db268dd-09e3-450d-8596-4f44ab60aced.gif', caption: 'go.playmine.org' },
+         { url: 'https://mineshare.top/media/pictures/de884d99-0580-4c2f-aa98-3fa6851f3f19.gif', caption: 'mclucky.net' }, 
+         { url: 'https://mineshare.top/media/pictures/27148d9c-7666-491e-96ee-8087a790903e.gif', caption: 'mc.restartcraft.fun' }, 
+         { url: 'https://mineshare.top/media/pictures/2bd8f013-715b-4dee-825b-8368e25e8ff7.gif', caption: 'mc.tntland.fun' },
+         { url: 'https://mineshare.top/media/pictures/e3270066-768a-4495-9863-6f0937ad7f71.png', caption: 'tmine.su' }, 
+         { url: 'https://mineshare.top/media/pictures/c2102efb-1b0e-4853-9d3c-417cbc043111.gif', caption: 'mc.aquamc.su' }, 
+         { url: 'https://mineshare.top/media/pictures/cbd0a41a-26f0-4eb5-9eea-cb5dc1fa5632.gif', caption: 'play.mc-dnc.online' }, 
+         { url: 'https://mineshare.top/media/pictures/456b7736-a952-4a6a-8409-5c3831501ff2.png', caption: '51game.ru' }, 
+         { url: 'https://mineshare.top/img/default-server-picture.gif', caption: 'play.astrixmc.net' }, 
+         { url: 'https://mineshare.top/media/pictures/5140388e-08fb-41fe-8b69-decd78f7f666.gif', caption: 'bawlcraft.20tps.ru' }] });
+        smStream.write({ url: '/terms', lastmod: currentDate, changefreq: 'weekly', priority: 0.8 });
+        smStream.write({ url: '/privacy', lastmod: currentDate, changefreq: 'weekly', priority: 0.8 });
+        smStream.write({ url: '/tournaments', lastmod: currentDate, changefreq: 'weekly', priority: 0.9 });
+        smStream.write({ url: '/tournament/bedwars', lastmod: currentDate, changefreq: 'weekly', priority: 0.8 });
+        smStream.write({ url: '/shop', lastmod: currentDate, changefreq: 'weekly', priority: 0.9 });
+        smStream.write({ url: '/news', lastmod: currentDate, changefreq: 'weekly', priority: 0.9 });
+        smStream.write({ url: '/1.20', lastmod: currentDate, changefreq: 'daily', priority: 0.8 });
+        smStream.write({ url: '/1.19', lastmod: currentDate, changefreq: 'daily', priority: 0.8 });
+        smStream.write({ url: '/1.18', lastmod: currentDate, changefreq: 'daily', priority: 0.8 });
+        smStream.write({ url: '/1.17', lastmod: currentDate, changefreq: 'daily', priority: 0.8 });
+        smStream.write({ url: '/1.16', lastmod: currentDate, changefreq: 'daily', priority: 0.8 });
+        smStream.write({ url: '/1.15', lastmod: currentDate, changefreq: 'daily', priority: 0.8 });
+        smStream.write({ url: '/1.14', lastmod: currentDate, changefreq: 'daily', priority: 0.8 });
+        smStream.write({ url: '/1.13', lastmod: currentDate, changefreq: 'daily', priority: 0.8 });
+        smStream.write({ url: '/1.12', lastmod: currentDate, changefreq: 'daily', priority: 0.8 });
+        smStream.write({ url: '/1.11', lastmod: currentDate, changefreq: 'daily', priority: 0.8 });
+        smStream.write({ url: '/1.10', lastmod: currentDate, changefreq: 'daily', priority: 0.8 });
+        smStream.write({ url: '/1.9', lastmod: currentDate, changefreq: 'daily', priority: 0.8 });
+        smStream.write({ url: '/1.8', lastmod: currentDate, changefreq: 'daily', priority: 0.8 });
+        smStream.write({ url: '/1.7', lastmod: currentDate, changefreq: 'daily', priority: 0.8 });
+        smStream.write({ url: '/vanilla', lastmod: currentDate, changefreq: 'daily', priority: 0.8 });
+        smStream.write({ url: '/anarchy', lastmod: currentDate, changefreq: 'daily', priority: 0.8 });
+        smStream.write({ url: '/mmo-rpg', lastmod: currentDate, changefreq: 'daily', priority: 0.8 });
+        smStream.write({ url: '/mini-games', lastmod: currentDate, changefreq: 'daily', priority: 0.8 });
+        smStream.write({ url: '/adventure', lastmod: currentDate, changefreq: 'daily', priority: 0.8 });
+        smStream.write({ url: '/construction', lastmod: currentDate, changefreq: 'daily', priority: 0.8 });
         // cache the response
-        streamToPromise(pipeline).then(sm => sitemap = sm)
+        streamToPromise(pipeline).then(sm => sitemap = sm);
         // make sure to attach a write stream such as streamToPromise before ending
-        smStream.end()
+        smStream.end();
         // stream write the response
-        pipeline.pipe(res).on('error', (e) => { throw e })
+        pipeline.pipe(res).on('error', (e) => { throw e });
     } catch (e) {
-        console.error(e)
-        res.status(500).end()
+        console.error(e);
+        res.status(500).end();
     }
 })
 
