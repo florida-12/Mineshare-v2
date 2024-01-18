@@ -207,35 +207,28 @@
         </div>
     </div>
 
-    <div id="change-username" class="modal auth" style="max-height:71%;padding-top:50px;">
+    <div id="change-username" class="modal auth" style="width: 440px; max-height:71%;padding-top:50px;">
         <div class="modal-content container" style="padding-bottom:0">
             <div class="row" style="padding-bottom:0;margin-bottom:0">
-                <form action="change-username/" id="change-username-form" name="server_status" method="post">
+                <form action="username-change" id="change-username-form" method="post">
                     <div id="create-server-one-container" class="col s12 create-server-one-container-background">
-                        <div class="col l2 m1 hide-on-small-only"></div>
-                        <div class="col l8 m10 s12" style="height: 100%;">
+                        <div class="col l12 m12 s12" style="height: 100%;">
                             <div class="input-field input-create-server input-create-server-top">
-                                <input placeholder="Текущий никнейм" name="old_username" type="text" class="validate"
-                                    readonly>
+                                <input placeholder="Текущий никнейм" name="old_username" type="text" class="validate" value="<%= user.username %>" readonly>
                             </div>
 
                             <div class="input-field input-create-server">
-                                <input placeholder="Новый никнейм" name="new_username" type="text" class="validate">
+                                <input onkeypress="return /[0-9a-zA-Z]/i.test(event.key)" placeholder="Новый никнейм" name="username" type="text" class="validate" minlength="2" maxlength="20" required>
                             </div>
 
                             <div class="input-field input-create-server">
-                                <input placeholder="Повтор никнейма" name="new_username2" type="text" class="validate">
+                                <input onkeypress="return /[0-9a-zA-Z]/i.test(event.key)" placeholder="Повтор никнейма" name="username_repeat" type="text" class="validate" minlength="2" maxlength="20" required>
                             </div>
 
                             <div class="center div-complete">
-                                <i id="alert-error-change-username" class="material-icons"
-                                    onclick="$('#change-username-form').submit();">cancel</i>
-                                <div id="alert-success-change-username" class="loader-1"><span></span></div>
-                                <input type="submit" class="button-complete waves-effect waves-light btn"
-                                    value="Подтвердить" onclick="this.value='';">
-                            </div>
+                                <button class="button-complete">Подтвердить</button>
+                            </div>  
                         </div>
-                        <div class="col l2 m1 hide-on-small-only"></div>
                     </div>
                 </form>
 

@@ -379,6 +379,21 @@ app.post('/account/server-create', isAuthenticated, async (req, res) => {
     });
 });
 
+app.post('/account/username-change', isAuthenticated, async (req, res) => {
+    let { username, username_repeat } = req.body;
+
+    if (username != username_repeat) return res.status(400).json({ message: 'Никнеймы не совпадают' });
+
+    pool.query(`UPDATE users SET username = $1 WHERE id = $2;`, [username, req.user.id], (err) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        res.redirect('/account');
+    });
+});
+
 app.get('/account/server/:id/edit', isAuthenticated, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
