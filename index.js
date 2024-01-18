@@ -813,7 +813,7 @@ app.get('/server/:id', recaptcha.middleware.render, (req, res) => {
                     pool.query(`SELECT image FROM servers_illustrations WHERE server_id = $1 LIMIT 6;`, [req.params.id], async (err, illustrations) => {
                         if (err) console.error('Error executing query:', err);
 
-                        let comments = await pool.query(`SELECT sc.user_id, u.username, u.admin, sc.message, sc.date FROM servers_comments sc JOIN users u ON sc.user_id = u.id WHERE sc.server_id = $1;`, [req.params.id]);
+                        let comments = await pool.query(`SELECT sc.user_id, u.username, u.skin, u.admin, sc.message, sc.date FROM servers_comments sc JOIN users u ON sc.user_id = u.id WHERE sc.server_id = $1;`, [req.params.id]);
                         if (comments.rows.length > 0) {
                             comments.rows.forEach(comment => {
                                 const date = new Date(comment.date);
@@ -833,7 +833,7 @@ app.get('/server/:id', recaptcha.middleware.render, (req, res) => {
                 pool.query(`SELECT image FROM servers_illustrations WHERE server_id = $1 LIMIT 6;`, [req.params.id], async (err, illustrations) => {
                     if (err) console.error('Error executing query:', err);
 
-                    const comments = await pool.query(`SELECT sc.user_id, u.username, u.admin, sc.message FROM servers_comments sc JOIN users u ON sc.user_id = u.id WHERE sc.server_id = $1;`, [req.params.id]);
+                    const comments = await pool.query(`SELECT sc.user_id, u.username, u.skin, u.admin, sc.message FROM servers_comments sc JOIN users u ON sc.user_id = u.id WHERE sc.server_id = $1;`, [req.params.id]);
                     if (comments.rows.length > 0) {
                         comments.rows.forEach(comment => {
                             const date = new Date(comment.date);
