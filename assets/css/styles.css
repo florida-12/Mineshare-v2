@@ -3150,6 +3150,199 @@ rain {
     border-radius: 10px;
 }
 
+.serverpage-comments {
+    position: relative;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+    margin-top: 20px;
+    padding-top: 22px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 25px;
+}
+
+.serverpage-comments .title {
+    color: #3A4E57;
+    font-family: 'TT Norms Pro', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.serverpage-comments .line {
+    width: 100%;
+    height: 2px;
+    background: #e1e1e1;
+    border-radius: 40px;
+    margin-bottom: 20px;
+}
+
+.serverpage-comments .comment {
+    background: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .06);
+    border-radius: 8px;
+    border: 1.5px solid #e6e6e6;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.serverpage-comments .comment .date {
+    position: absolute;
+    top: 8px;
+    right: 15px;
+    color: #808080;
+    font-size: 14px;
+}
+
+.serverpage-comments .comment .avatar {
+    width: 70px;
+    height: 70px;
+    display: flex;
+}
+
+.serverpage-comments .comment .avatar img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.serverpage-comments .comment .name {
+    color: #3A4E57;
+    font-family: 'TT Norms Pro', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    margin-left: 20px;
+    margin-bottom: 5px;
+}
+
+.serverpage-comments .comment .text {
+    position: relative;
+    background: #11B2FF;
+    border-radius: 6px;
+    display: inline-flex;
+    color: #fff;
+    font-family: 'TT Norms Pro', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    padding-top: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 6px;
+    margin-top: 0;
+    margin-left: 20px;
+    margin-bottom: 0;
+}
+
+.serverpage-comments .comment .text .arrow {
+    width: 0;
+    height: 0;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-right: 10px solid #11B2FF;
+    position: absolute;
+    top: 9px;
+    right: 100%;
+}
+
+.serverpage-comments .comment input {
+    height: 30px;
+    border-radius: 6px;
+    border: 1.5px solid #e6e6e6;
+    color: #3A4E57;
+    padding-top: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.serverpage-comments .comment input:focus {
+    border: 1.5px solid transparent;
+}
+
+.serverpage-comments .comment button {
+    background: #11B2FF;
+    border-radius: 4px;
+    border: none;
+    color: #fff;
+    font-family: 'TT Norms Pro', sans-serif;
+    font-weight: 500;
+    padding-top: 7px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 8px;
+    float: right;
+    cursor: pointer;
+}
+
+.serverpage-comments .comment button:hover {
+    background: #0E99E6;
+}
+
+.serverpage-like {
+    position: relative;
+    background: #fff;
+    border: 10px solid #fff;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+    line-height: 0;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.serverpage-like img {
+    width: 100%;
+    border-radius: 6px;
+}
+
+.serverpage-like .title {
+    color: #3A4E57;
+    font-family: 'TT Norms Pro', sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    text-align: right;
+}
+
+.serverpage-like .subtitle {
+    color: #3A4E57;
+    font-family: 'TT Norms Pro', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 16px;
+    text-align: right;
+}
+
+.serverpage-like button {
+    position: absolute;
+    background: linear-gradient(to bottom, #ff6040, #de2e3a);
+    box-shadow: 0 0 5px rgba(0, 0, 0, .06);
+    border-radius: 6px;
+    border: none;
+    color: #fff;
+    font-family: 'TT Norms Pro', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    right: 10px;
+    bottom: 30px;
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 12px;
+    cursor: pointer;
+}
+
+.serverpage-like button:hover {
+    background: linear-gradient(to bottom, #cc4c2b, #a62430);
+}
+
 .server-container-servers-empty {
     font-family: 'Nunito Sans', sans-serif;
     font-weight: 800;

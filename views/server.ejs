@@ -122,7 +122,7 @@
                             </div>
 
                             <div class="google-auth" onclick="window.location = '/auth/google';"><img
-                                src="/img/google.svg"><a>Продолжить с Google</a></div>
+                                    src="/img/google.svg"><a>Продолжить с Google</a></div>
                         </form>
 
                         <p class="auth-change">Если у вас еще нет аккаунта, то вы можете<br> зарегистрироваться <a
@@ -161,7 +161,8 @@
                             </div>
 
                             <div class="col l12 div-complete-reg center">
-                                <button class="nav-text button-reg waves-effect waves-light btn" type="submit">Регистрация</button>
+                                <button class="nav-text button-reg waves-effect waves-light btn"
+                                    type="submit">Регистрация</button>
 
                                 <div class="google-auth" onclick="window.location = '/auth/google';"><img
                                         src="/img/google.svg"><a>Продолжить с Google</a>
@@ -348,6 +349,54 @@
                                                             <% }); %>
                                                                 <% } %>
 
+
+                                                                    <div class="col l8 m12 s12">
+                                                                        <div class="serverpage-comments">
+                                                                            <p class="title">Комментарии</p>
+                                                                            <div class="comment">
+                                                                                <div style="width: calc(100% - 23px); position: relative;">
+                                                                                    <form action="comment" method="post">
+                                                                                        <input type="text" placeholder="Сообщение" maxlength="120" name="message" required>
+                                                                                        <button type="submit">Подтвердить</button>
+                                                                                    </form>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="line"></div>
+                                                                            <% if (comments) { %>
+                                                                                <% comments.forEach(function(comment, index) { %>
+                                                                                    <div class="comment" <% if (comments.length - 1 == index) { %>style="margin-bottom: 0;"<% } %>>
+                                                                                        <div class="avatar"><img
+                                                                                                src="https://crafatar.com/avatars/54c32ed5ab7243e5a00eec680d514523">
+                                                                                        </div>
+                                                                                        <div style="margin-top: -3px;">
+                                                                                            <div class="name">
+                                                                                                <%= comment.username %> <% if (comment.admin) { %><span style="color: #0F9D58; font-size: 10px;">(модератор)</span><% } %>
+                                                                                            </div>
+                                                                                            <div class="text">
+                                                                                                <%= comment.message %>
+                                                                                                    <div class="arrow">
+                                                                                                    </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="date"><%= comment.date %></div>
+                                                                                    </div>
+                                                                                    <% }); %>
+                                                                                        <% } %>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col l4 m12 s12">
+                                                                        <div class="serverpage-like">
+                                                                            <img src="https://cdn.discordapp.com/attachments/1191014765435301949/1197224927128997931/image.png">
+                                                                            <div style="position: absolute; top: 30px; right: 10px;">
+                                                                                <p class="title">Понравился сервер?</p>
+                                                                                <p class="subtitle">оценки пользователей помогают<br>в продвижении этого сервера</p>
+                                                                            </div>
+                                                                            <form action="like" method="post">
+                                                                                <button type="submit">Поставить&nbsp;лайк</button>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
             </div>
             <% }); %>
     </div>

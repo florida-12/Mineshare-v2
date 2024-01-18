@@ -810,19 +810,75 @@ app.get('/server/:id', recaptcha.middleware.render, (req, res) => {
                 pool.query(`SELECT name, friendly_name FROM tags WHERE name IN (${placeholders});`, tagIds, (err, tags) => {
                     if (err) console.error('Error executing query:', err);
 
-                    pool.query(`SELECT image FROM servers_illustrations WHERE server_id = $1;`, [req.params.id], (err, illustrations) => {
+                    pool.query(`SELECT image FROM servers_illustrations WHERE server_id = $1 LIMIT 6;`, [req.params.id], async (err, illustrations) => {
                         if (err) console.error('Error executing query:', err);
 
-                        res.render('server', { user: req.user, servers: servers, tags: tags.rows, illustrations: illustrations.rows, footer: footer_html, captcha: res.recaptcha });
+                        let comments = await pool.query(`SELECT sc.user_id, u.username, u.admin, sc.message, sc.date FROM servers_comments sc JOIN users u ON sc.user_id = u.id WHERE sc.server_id = $1;`, [req.params.id]);
+                        if (comments.rows.length > 0) {
+                            comments.rows.forEach(comment => {
+                                const date = new Date(comment.date);
+            
+                                const moscowTime = moment.tz(date, 'Europe/Moscow');
+            
+                                const formattedDate = moscowTime.locale('ru').format('DD.MM');
+            
+                                comment.date = formattedDate;
+                            });
+                        }
+
+                        res.render('server', { user: req.user, servers: servers, tags: tags.rows, illustrations: illustrations.rows, comments: (comments.rows.length > 0) ? comments.rows : null, footer: footer_html, captcha: res.recaptcha });
                     });
                 });
             } else {
-                pool.query(`SELECT image FROM servers_illustrations WHERE server_id = $1 LIMIT 6;`, [req.params.id], (err, illustrations) => {
+                pool.query(`SELECT image FROM servers_illustrations WHERE server_id = $1 LIMIT 6;`, [req.params.id], async (err, illustrations) => {
                     if (err) console.error('Error executing query:', err);
 
-                    res.render('server', { user: req.user, servers: servers, tags: null, illustrations: illustrations.rows, footer: footer_html, captcha: res.recaptcha });
+                    const comments = await pool.query(`SELECT sc.user_id, u.username, u.admin, sc.message FROM servers_comments sc JOIN users u ON sc.user_id = u.id WHERE sc.server_id = $1;`, [req.params.id]);
+                    if (comments.rows.length > 0) {
+                        comments.rows.forEach(comment => {
+                            const date = new Date(comment.date);
+        
+                            const moscowTime = moment.tz(date, 'Europe/Moscow');
+        
+                            const formattedDate = moscowTime.locale('ru').format('DD.MM');
+        
+                            comment.date = formattedDate;
+                        });
+                    }
+
+                    res.render('server', { user: req.user, servers: servers, tags: null, illustrations: illustrations.rows, comments: (comments.rows.length > 0) ? comments.rows : null, footer: footer_html, captcha: res.recaptcha });
                 });
             }
+        });
+    });
+});
+
+app.post('/server/:id/comment', isAuthenticated, (req, res) => {
+    let { message } = req.body;
+
+    pool.query(`SELECT * FROM servers_comments WHERE server_id = $1 AND user_id = $2;`, [req.params.id, req.user.id], (err, result) => {
+        if (err) console.error('Error executing query:', err);
+
+        if (result.rows.length >= 1) return res.redirect(`/server/${req.params.id}`);
+
+        pool.query(`INSERT INTO servers_comments (server_id, user_id, message) VALUES ($1, $2, $3);`, [req.params.id, req.user.id, message], (err) => {
+            if (err) console.error('Error executing query:', err);
+    
+            return res.redirect(`/server/${req.params.id}`);
+        });
+    });
+});
+
+app.post('/server/:id/like', isAuthenticated, (req, res) => {
+    pool.query(`SELECT * FROM servers_likes WHERE server_id = $1 AND user_id = $2;`, [req.params.id, req.user.id], (err, result) => {
+        if (err) console.error('Error executing query:', err);
+
+        if (result.rows.length >= 1) return res.redirect(`/server/${req.params.id}`);
+
+        pool.query(`INSERT INTO servers_likes (server_id, user_id) VALUES ($1, $2);`, [req.params.id, req.user.id], (err) => {
+            if (err) console.error('Error executing query:', err);
+    
+            return res.redirect(`/server/${req.params.id}`);
         });
     });
 });
@@ -912,16 +968,18 @@ app.get('/sitemap.xml', function (req, res) {
         const smStream = new SitemapStream({ hostname: 'https://mineshare.top' });
         const pipeline = smStream.pipe(createGzip());
 
-        smStream.write({ url: '/', lastmod: currentDate, changefreq: 'daily', priority: 1, img: [{ url: 'https://mineshare.top/media/pictures/1db268dd-09e3-450d-8596-4f44ab60aced.gif', caption: 'go.playmine.org' },
-         { url: 'https://mineshare.top/media/pictures/de884d99-0580-4c2f-aa98-3fa6851f3f19.gif', caption: 'mclucky.net' }, 
-         { url: 'https://mineshare.top/media/pictures/27148d9c-7666-491e-96ee-8087a790903e.gif', caption: 'mc.restartcraft.fun' }, 
-         { url: 'https://mineshare.top/media/pictures/2bd8f013-715b-4dee-825b-8368e25e8ff7.gif', caption: 'mc.tntland.fun' },
-         { url: 'https://mineshare.top/media/pictures/e3270066-768a-4495-9863-6f0937ad7f71.png', caption: 'tmine.su' }, 
-         { url: 'https://mineshare.top/media/pictures/c2102efb-1b0e-4853-9d3c-417cbc043111.gif', caption: 'mc.aquamc.su' }, 
-         { url: 'https://mineshare.top/media/pictures/cbd0a41a-26f0-4eb5-9eea-cb5dc1fa5632.gif', caption: 'play.mc-dnc.online' }, 
-         { url: 'https://mineshare.top/media/pictures/456b7736-a952-4a6a-8409-5c3831501ff2.png', caption: '51game.ru' }, 
-         { url: 'https://mineshare.top/img/default-server-picture.gif', caption: 'play.astrixmc.net' }, 
-         { url: 'https://mineshare.top/media/pictures/5140388e-08fb-41fe-8b69-decd78f7f666.gif', caption: 'bawlcraft.20tps.ru' }] });
+        smStream.write({
+            url: '/', lastmod: currentDate, changefreq: 'daily', priority: 1, img: [{ url: 'https://mineshare.top/media/pictures/1db268dd-09e3-450d-8596-4f44ab60aced.gif', caption: 'go.playmine.org' },
+            { url: 'https://mineshare.top/media/pictures/de884d99-0580-4c2f-aa98-3fa6851f3f19.gif', caption: 'mclucky.net' },
+            { url: 'https://mineshare.top/media/pictures/27148d9c-7666-491e-96ee-8087a790903e.gif', caption: 'mc.restartcraft.fun' },
+            { url: 'https://mineshare.top/media/pictures/2bd8f013-715b-4dee-825b-8368e25e8ff7.gif', caption: 'mc.tntland.fun' },
+            { url: 'https://mineshare.top/media/pictures/e3270066-768a-4495-9863-6f0937ad7f71.png', caption: 'tmine.su' },
+            { url: 'https://mineshare.top/media/pictures/c2102efb-1b0e-4853-9d3c-417cbc043111.gif', caption: 'mc.aquamc.su' },
+            { url: 'https://mineshare.top/media/pictures/cbd0a41a-26f0-4eb5-9eea-cb5dc1fa5632.gif', caption: 'play.mc-dnc.online' },
+            { url: 'https://mineshare.top/media/pictures/456b7736-a952-4a6a-8409-5c3831501ff2.png', caption: '51game.ru' },
+            { url: 'https://mineshare.top/img/default-server-picture.gif', caption: 'play.astrixmc.net' },
+            { url: 'https://mineshare.top/media/pictures/5140388e-08fb-41fe-8b69-decd78f7f666.gif', caption: 'bawlcraft.20tps.ru' }]
+        });
         smStream.write({ url: '/terms', lastmod: currentDate, changefreq: 'weekly', priority: 0.8 });
         smStream.write({ url: '/privacy', lastmod: currentDate, changefreq: 'weekly', priority: 0.8 });
         smStream.write({ url: '/tournaments', lastmod: currentDate, changefreq: 'weekly', priority: 0.9 });
