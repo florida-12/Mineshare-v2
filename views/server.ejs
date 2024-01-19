@@ -402,6 +402,19 @@
     </div>
 
     <%- footer %>
+    <script>
+        $(document).ready(function() {
+            var maxHeight = 0;
+            $('.serverpage-illustration-vs').each(function() {
+                var currentHeight = $(this).height();
+                if (currentHeight > maxHeight) {
+                    maxHeight = currentHeight;
+                }
+            });
+    
+            $('.serverpage-illustration-vs').height(maxHeight);
+        });
+    </script>
 </body>
 
 </html>
