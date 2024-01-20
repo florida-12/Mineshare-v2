@@ -6493,7 +6493,7 @@ input[value="Подтвердить"] {
 
 .tournament-container {
     height: 300px;
-    background-image: url('../img/wallpaper-bedwars-1.png');
+    background-image: url('../img/tournament-bedwars-wallpaper.png');
     background-size: cover;
     background-position-y: bottom;
     box-shadow: 0px 0px 17px rgba(0, 0, 0, 0.25);
@@ -6507,7 +6507,6 @@ input[value="Подтвердить"] {
     margin-top: 30px;
     overflow: hidden;
     transition: 0.5s;
-    animation: tournament-bedwars-animation linear infinite 5s alternate;
 }
 
 @keyframes tournament-bedwars-animation {
@@ -6546,19 +6545,23 @@ input[value="Подтвердить"] {
     width: 260px !important;
     height: 54px;
     border-radius: 10px !important;
-    text-transform: none;
-    font-size: 19px;
-    font-family: 'TTNormsMedium';
+    font-size: 17px;
+    font-family: 'TT Norms Pro', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
     background: radial-gradient(circle at 10% 20%, rgb(238, 56, 56) 0%, rgba(206, 21, 0, 0.92) 90.1%);
-    box-shadow: 0px 0px 7px rgb(255, 55, 55, 0.4);
-    margin-right: 10px;
-    line-height: 50px;
+    border-bottom: 6px solid rgba(0, 0, 0, .15);
+    line-height: 47px;
     z-index: 110;
     position: absolute;
     top: 67%;
     left: 50%;
     transform: translate(-50%, -50%);
     transition: 0.4s;
+}
+
+.tournament-container .tournament-button:hover {
+    background: radial-gradient(circle at 10% 20%, rgb(218, 36, 36) 0%, rgba(186, 0, 0, 0.92) 90.1%);
 }
 
 .tournament-counter {
@@ -6636,10 +6639,6 @@ input[value="Подтвердить"] {
 .tournament-input-description::-webkit-scrollbar-thumb {
     border-radius: 20px;
     background: rgb(230, 230, 230);
-}
-
-.tournament-container:hover .tournament-button {
-    width: 290px !important;
 }
 
 .page-tournament {

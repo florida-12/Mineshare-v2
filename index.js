@@ -921,10 +921,12 @@ app.get('/tournaments', recaptcha.middleware.render, (req, res) => {
     res.render('tournaments', { user: req.user, footer: footer_html, captcha: res.recaptcha });
 });
 
-app.get('/tournament/bedwars', recaptcha.middleware.render, (req, res) => {
+app.get('/tournament/bedwars', recaptcha.middleware.render, async (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
-    res.render('bedwars', { user: req.user, footer: footer_html, captcha: res.recaptcha });
+    const applications = await pool.query('SELECT * FROM applications_bedwars WHERE old = false;');
+
+    res.render('bedwars', { user: req.user, applications: applications.rows, footer: footer_html, captcha: res.recaptcha });
 });
 
 app.post('/tournament/bedwars', isAuthenticated, (req, res) => {
