@@ -179,22 +179,22 @@
 
     <div id="bedwars-request" class="modal request">
         <div class="modal-content container">
-            <div class="row" style="margin-bottom:0;">
+            <div class="row" style="margin-bottom: 0;">
                 <div id="reg-container" class="col l12 m12 s12">
-                    <div class="row" style="margin-bottom:0;">
+                    <div class="row" style="margin-top: 20px; margin-bottom: 0;">
                         <form class="reg-form request-form" action="" name="request-bw"
                             id="request-bw" method="post">
 
                             <div class="col l6 m12 s12">
                                 <div class="input-field input-reg">
-                                    <input placeholder="Название команды" id="team-name" name="team-name" type="text"
+                                    <input placeholder="Название команды" id="team" name="team" type="text"
                                         class="validate" minlength="4" required>
                                 </div>
                             </div>
 
                             <div class="col l6 m12 s12">
                                 <div class="input-field input-reg">
-                                    <input placeholder="Участник №1 (никнейм)" id="player1" name="player1" type="text"
+                                    <input placeholder="Участник №1 (никнейм)" id="player1" name="players" type="text"
                                         class="validate" minlength="4" required>
                                 </div>
                             </div>
@@ -213,7 +213,7 @@
 
                             <div class="col l6 m12 s12">
                                 <div class="input-field input-reg">
-                                    <input placeholder="Участник №2 (никнейм)" id="player2" name="player2" type="text"
+                                    <input placeholder="Участник №2 (никнейм)" id="player2" name="players" type="text"
                                         class="validate" minlength="4" required>
                                 </div>
                             </div>
@@ -222,31 +222,27 @@
                                 <div class="input-field input-reg tournament-div-description">
                                     <textarea placeholder="Почему вы решили оставить заявку на участие в турнире?"
                                         id="description" name="description" type="text"
-                                        class="validate tournament-input-description"></textarea>
+                                        class="validate tournament-input-description" required></textarea>
                                 </div>
                             </div>
 
                             <div class="col l6 m12 s12">
                                 <div class="input-field input-reg">
-                                    <input placeholder="Участник №3 (никнейм)" id="player3" name="player3" type="text"
+                                    <input placeholder="Участник №3 (никнейм)" id="player3" name="players" type="text"
                                         class="validate" minlength="4" required>
                                 </div>
                             </div>
 
                             <div class="col l6 m12 s12">
                                 <div class="input-field input-reg">
-                                    <input placeholder="Участник №4 (никнейм)" id="player4" name="player4" type="text"
+                                    <input placeholder="Участник №4 (никнейм)" id="player4" name="players" type="text"
                                         class="validate" minlength="4" required>
                                 </div>
                             </div>
 
-                            <div class="col l12 div-complete-bw center">
-                                <i id="alert_error-bw" class="material-icons"
-                                    onclick="$('#request-bw').submit();">cancel</i>
-                                <div id="alert_success-bw" class="loader-1"><span></span></div>
-                                <input id="request-bw-button" onmouseenter="document.getElementById(this).focus();"
-                                    value="Отправить" type="submit"
-                                    class="nav-text button-reg waves-effect waves-light btn">
+                            <div class="col l12 div-complete-reg center">
+                                <button class="nav-text button-reg waves-effect waves-light btn"
+                                    type="submit">Отправить</button>
                             </div>
                         </form>
                     </div>
@@ -261,10 +257,7 @@
                 style="background: radial-gradient(circle at 10% 20%, rgb(238, 56, 56) 0%, rgba(206, 21, 0, 0.92) 90.1%);background-clip: text;-webkit-text-fill-color: transparent;color:#ff0033">BED</span>WARS
         </p>
         <p class="tournament-line"><span>—————</span>—————<span>—————<br></span></p>
-        <a class="tournament-button waves-effect waves-light btn modal-trigger" {% if not user.is_authenticated
-            %}onclick="globalError('Авторизуйтесь, чтобы оставить заявку')" {% elif tournament_request_send
-            %}onclick="globalError('Вы уже оставили заявку')" {% else
-            %}onclick="globalError('Набор был закрыт, попробуйте позже')" {% endif %}>Скоро</a>
+        <a class="tournament-button waves-effect waves-light btn modal-trigger" <% if (!user) { %>onclick="globalError('Авторизуйтесь, чтобы оставить заявку')"<% } else { %>href="#bedwars-request"<% } %>>Подать заявку</a>
         <div class="tournament-counter">Оставлено заявок: 0</div>
     </div>
 

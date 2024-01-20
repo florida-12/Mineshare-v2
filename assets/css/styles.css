@@ -6579,7 +6579,6 @@ input[value="Подтвердить"] {
 
 .request {
     background: #fff;
-    height: 80%;
     border-radius: 12px;
     padding-top: 30px;
     background: url('../img/cloud-bg.png') repeat-x 0 / 300% auto;

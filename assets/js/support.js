@@ -10,6 +10,14 @@ function copyIP(element) {
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 
+function globalError(text) {
+    var x = document.getElementById("snackbar2");
+    x.innerText = text;
+    x.style.marginLeft = "-166px";
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
 function getIP(element) {
     window.open(element.toString(), '_blank');
 }

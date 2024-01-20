@@ -151,8 +151,7 @@ passport.use(new GoogleStrategy({
 },
     async (accessToken, refreshToken, profile, done) => {
         try {
-            const userQuery = 'SELECT * FROM users WHERE email = $1';
-            const userResult = await pool.query(userQuery, [profile.emails[0].value]);
+            const userResult = await pool.query('SELECT * FROM users WHERE email = $1', [profile.emails[0].value]);
 
             if (userResult.rows.length > 0) {
                 return done(null, userResult.rows[0]);
@@ -252,6 +251,7 @@ app.get('/account', isAuthenticated, (req, res) => {
         if (req.user.admin) {
             let admin_servers = await pool.query(`SELECT * FROM servers ORDER BY -id;`);
             let comments = await pool.query(`SELECT sc.server_id, sc.user_id, u.username, u.admin, sc.message, sc.date FROM servers_comments sc JOIN users u ON sc.user_id = u.id ORDER BY date DESC;`);
+            let applications = await pool.query(`SELECT * FROM applications_bedwars ORDER BY date DESC;`);
             
             admin_servers.rows.forEach(server => {
                 const regdate = new Date(server.regdate);
@@ -273,7 +273,17 @@ app.get('/account', isAuthenticated, (req, res) => {
                 comment.date = formattedDate;
             });
 
-            return res.render('account', { url: req.url, user: req.user, servers: result.rows, admin_servers: admin_servers.rows, comments: comments.rows, footer: footer_html });
+            applications.rows.forEach(application => {
+                const date = new Date(application.date);
+
+                const moscowTime = moment.tz(date, 'Europe/Moscow');
+
+                const formattedDate = moscowTime.locale('ru').format('DD MMMM (HH:mm)');
+
+                application.date = formattedDate;
+            });
+
+            return res.render('account', { url: req.url, user: req.user, servers: result.rows, admin_servers: admin_servers.rows, comments: comments.rows, applications: applications.rows, footer: footer_html });
 
         } else {
             res.render('account', { url: req.url, user: req.user, servers: result.rows, admin_servers: null, footer: footer_html });
@@ -915,6 +925,25 @@ app.get('/tournament/bedwars', recaptcha.middleware.render, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
     res.render('bedwars', { user: req.user, footer: footer_html, captcha: res.recaptcha });
+});
+
+app.post('/tournament/bedwars', isAuthenticated, (req, res) => {
+    let { team, players, description, contact } = req.body;
+    
+    pool.query(`SELECT * FROM applications_bedwars WHERE user_id = $1;`, [req.user.id], async (err, result) => {
+        if (err) {
+            console.error('Error executing query:', err);
+            return res.redirect('/tournament/bedwars');
+        }
+
+        if (result.rows.length < 1) {
+            const application = await pool.query('INSERT INTO applications_bedwars (team, players, description, contact, user_id) VALUES ($1, $2, $3, $4, $5);', [team, JSON.stringify(players), description, contact, req.user.id]);
+
+            return res.redirect('/tournament/bedwars');
+        } else {
+            return res.redirect('/tournament/bedwars');
+        }
+    });
 });
 
 app.get('/shop', recaptcha.middleware.render, (req, res) => {
