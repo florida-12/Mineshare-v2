@@ -34,7 +34,6 @@
 </head>
 
 <body>
-
     <div class="container nav-container nav-margin">
         <div class="row nav-wrapper">
             <a href="/" class="col l3 brand-logo text-color-black nav-logo left">Mineshare</a>
@@ -194,12 +193,13 @@
                             padding-right: 12px;
                             padding-bottom: 12px;
                             display: inline-flex;">
-                            Пожалуйста, убедитесь в том, что ваш сервер запущен и нормально функционирует, а также у него должен быть открыт query-порт
+                                Пожалуйста, убедитесь в том, что ваш сервер запущен и нормально функционирует, а также у
+                                него должен быть открыт query-порт
                             </div>
 
                             <div class="center div-complete">
                                 <button class="button-complete">Далее</button>
-                            </div>                         
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -214,20 +214,24 @@
                     <div id="create-server-one-container" class="col s12 create-server-one-container-background">
                         <div class="col l12 m12 s12" style="height: 100%;">
                             <div class="input-field input-create-server input-create-server-top">
-                                <input placeholder="Текущий никнейм" name="old_username" type="text" class="validate" value="<%= user.username %>" readonly>
+                                <input placeholder="Текущий никнейм" name="old_username" type="text" class="validate"
+                                    value="<%= user.username %>" readonly>
                             </div>
 
                             <div class="input-field input-create-server">
-                                <input onkeypress="return /[0-9a-zA-Z]/i.test(event.key)" placeholder="Новый никнейм" name="username" type="text" class="validate" minlength="2" maxlength="20" required>
+                                <input onkeypress="return /[0-9a-zA-Z]/i.test(event.key)" placeholder="Новый никнейм"
+                                    name="username" type="text" class="validate" minlength="2" maxlength="20" required>
                             </div>
 
                             <div class="input-field input-create-server">
-                                <input onkeypress="return /[0-9a-zA-Z]/i.test(event.key)" placeholder="Повтор никнейма" name="username_repeat" type="text" class="validate" minlength="2" maxlength="20" required>
+                                <input onkeypress="return /[0-9a-zA-Z]/i.test(event.key)" placeholder="Повтор никнейма"
+                                    name="username_repeat" type="text" class="validate" minlength="2" maxlength="20"
+                                    required>
                             </div>
 
                             <div class="center div-complete">
                                 <button class="button-complete">Подтвердить</button>
-                            </div>  
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -354,11 +358,19 @@
     <% if (admin_servers) { %>
         <div class="container privatearea-container">
             <div class="row">
-                <div class="col l12 m12 s12 privatearea-container-panel" style="display: flex; justify-content: start; padding-top: 20px !important; padding-bottom: 20px !important; margin-bottom: 20px;">
-                    <div style="background: #fff; border-radius: 8px; color: #3A4E57; font-family: 'TT Norms Pro', sans-serif; font-size: 20px; font-weight: 700;">
-                        <div style="border-right: 2px solid #dde0e6; padding-top: 10px; padding-left: 30px; padding-right: 30px; padding-bottom: 12px; display: inline-flex; cursor: pointer;" onclick="$('#page_servers').css('display', 'block'); $('#page_comments').css('display', 'none'); $('#page_applications').css('display', 'none');">Серверы</div>
-                        <div style="border-left: 2px solid #dde0e6; border-right: 2px solid #dde0e6; padding-top: 10px; padding-left: 30px; padding-right: 30px; padding-bottom: 12px; display: inline-flex; cursor: pointer;" onclick="$('#page_servers').css('display', 'none'); $('#page_comments').css('display', 'block'); $('#page_applications').css('display', 'none');">Комментарии</div>
-                        <div style="border-left: 2px solid #dde0e6; padding-top: 10px; padding-left: 30px; padding-right: 30px; padding-bottom: 12px; display: inline-flex; cursor: pointer;" onclick="$('#page_servers').css('display', 'none'); $('#page_comments').css('display', 'none'); $('#page_applications').css('display', 'block');">Заявки</div>
+                <div class="col l12 m12 s12 privatearea-container-panel"
+                    style="display: flex; justify-content: start; padding-top: 20px !important; padding-bottom: 20px !important; margin-bottom: 20px;">
+                    <div
+                        style="background: #fff; border-radius: 8px; color: #3A4E57; font-family: 'TT Norms Pro', sans-serif; font-size: 20px; font-weight: 700;">
+                        <div style="border-right: 2px solid #dde0e6; padding-top: 10px; padding-left: 30px; padding-right: 30px; padding-bottom: 12px; display: inline-flex; cursor: pointer;"
+                            onclick="$('#page_servers').css('display', 'block'); $('#page_comments').css('display', 'none'); $('#page_applications').css('display', 'none');">
+                            Серверы</div>
+                        <div style="border-left: 2px solid #dde0e6; border-right: 2px solid #dde0e6; padding-top: 10px; padding-left: 30px; padding-right: 30px; padding-bottom: 12px; display: inline-flex; cursor: pointer;"
+                            onclick="$('#page_servers').css('display', 'none'); $('#page_comments').css('display', 'block'); $('#page_applications').css('display', 'none');">
+                            Комментарии</div>
+                        <div style="border-left: 2px solid #dde0e6; padding-top: 10px; padding-left: 30px; padding-right: 30px; padding-bottom: 12px; display: inline-flex; cursor: pointer;"
+                            onclick="$('#page_servers').css('display', 'none'); $('#page_comments').css('display', 'none'); $('#page_applications').css('display', 'block');">
+                            Заявки</div>
                     </div>
                 </div>
 
@@ -380,12 +392,15 @@
                             </thead>
 
                             <style>
-                                .td-id:hover {text-decoration: underline;}
+                                .td-id:hover {
+                                    text-decoration: underline;
+                                }
                             </style>
                             <tbody>
                                 <% admin_servers.forEach(function(server, index) { %>
                                     <tr>
-                                        <td class="td-id" style="font-weight: 700; cursor: pointer; user-select: none;" onclick="window.location = '/server/<%= server.id %>';">
+                                        <td class="td-id" style="font-weight: 700; cursor: pointer; user-select: none;"
+                                            onclick="window.location = '/server/<%= server.id %>';">
                                             <%= server.id %>
                                         </td>
                                         <td style="border-left: 1px solid rgba(0, 0, 0, 0.12); padding-left: 12px;">
@@ -434,16 +449,20 @@
                                     <th style="padding-left: 12px;">Владелец</th>
                                     <th style="padding-left: 12px;">Сообщение</th>
                                     <th style="padding-left: 12px;">Дата</th>
+                                    <th style="padding-left: 12px;">Действие</th>
                                 </tr>
                             </thead>
 
                             <style>
-                                .td-id:hover {text-decoration: underline;}
+                                .td-id:hover {
+                                    text-decoration: underline;
+                                }
                             </style>
                             <tbody>
                                 <% comments.forEach(function(comment, index) { %>
                                     <tr>
-                                        <td class="td-id" style="font-weight: 700; cursor: pointer; user-select: none;" onclick="window.location = '/server/<%= comment.server_id %>';">
+                                        <td class="td-id" style="width: 70px; font-weight: 700; cursor: pointer; user-select: none;"
+                                            onclick="window.location = '/server/<%= comment.server_id %>';">
                                             <%= comment.server_id %>
                                         </td>
                                         <td style="border-left: 1px solid rgba(0, 0, 0, 0.12); padding-left: 12px;">
@@ -452,8 +471,19 @@
                                         <td style="padding-left: 12px;">
                                             <%= comment.message %>
                                         </td>
-                                        <td style="border-left: 1px solid rgba(0, 0, 0, 0.12); padding-left: 12px;">
+                                        <td style="width: 160px; border-left: 1px solid rgba(0, 0, 0, 0.12); padding-left: 12px;">
                                             <%= comment.date %>
+                                        </td>
+                                        <style>
+                                            .fa-trash {
+                                                color: #c3c3c3;
+                                            }
+                                            .fa-trash:hover {
+                                                color: #FF3E30;
+                                            }
+                                        </style>
+                                        <td style="width: 90px; border-left: 1px solid rgba(0, 0, 0, 0.12); padding-left: 12px;">
+                                            <i class="fa-solid fa-pen-clip" style="color: #c3c3c3; cursor: pointer;"></i><div style="width: 2px; height: 15px; background: #c7c7c7; border-radius: 40px; vertical-align: middle; margin-left: 17px; margin-right: 17px; display: inline-flex;"></div><i class="fa-solid fa-trash" style="cursor: pointer;"></i>
                                         </td>
                                     </tr>
                                     <% }); %>
@@ -473,12 +503,15 @@
                                     <th style="padding-left: 12px;">Участники</th>
                                     <th style="padding-left: 12px;">Описание</th>
                                     <th style="padding-left: 12px;">Связь</th>
+                                    <th style="padding-left: 12px;">Статус</th>
                                     <th style="padding-left: 12px;">Дата</th>
                                 </tr>
                             </thead>
 
                             <style>
-                                .td-id:hover {text-decoration: underline;}
+                                .td-id:hover {
+                                    text-decoration: underline;
+                                }
                             </style>
                             <tbody>
                                 <% applications.forEach(function(application, index) { %>
@@ -497,6 +530,15 @@
                                         </td>
                                         <td style="padding-left: 12px;">
                                             <%= application.contact %>
+                                        </td>
+                                        <td style="padding-left: 12px;">
+                                            <% if (application.status == 0) { %>
+                                                <i class="fa-solid fa-circle-xmark" style="color: #FF3E30;"></i>
+                                            <% } else if (application.status == 1) { %>
+                                                <i class="fa-solid fa-circle-minus" style="color: #808080;"></i>
+                                            <% } else { %>
+                                                <i class="fa-solid fa-circle-check" style="color: #0F9D58;"></i>
+                                            <% } %>
                                         </td>
                                         <td style="border-left: 1px solid rgba(0, 0, 0, 0.12); padding-left: 12px;">
                                             <%= application.date %>
