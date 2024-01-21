@@ -968,7 +968,7 @@ app.get('/shop', recaptcha.middleware.render, (req, res) => {
 app.get('/news', recaptcha.middleware.render, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
-    pool.query(`SELECT * FROM news ORDER BY regdate;`, (err, result) => {
+    pool.query(`SELECT * FROM news ORDER BY regdate DESC;`, (err, result) => {
         if (err) {
             console.error(err);
             return res.status(500).send('Internal Server Error');
