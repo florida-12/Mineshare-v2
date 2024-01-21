@@ -521,6 +521,17 @@ app.get('/media/illustrations/:uuid', async (req, res) => {
     }
 });
 
+app.get('/media/news/:uuid', async (req, res) => {
+    const imagePath = path.join(__dirname, '/media/news/', `${req.params.uuid}`);
+
+    try {
+        await fs.access(imagePath);
+        res.sendFile(imagePath);
+    } catch (error) {
+        res.status(404).send('File not found');
+    }
+});
+
 app.get('/', recaptcha.middleware.render, (req, res) => {
     if (!req.query.search) {
         pool.query(`SELECT * FROM servers WHERE ban = false ORDER BY -rate;`, (err, result) => {
