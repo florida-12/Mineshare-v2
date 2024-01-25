@@ -29,7 +29,7 @@
         <p>Настройки сервера</p>
     </div>
     <% servers.forEach(server=> { %>
-        <form id="edit_form" action="" method="post" enctype="multipart/form-data">
+        <form id="edit_form" action="/account/server/<%= server.id %>/edit" method="post" enctype="multipart/form-data">
             <div class="page container">
                 <div class="row">
                     <div class="col l12 m12 s12">
@@ -199,8 +199,7 @@
 
             <div class="serverpagecreate-footer container">
                 <div class="center">
-                    <input id="edit_save" type="submit" class="button-save waves-effect waves-light btn"
-                        value="Сохранить">
+                    <button id="publish" class="button-publish" onclick="submitForm(this);">Сохранить</button>
                 </div>
             </div>
 
@@ -221,6 +220,16 @@
                     var elements = document.getElementsByClassName('prefix-clear');
                     elements[0].innerHTML = elements[0].innerHTML.replace(/:/g, '');
                 };
+
+                function submitForm(button) {
+                    if ($(button).prop('disabled')) {
+                        return;
+                    } else {
+                        $(button).prop('disabled', 'true');
+                        $(button).html(`<div class="button-publish-loader"><div class="progress"><div class="indeterminate"></div></div></div>`);
+                        $('#edit_form').submit();
+                    }
+                }
             </script>
 </body>
 

@@ -1386,6 +1386,7 @@ body {
 }
 
 .auth {
+    width: 30%;
     background: #fff;
     border-radius: 12px;
     padding-top: 30px;
@@ -3066,14 +3067,14 @@ rain {
     border-radius: 10px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
     font-family: 'TT Norms Pro', sans-serif;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 14px;
     line-height: 22px;
     overflow: hidden;
-    padding-top: 15px;
+    padding-top: 20px;
     padding-left: 30px;
     padding-right: 30px;
-    padding-bottom: 15px;
+    padding-bottom: 20px;
     margin-top: 10px;
     margin-bottom: 10px;
     z-index: 2;
@@ -3319,21 +3320,19 @@ rain {
 }
 
 .serverpage-like button {
-    position: absolute;
+    width: 150px;
     background: linear-gradient(to bottom, #ff6040, #de2e3a);
     box-shadow: 0 0 5px rgba(0, 0, 0, .06);
     border-radius: 6px;
     border: none;
     color: #fff;
     font-family: 'TT Norms Pro', sans-serif;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 700;
-    right: 10px;
-    bottom: 30px;
     padding-top: 10px;
-    padding-left: 30px;
-    padding-right: 30px;
     padding-bottom: 12px;
+    margin-top: 10px;
+    float: right;
     cursor: pointer;
 }
 

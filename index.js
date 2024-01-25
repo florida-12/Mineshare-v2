@@ -236,7 +236,7 @@ app.get('/logout', (req, res) => {
 
 function isAuthenticated(req, res, next) {
     if (req.isAuthenticated()) return next();
-    res.redirect('/');
+    res.redirect('/?login=login');
 }
 
 app.get('/account', isAuthenticated, (req, res) => {
@@ -252,7 +252,7 @@ app.get('/account', isAuthenticated, (req, res) => {
             let admin_servers = await pool.query(`SELECT * FROM servers ORDER BY -id;`);
             let comments = await pool.query(`SELECT sc.server_id, sc.user_id, u.username, u.admin, sc.message, sc.date FROM servers_comments sc JOIN users u ON sc.user_id = u.id ORDER BY date DESC;`);
             let applications = await pool.query(`SELECT * FROM applications_bedwars ORDER BY date DESC;`);
-            
+
             admin_servers.rows.forEach(server => {
                 const regdate = new Date(server.regdate);
 
@@ -860,16 +860,40 @@ app.get('/server/:id', recaptcha.middleware.render, (req, res) => {
                         if (comments.rows.length > 0) {
                             comments.rows.forEach(comment => {
                                 const date = new Date(comment.date);
-            
+
                                 const moscowTime = moment.tz(date, 'Europe/Moscow');
-            
+
                                 const formattedDate = moscowTime.locale('ru').format('DD.MM');
-            
+
                                 comment.date = formattedDate;
                             });
                         }
 
-                        res.render('server', { user: req.user, servers: servers, tags: tags.rows, illustrations: illustrations.rows, comments: (comments.rows.length > 0) ? comments.rows : null, footer: footer_html, captcha: res.recaptcha });
+                        let like_status = false;
+                        if (req.user) {
+                            const likes = await pool.query(`SELECT * FROM servers_likes WHERE user_id = $1 AND server_id = $2 LIMIT 1;`, [req.user.id, req.params.id]);
+                            if (likes.rows.length > 0) {
+                                const startDate = new Date(likes.rows[0].date);
+                                const endDate = new Date(startDate);
+                                endDate.setDate(endDate.getDate() + 7);
+                                const currentDate = new Date();
+
+                                const dayDifference = Math.floor((endDate - currentDate) / (24 * 60 * 60 * 1000));
+
+                                function pluralizeDays(days) {
+                                    if (days === 1) {
+                                        return 'день';
+                                    } else if (days > 1 && days < 5) {
+                                        return 'дня';
+                                    } else {
+                                        return 'дней';
+                                    }
+                                }
+                                like_status = `${dayDifference} ${pluralizeDays(dayDifference)}`;
+                            }
+                        }
+
+                        res.render('server', { user: req.user, servers: servers, tags: tags.rows, illustrations: illustrations.rows, comments: (comments.rows.length > 0) ? comments.rows : null, like_status: like_status, footer: footer_html, captcha: res.recaptcha });
                     });
                 });
             } else {
@@ -880,16 +904,40 @@ app.get('/server/:id', recaptcha.middleware.render, (req, res) => {
                     if (comments.rows.length > 0) {
                         comments.rows.forEach(comment => {
                             const date = new Date(comment.date);
-        
+
                             const moscowTime = moment.tz(date, 'Europe/Moscow');
-        
+
                             const formattedDate = moscowTime.locale('ru').format('DD.MM');
-        
+
                             comment.date = formattedDate;
                         });
                     }
 
-                    res.render('server', { user: req.user, servers: servers, tags: null, illustrations: illustrations.rows, comments: (comments.rows.length > 0) ? comments.rows : null, footer: footer_html, captcha: res.recaptcha });
+                    let like_status = false;
+                        if (req.user) {
+                            const likes = await pool.query(`SELECT * FROM servers_likes WHERE user_id = $1 AND server_id = $2 LIMIT 1;`, [req.user.id, req.params.id]);
+                            if (likes.rows.length > 0) {
+                                const startDate = new Date(likes.rows[0].date);
+                                const endDate = new Date(startDate);
+                                endDate.setDate(endDate.getDate() + 7);
+                                const currentDate = new Date();
+
+                                const dayDifference = Math.floor((endDate - currentDate) / (24 * 60 * 60 * 1000));
+
+                                function pluralizeDays(days) {
+                                    if (days === 1) {
+                                        return 'день';
+                                    } else if (days > 1 && days < 5) {
+                                        return 'дня';
+                                    } else {
+                                        return 'дней';
+                                    }
+                                }
+                                like_status = `${dayDifference} ${pluralizeDays(dayDifference)}`;
+                            }
+                        }
+
+                    res.render('server', { user: req.user, servers: servers, tags: null, illustrations: illustrations.rows, comments: (comments.rows.length > 0) ? comments.rows : null, like_status: like_status, footer: footer_html, captcha: res.recaptcha });
                 });
             }
         });
@@ -906,7 +954,7 @@ app.post('/server/:id/comment', isAuthenticated, (req, res) => {
 
         pool.query(`INSERT INTO servers_comments (server_id, user_id, message) VALUES ($1, $2, $3);`, [req.params.id, req.user.id, message], (err) => {
             if (err) console.error('Error executing query:', err);
-    
+
             return res.redirect(`/server/${req.params.id}`);
         });
     });
@@ -920,7 +968,7 @@ app.post('/server/:id/like', isAuthenticated, (req, res) => {
 
         pool.query(`INSERT INTO servers_likes (server_id, user_id) VALUES ($1, $2);`, [req.params.id, req.user.id], (err) => {
             if (err) console.error('Error executing query:', err);
-    
+
             return res.redirect(`/server/${req.params.id}`);
         });
     });
@@ -942,7 +990,7 @@ app.get('/tournament/bedwars', recaptcha.middleware.render, async (req, res) => 
 
 app.post('/tournament/bedwars', isAuthenticated, (req, res) => {
     let { team, players, description, contact } = req.body;
-    
+
     pool.query(`SELECT * FROM applications_bedwars WHERE user_id = $1;`, [req.user.id], async (err, result) => {
         if (err) {
             console.error('Error executing query:', err);

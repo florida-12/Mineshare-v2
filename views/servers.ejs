@@ -520,127 +520,113 @@
                                                 <img class="server-chart-icon" src="/img/rate-chart-false.svg">
                                             </div>
                                             <% } %>
-                                                <% if (server.boost_status) { %><div style="position: absolute; top: -12.5px; left: 50%; background: #0006b1; border-radius: 6px 6px 0 0; color: #fff; font-family: 'TT Norms Pro', sans-serif; font-size: 12px; font-weight: 500; transform: translate(-50%, -50%); padding-top: 3px; padding-left: 15px; padding-right: 10px; padding-bottom: 4px; user-select: none; animation: horizontal-shaking infinite 0.7s;">Грозовая туча<i style="font-size: 10.5px; margin-left: 5px;" class="fa-solid fa-cloud-bolt"></i></div><% } %>
-                                                <div class="server" <% if (server.premium_status) { %>type="<%=
-                                                        server.premium_color %>"<% } %> <% if (server.boost_status) { %>style="margin-top: 50px;"<% } %>>
-                                                            <% if (server.premium_status) { %>
-                                                                <div class="gradient-<%= server.premium_color %>"></div>
-                                                                <% } %>
-                                                                    <div class="col l4 s12 server-plate-one">
-                                                                        <div class="server-module"
-                                                                            onclick="window.location = '/server/<%= server.id %>'">
-                                                                            <p class="server-title">
-                                                                                <%= server.title.substring(0, 35) %>
-                                                                                    <% if (server.title.length> 35) {
-                                                                                        %>..<% } %>
-                                                                            </p>
-                                                                            <p
-                                                                                class="server-description text-color-gray">
-                                                                                <%= server.description.substring(0, 110)
-                                                                                    %>..
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div
-                                                                        class="col l4 s12 server-plate-two hide-on-med-and-down">
-                                                                        <% if
-                                                                            (server.banner=='default-server-picture.gif'
-                                                                            ) { %>
-                                                                            <div
-                                                                                style="background-image: url('../img/default-server-picture.gif');">
-                                                                            </div>
-                                                                            <% } else { %>
+                                                <% if (server.boost_status) { %>
+                                                    <div
+                                                        style="position: absolute; top: -12.5px; left: 50%; background: #0006b1; border-radius: 6px 6px 0 0; color: #fff; font-family: 'TT Norms Pro', sans-serif; font-size: 12px; font-weight: 500; transform: translate(-50%, -50%); padding-top: 3px; padding-left: 15px; padding-right: 10px; padding-bottom: 4px; user-select: none; animation: horizontal-shaking infinite 0.7s;">
+                                                        Грозовая туча<i style="font-size: 10.5px; margin-left: 5px;"
+                                                            class="fa-solid fa-cloud-bolt"></i></div>
+                                                    <% } %>
+                                                        <div class="server" <% if (server.premium_status) { %>type="<%=
+                                                                server.premium_color %>"<% } %>
+                                                                    <% if (server.boost_status) { %>style="margin-top:
+                                                                        50px;"<% } %>>
+                                                                            <% if (server.premium_status) { %>
                                                                                 <div
-                                                                                    style="background-image: url('../media/pictures/<%= server.banner %>');">
+                                                                                    class="gradient-<%= server.premium_color %>">
                                                                                 </div>
                                                                                 <% } %>
-                                                                    </div>
-                                                                    <div class="col l4 s12 server-plate-three">
-                                                                        <div class="row">
-                                                                            <div class="col l2 m2 s2 server-online"
-                                                                                style="padding-top: 8px;">
-                                                                                <i class="material-icons">people</i>
-                                                                                <p>
-                                                                                    <%= server.current_players %>
-                                                                                </p>
-                                                                            </div>
-                                                                            <div
-                                                                                class="col l10 m9 s10 server-plate-three-support">
-                                                                                <div class="row">
-                                                                                    <% if (server.launcher) { %>
-                                                                                        <div class="col l12 s12 server-ip"
-                                                                                            onclick="getIP('{{ server.website }}')"
-                                                                                            style="cursor:pointer">
-                                                                                            <h6 class="center">Лаунчер
-                                                                                            </h6>
+                                                                                    <div
+                                                                                        class="col l4 s12 server-plate-one">
+                                                                                        <div class="server-module"
+                                                                                            onclick="window.location = '/server/<%= server.id %>'">
+                                                                                            <p class="server-title">
+                                                                                                <%= server.title.substring(0,
+                                                                                                    35) %>
+                                                                                                    <% if
+                                                                                                        (server.title.length>
+                                                                                                        35) {
+                                                                                                        %>..<% } %>
+                                                                                            </p>
+                                                                                            <p
+                                                                                                class="server-description text-color-gray">
+                                                                                                <%= server.description.substring(0,
+                                                                                                    110) %>..
+                                                                                            </p>
                                                                                         </div>
-                                                                                        <% } else { %>
-                                                                                            <% if (server.port=="25565"
-                                                                                                ) { %>
-                                                                                                <div class="col l12 s12 server-ip"
-                                                                                                    onclick="copyIP('#<%= server.id %>')"
-                                                                                                    style="cursor:pointer;">
-                                                                                                    <h6 id="<%= server.id %>"
-                                                                                                        class="center">
-                                                                                                        <%= server.ip %>
-                                                                                                    </h6>
+                                                                                    </div>
+                                                                                    <div
+                                                                                        class="col l4 s12 server-plate-two hide-on-med-and-down">
+                                                                                        <% if
+                                                                                            (server.banner=='default-server-picture.gif'
+                                                                                            ) { %>
+                                                                                            <div
+                                                                                                style="background-image: url('../img/default-server-picture.gif');">
+                                                                                            </div>
+                                                                                            <% } else { %>
+                                                                                                <div
+                                                                                                    style="background-image: url('../media/pictures/<%= server.banner %>');">
                                                                                                 </div>
-                                                                                                <% } else { %>
-                                                                                                    <div class="col l12 s12 server-ip"
-                                                                                                        onclick="copyIP('#<%= server.ip %>')"
-                                                                                                        style="cursor:pointer;">
-                                                                                                        <h6 id="<%= server.id %>"
-                                                                                                            class="center">
-                                                                                                            <%= server.ip
-                                                                                                                %>:<%=
-                                                                                                                    server.port
-                                                                                                                    %>
-                                                                                                        </h6>
-                                                                                                    </div>
-                                                                                                    <% }} %>
-                                                                                                        <div
-                                                                                                            class="col l12 m12 s12 server-line">
+                                                                                                <% } %>
+                                                                                    </div>
+                                                                                    <div
+                                                                                        class="col l4 s12 server-plate-three">
+                                                                                        <div class="row">
+                                                                                            <div class="col l2 m2 s2 server-online"
+                                                                                                style="padding-top: 8px;">
+                                                                                                <i
+                                                                                                    class="material-icons">people</i>
+                                                                                                <p>
+                                                                                                    <%= server.current_players
+                                                                                                        %>
+                                                                                                </p>
+                                                                                            </div>
+                                                                                            <div
+                                                                                                class="col l10 m9 s10 server-plate-three-support">
+                                                                                                <div class="row">
+                                                                                                    <% if
+                                                                                                        (server.launcher)
+                                                                                                        { %>
+                                                                                                        <div class="col l12 s12 server-ip"
+                                                                                                            onclick="getIP('{{ server.website }}')"
+                                                                                                            style="cursor:pointer">
+                                                                                                            <h6
+                                                                                                                class="center">
+                                                                                                                Лаунчер
+                                                                                                            </h6>
+                                                                                                        </div>
+                                                                                                        <% } else { %>
                                                                                                             <% if
-                                                                                                                (server.premium_status)
-                                                                                                                { %>
-                                                                                                                <% if
-                                                                                                                    (server.rate>
-                                                                                                                    100)
-                                                                                                                    { %>
-                                                                                                                    <div class="server-line-<%= server.premium_color %>"
-                                                                                                                        style="animation:server-line-animation;animation-duration:1.5s;width:100%;">
-                                                                                                                        <style>
-                                                                                                                            @keyframes server-line-animation {
-                                                                                                                                0% {
-                                                                                                                                    width: 0%
-                                                                                                                                }
-
-                                                                                                                                100% {
-                                                                                                                                    width: 100%;
-                                                                                                                                }
-                                                                                                                            }
-                                                                                                                        </style>
-                                                                                                                    </div>
-                                                                                                                    <% } else
-                                                                                                                        {
-                                                                                                                        %>
-                                                                                                                        <div class="server-line-<%= server.premium_color %>"
-                                                                                                                            style="animation:server-line-animation;animation-duration:2.5s; width:100%;">
-                                                                                                                            <style>
-                                                                                                                                @keyframes server-line-animation {
-                                                                                                                                    0% {
-                                                                                                                                        width: 0%
-                                                                                                                                    }
-
-                                                                                                                                    100% {
-                                                                                                                                        width: 100%;
-                                                                                                                                    }
-                                                                                                                                }
-                                                                                                                            </style>
-                                                                                                                        </div>
-                                                                                                                        <% }
+                                                                                                                (server.port=="25565"
+                                                                                                                ) { %>
+                                                                                                                <div class="col l12 s12 server-ip"
+                                                                                                                    onclick="copyIP('#<%= server.id %>')"
+                                                                                                                    style="cursor:pointer;">
+                                                                                                                    <h6 id="<%= server.id %>"
+                                                                                                                        class="center">
+                                                                                                                        <%= server.ip
                                                                                                                             %>
-                                                                                                                            <% } else
+                                                                                                                    </h6>
+                                                                                                                </div>
+                                                                                                                <% } else
+                                                                                                                    { %>
+                                                                                                                    <div class="col l12 s12 server-ip"
+                                                                                                                        onclick="copyIP('#<%= server.ip %>')"
+                                                                                                                        style="cursor:pointer;">
+                                                                                                                        <h6 id="<%= server.id %>"
+                                                                                                                            class="center">
+                                                                                                                            <%= server.ip
+                                                                                                                                %>
+                                                                                                                                :
+                                                                                                                                <%= server.port
+                                                                                                                                    %>
+                                                                                                                        </h6>
+                                                                                                                    </div>
+                                                                                                                    <% }}
+                                                                                                                        %>
+                                                                                                                        <div
+                                                                                                                            class="col l12 m12 s12 server-line">
+                                                                                                                            <% if
+                                                                                                                                (server.premium_status)
                                                                                                                                 {
                                                                                                                                 %>
                                                                                                                                 <% if
@@ -648,8 +634,8 @@
                                                                                                                                     100)
                                                                                                                                     {
                                                                                                                                     %>
-                                                                                                                                    <div class="server-line-gray"
-                                                                                                                                        style="width:100%;">
+                                                                                                                                    <div class="server-line-<%= server.premium_color %>"
+                                                                                                                                        style="animation:server-line-animation;animation-duration:1.5s;width:100%;">
                                                                                                                                         <style>
                                                                                                                                             @keyframes server-line-animation {
                                                                                                                                                 0% {
@@ -665,7 +651,7 @@
                                                                                                                                     <% } else
                                                                                                                                         {
                                                                                                                                         %>
-                                                                                                                                        <div class="server-line-gray"
+                                                                                                                                        <div class="server-line-<%= server.premium_color %>"
                                                                                                                                             style="animation:server-line-animation;animation-duration:2.5s; width:100%;">
                                                                                                                                             <style>
                                                                                                                                                 @keyframes server-line-animation {
@@ -681,14 +667,55 @@
                                                                                                                                         </div>
                                                                                                                                         <% }
                                                                                                                                             %>
-                                                                                                                                            <% }
+                                                                                                                                            <% } else
+                                                                                                                                                {
                                                                                                                                                 %>
-                                                                                                        </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                </div>
+                                                                                                                                                <% if
+                                                                                                                                                    (server.rate>
+                                                                                                                                                    100)
+                                                                                                                                                    {
+                                                                                                                                                    %>
+                                                                                                                                                    <div class="server-line-gray"
+                                                                                                                                                        style="width:100%;">
+                                                                                                                                                        <style>
+                                                                                                                                                            @keyframes server-line-animation {
+                                                                                                                                                                0% {
+                                                                                                                                                                    width: 0%
+                                                                                                                                                                }
+
+                                                                                                                                                                100% {
+                                                                                                                                                                    width: 100%;
+                                                                                                                                                                }
+                                                                                                                                                            }
+                                                                                                                                                        </style>
+                                                                                                                                                    </div>
+                                                                                                                                                    <% } else
+                                                                                                                                                        {
+                                                                                                                                                        %>
+                                                                                                                                                        <div class="server-line-gray"
+                                                                                                                                                            style="animation:server-line-animation;animation-duration:2.5s; width:100%;">
+                                                                                                                                                            <style>
+                                                                                                                                                                @keyframes server-line-animation {
+                                                                                                                                                                    0% {
+                                                                                                                                                                        width: 0%
+                                                                                                                                                                    }
+
+                                                                                                                                                                    100% {
+                                                                                                                                                                        width: 100%;
+                                                                                                                                                                    }
+                                                                                                                                                                }
+                                                                                                                                                            </style>
+                                                                                                                                                        </div>
+                                                                                                                                                        <% }
+                                                                                                                                                            %>
+                                                                                                                                                            <% }
+                                                                                                                                                                %>
+                                                                                                                        </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                        </div>
                         </div>
 
                         <% }) %>
@@ -731,6 +758,18 @@
                         }, 2000);
                         $('#random').attr('disabled', false);
                     }
+
+                    document.addEventListener('DOMContentLoaded', function() {
+                        var loginValue = (new URL(window.location.href)).searchParams.get('login');
+
+                        if (loginValue !== null) {
+                            var elems = document.querySelectorAll('.auth');
+                            var instances = M.Modal.init(elems);
+                            instances.forEach(element => {
+                                element.open();
+                            });
+                        }
+                    });
                 </script>
 </body>
 

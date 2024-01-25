@@ -84,7 +84,7 @@
 
         <div class="serverpagecreate-footer container">
             <div class="center">
-                <button id="publish" class="button-publish" type="submit" onclick="submitForm();">Опубликовать</button>
+                <button id="publish" class="button-publish" type="submit" onclick="submitForm(this);">Опубликовать</button>
             </div>
         </div>
     </form>
@@ -95,12 +95,14 @@
     <script type="text/javascript" src="/js/script.js"></script>
     <script type="text/javascript" src="/js/support.js"></script>
     <script type="text/javascript">
-        function submitForm() {
-            $('#publish').attr('disabled', true);
-            $('#form').submit();
-            $('#publish').html(`
-            <div class="button-publish-loader"><div class="progress"><div class="indeterminate"></div></div></div>
-            `)
+        function submitForm(button) {
+            if ($(button).prop('disabled')) {
+                return;
+            } else {
+                $(button).prop('disabled', 'true');
+                $(button).html(`<div class="button-publish-loader"><div class="progress"><div class="indeterminate"></div></div></div>`);
+                $('#form').submit();
+            }
         }
     </script>
 </body>

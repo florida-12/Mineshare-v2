@@ -194,7 +194,7 @@
 
                 <div class="col l9 m12 s12">
                     <div class="serverpage-description">
-                        <pre><%- server.description %></pre>
+                        <%- server.description.replace(/\n/g, '<br>') %>
                     </div>
                 </div>
 
@@ -349,39 +349,64 @@
                                                             <% }); %>
                                                                 <% } %>
 
-                                                                  
-                                                                <div class="col l12 m12 s12"><div style="width: 100%; height: 2px; border-radius: 40px; background: #dddddd; margin-top: 40px; margin-bottom: 40px;"></div></div>
+
+                                                                    <div class="col l12 m12 s12">
+                                                                        <div
+                                                                            style="width: 100%; height: 2px; border-radius: 40px; background: #dddddd; margin-top: 40px; margin-bottom: 40px;">
+                                                                        </div>
+                                                                    </div>
 
                                                                     <div class="col l8 m12 s12">
                                                                         <div class="serverpage-comments">
                                                                             <p class="title">Комментарии</p>
                                                                             <div class="comment">
-                                                                                <div style="width: calc(100% - 23px); position: relative;">
-                                                                                    <form action="comment" method="post">
-                                                                                        <input type="text" placeholder="Сообщение" maxlength="120" name="message" required>
-                                                                                        <button type="submit">Подтвердить</button>
+                                                                                <div
+                                                                                    style="width: calc(100% - 23px); position: relative;">
+                                                                                    <form action="comment"
+                                                                                        method="post">
+                                                                                        <input type="text"
+                                                                                            placeholder="Сообщение"
+                                                                                            maxlength="120"
+                                                                                            name="message" required>
+                                                                                        <button
+                                                                                            type="submit">Подтвердить</button>
                                                                                     </form>
                                                                                 </div>
                                                                             </div>
 
                                                                             <div class="line"></div>
                                                                             <% if (comments) { %>
-                                                                                <% comments.forEach(function(comment, index) { %>
-                                                                                    <div class="comment" <% if (comments.length - 1 == index) { %>style="margin-bottom: 0;"<% } %>>
-                                                                                        <div class="avatar"><img
-                                                                                                src="https://crafatar.com/avatars/<%= comment.skin %>?default=54c32ed5ab7243e5a00eec680d514523">
-                                                                                        </div>
-                                                                                        <div style="margin-top: -3px;">
-                                                                                            <div class="name">
-                                                                                                <%= comment.username %> <% if (comment.admin) { %><span style="color: #0F9D58; font-size: 10px;">(модератор)</span><% } %>
+                                                                                <% comments.forEach(function(comment,
+                                                                                    index) { %>
+                                                                                    <div class="comment" <% if
+                                                                                        (comments.length - 1==index) {
+                                                                                        %>style="margin-bottom: 0;"<% }
+                                                                                            %>>
+                                                                                            <div class="avatar"><img
+                                                                                                    src="https://crafatar.com/avatars/<%= comment.skin %>?default=54c32ed5ab7243e5a00eec680d514523">
                                                                                             </div>
-                                                                                            <div class="text">
-                                                                                                <%= comment.message %>
-                                                                                                    <div class="arrow">
-                                                                                                    </div>
+                                                                                            <div
+                                                                                                style="margin-top: -3px;">
+                                                                                                <div class="name">
+                                                                                                    <%= comment.username
+                                                                                                        %>
+                                                                                                        <% if
+                                                                                                            (comment.admin)
+                                                                                                            { %><span
+                                                                                                                style="color: #0F9D58; font-size: 10px;">(модератор)</span>
+                                                                                                            <% } %>
+                                                                                                </div>
+                                                                                                <div class="text">
+                                                                                                    <%= comment.message
+                                                                                                        %>
+                                                                                                        <div
+                                                                                                            class="arrow">
+                                                                                                        </div>
+                                                                                                </div>
                                                                                             </div>
-                                                                                        </div>
-                                                                                        <div class="date"><%= comment.date %></div>
+                                                                                            <div class="date">
+                                                                                                <%= comment.date %>
+                                                                                            </div>
                                                                                     </div>
                                                                                     <% }); %>
                                                                                         <% } %>
@@ -389,14 +414,22 @@
                                                                     </div>
                                                                     <div class="col l4 m12 s12">
                                                                         <div class="serverpage-like">
-                                                                            <img src="https://cdn.discordapp.com/attachments/1191014765435301949/1197956723881816184/image.png">
-                                                                            <div style="position: absolute; top: 20px; right: 10px;">
+                                                                            <img
+                                                                                src="https://cdn.discordapp.com/attachments/1191014765435301949/1197956723881816184/image.png">
+                                                                            <div
+                                                                                style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%);">
                                                                                 <p class="title">Понравился сервер?</p>
-                                                                                <p class="subtitle">оценки пользователей помогают<br>в продвижении этого сервера</p>
+                                                                                <p class="subtitle">оценки пользователей
+                                                                                    помогают<br>в продвижении этого
+                                                                                    сервера</p>
+                                                                                <form action="like" method="post">
+                                                                                    <% if (like_status) { %>
+                                                                                        <button type="button"><span style="margin-left: 5px;"><%= like_status %></span><i style="margin-left: 5px;" class="fa-solid fa-heart-circle-bolt"></i></button>
+                                                                                        <% } else { %>
+                                                                                            <button type="submit">Поставить&nbsp;лайк</button>
+                                                                                            <% } %>
+                                                                                </form>
                                                                             </div>
-                                                                            <form action="like" method="post">
-                                                                                <button type="submit">Поставить&nbsp;лайк</button>
-                                                                            </form>
                                                                         </div>
                                                                     </div>
             </div>
@@ -404,19 +437,19 @@
     </div>
 
     <%- footer %>
-    <script>
-        $(document).ready(function() {
-            var maxHeight = 0;
-            $('.serverpage-illustration-vs').each(function() {
-                var currentHeight = $(this).height();
-                if (currentHeight > maxHeight) {
-                    maxHeight = currentHeight;
-                }
+        <script>
+            $(document).ready(function () {
+                var maxHeight = 0;
+                $('.serverpage-illustration-vs').each(function () {
+                    var currentHeight = $(this).height();
+                    if (currentHeight > maxHeight) {
+                        maxHeight = currentHeight;
+                    }
+                });
+
+                $('.serverpage-illustration-vs').height(maxHeight);
             });
-    
-            $('.serverpage-illustration-vs').height(maxHeight);
-        });
-    </script>
+        </script>
 </body>
 
 </html>

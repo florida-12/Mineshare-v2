@@ -164,18 +164,6 @@ function textAreaAdjust(element) {
     element.style.height = (2 + element.scrollHeight) + "px";
 }
 
-$('#edit_save').parent().click(function () {
-    $('#edit_form').submit();
-})
-
-$('#create-publish').parent().click(function () {
-    $('#create-publish').click()
-})
-
-$('#request-bw-button').parent().click(function () {
-    $('#request-bw-button').click();
-})
-
 function tournamentContact(text) {
     const regex_discord = /[a-zA-Zа-яА-Я0-9]*#\d{4}$/
 
