@@ -35,6 +35,9 @@ async function checkRating() {
                 const illustrations = await client.query(`SELECT * FROM servers_illustrations WHERE server_id = $1 LIMIT 6;`, [server.id]);
                 if (illustrations.rows.length > 0) rate = rate + illustrations.rows.length;
 
+                const likes = await client.query(`SELECT * FROM servers_likes WHERE server_id = $1;`, [server.id]);
+                if (likes.rows.length > 0) rate = rate + Math.ceil(likes.rows.length / 2);
+
                 if (rate > 110) rate = 110;
                 console.log(`${server.ip}: ${rate}★`);
                 await client.query(`UPDATE servers SET rate = $1 WHERE ip = $2;`, [rate, server.ip]);
@@ -51,4 +54,4 @@ async function checkRating() {
     }
 }
 
-setInterval(checkRating, 30000);
+setInterval(checkRating, 60000);
