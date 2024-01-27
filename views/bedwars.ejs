@@ -41,7 +41,7 @@
             <div class="col l6 container center hide-on-med-and-down nav-selections">
                 <div class="row">
                     <a class="col l3 nav-link nav-text text-color-black" href="/">Серверы</a>
-                    <a class="col l3 nav-link nav-link-active nav-text" href="/tournament/bedwars"><span
+                    <a class="col l3 nav-link nav-link-active nav-text" href="/tournaments"><span
                             class="gradient-underline">Турниры</span></a>
                     <a class="col l3 nav-link nav-text text-color-black" href="/shop">Магазин</a>
                     <a class="col l3 nav-link nav-text text-color-black" href="/news">Новости</a>
@@ -189,7 +189,8 @@
                             <div class="col l6 m12 s12">
                                 <div class="input-field input-reg">
                                     <input placeholder="Название команды" id="team" name="team" type="text"
-                                        class="validate" onkeypress="return /[0-9a-zA-Z]/i.test(event.key)" minlength="4" required>
+                                        class="validate" onkeypress="return /[0-9a-zA-Z]/i.test(event.key)"
+                                        minlength="4" required>
                                 </div>
                             </div>
 
@@ -258,19 +259,29 @@
                 style="background: radial-gradient(circle at 10% 20%, rgb(238, 56, 56) 0%, rgba(206, 21, 0, 0.92) 90.1%);background-clip: text;-webkit-text-fill-color: transparent;color:#ff0033">BED</span>WARS
         </p>
         <p class="tournament-line"><span>—————</span>—————<span>—————<br></span></p>
-        <a class="tournament-button waves-effect waves-light btn modal-trigger" <% if (!user) {
-            %>onclick="globalError('Авторизуйтесь, чтобы оставить заявку')"<% } else { %>href="#bedwars-request"<% } %>
-                    >Подать заявку</a>
-        <div class="tournament-counter">Оставлено заявок: <%= applications.length %>
-        </div>
+        <% if (status[0].status) { %>
+            <a class="tournament-button waves-effect waves-light btn modal-trigger" <% if (!user)
+                {%>onclick="globalError('Авторизуйтесь, чтобы оставить заявку')"<% } else { %>href="#bedwars-request"<%
+                        } %>>Подать заявку</a>
+            <div class="tournament-counter">Оставлено заявок: <%= applications.length %>
+                    <% } else { %>
+                        <a class="tournament-button waves-effect waves-light btn modal-trigger">Набор закрыт</a>
+                        <% } %>
+            </div>
     </div>
 
     <div class="container">
         <div style="display: flex; justify-content: center;">
-            <div style="background: #F3F7FC; border-radius: 10px; padding-top: 16px; padding-left: 22px; padding-right: 22px; padding-bottom: 16px; display: inline-flex;">
-                <div style="background: #fff; box-shadow: 0px 2px 10px rgb(0 0 0 / 5%); border-radius: 8px; color: #3A4E57; font-family: 'TT Norms Pro', sans-serif; font-size: 16px; font-weight: 500; padding-top: 8px; padding-left: 20px; padding-right: 20px; display: inline-flex;">Турнир проводится при сотрудничестве с </div>
-                <div style="background: #0B101C; box-shadow: 0px 2px 10px rgb(0 0 0 / 5%); border-radius: 8px; color: #fff; font-family: Arkhip; font-size: 18px; padding-top: 8px; padding-left: 20px; padding-right: 28px; padding-bottom: 9px; margin-left: 15px; display: inline-flex; user-select: none; cursor: pointer;" onclick="window.open('https://night-world.org/', '_blank')"><img style="height: 26px; margin-right: 8px;" src="https://night-world.org/assets/img/logo.png">NightWorld</div>
-            </div>   
+            <div
+                style="background: #F3F7FC; border-radius: 10px; padding-top: 16px; padding-left: 22px; padding-right: 22px; padding-bottom: 16px; display: inline-flex;">
+                <div
+                    style="background: #fff; box-shadow: 0px 2px 10px rgb(0 0 0 / 5%); border-radius: 8px; color: #3A4E57; font-family: 'TT Norms Pro', sans-serif; font-size: 16px; font-weight: 500; padding-top: 8px; padding-left: 20px; padding-right: 20px; display: inline-flex;">
+                    Турнир проводится при сотрудничестве с </div>
+                <div style="background: #0B101C; box-shadow: 0px 2px 10px rgb(0 0 0 / 5%); border-radius: 8px; color: #fff; font-family: Arkhip; font-size: 18px; padding-top: 8px; padding-left: 20px; padding-right: 28px; padding-bottom: 9px; margin-left: 15px; display: inline-flex; user-select: none; cursor: pointer;"
+                    onclick="window.open('https://night-world.org/', '_blank')"><img
+                        style="height: 26px; margin-right: 8px;"
+                        src="https://night-world.org/assets/img/logo.png">NightWorld</div>
+            </div>
         </div>
     </div>
 

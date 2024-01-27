@@ -336,11 +336,12 @@
                             <div class="col l12 m6 s12">
                                 <div style="display: flex; align-items: center; justify-content: center;">
                                     <%- captcha %>
-                                </div>                             
+                                </div>
                             </div>
 
                             <div class="col l12 div-complete-reg center">
-                                <button class="nav-text button-reg waves-effect waves-light btn" type="submit">Регистрация</button>
+                                <button class="nav-text button-reg waves-effect waves-light btn"
+                                    type="submit">Регистрация</button>
 
                                 <div class="google-auth" onclick="window.location = '/auth/google';"><img
                                         src="/img/google.svg"><a>Продолжить с Google</a>
@@ -360,126 +361,141 @@
     <div class="container shop-subscription">
 
         <div class="row">
-            <div class="col l4 m6 s12">
-                <div class="tournament-card">
-                    <div class="status-true"><p class="title">Набор открыт</p></div>
-                    <div class="status-players"><p class="title">16<span class="icon"><i class="fa-solid fa-user"></i></span></p></div>
-                    <div class="flex-center">
-                        <p class="title">BedWars</p>
-                    </div>
-                    <div class="flex-center">
-                        <div class="line"></div>
-                    </div>
-                    <div class="flex-center">
-                        <p class="subtitle">Типы совернований: 4x2, 2x4, 4x4</p>
-                    </div>
-                    <div class="frame">
-                        <button onclick="window.location = '/tournament/bedwars'">Участвовать</button>
-                        <img
-                            src="https://cdn.discordapp.com/attachments/1191014765435301949/1195048437964603442/result.png">
+            <% tournaments.forEach(item=> { %>
+
+                <div class="col l4 m6 s12">
+                    <div class="tournament-card">
+                        <% if (item.status==true) { %>
+                            <div class="status-true">
+                                <p class="title">Набор открыт</p>
+                            </div>
+                            <div class="status-players">
+                                <p class="title">16<span class="icon"><i class="fa-solid fa-user"></i></span></p>
+                            </div>
+                            <% } else { %>
+                                <div class="status-false">Набор закрыт</div>
+                                <% } %>
+                                    <div class="flex-center">
+                                        <p class="title">
+                                            <%= item.game %>
+                                        </p>
+                                    </div>
+                                    <div class="flex-center">
+                                        <div class="line"></div>
+                                    </div>
+                                    <div class="flex-center">
+                                        <p class="subtitle">Типы совернований: <%= item.type %>
+                                        </p>
+                                    </div>
+                                    <div class="frame">
+                                        <button <% if (item.status==true) { %>onclick="window.location =
+                                            '/tournament/bedwars'"<% } %>>Участвовать</button>
+                                        <img src="<%= item.image %>">
+                                    </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col l4 m6 s12">
-                <div class="tournament-card">
-                    <div class="status-false">Набор закрыт</div>
-                    <div class="flex-center">
-                        <p class="title">SkyWars</p>
-                    </div>
-                    <div class="flex-center">
-                        <div class="line"></div>
-                    </div>
-                    <div class="flex-center">
-                        <p class="subtitle">Типы совернований: 8x1, 16x1, 8x2</p>
-                    </div>
-                    <div class="frame">
-                        <button>Участвовать</button>
-                        <img
-                            src="https://cdn.discordapp.com/attachments/1191014765435301949/1196074620332294226/result.png">
+                <% }); %>
+
+                <div class="col l4 m6 s12">
+                    <div class="tournament-card">
+                        <div class="status-false">Набор закрыт</div>
+                        <div class="flex-center">
+                            <p class="title">SkyWars</p>
+                        </div>
+                        <div class="flex-center">
+                            <div class="line"></div>
+                        </div>
+                        <div class="flex-center">
+                            <p class="subtitle">Типы совернований: 8x1, 16x1, 8x2</p>
+                        </div>
+                        <div class="frame">
+                            <button>Участвовать</button>
+                            <img
+                                src="https://cdn.discordapp.com/attachments/1191014765435301949/1196074620332294226/result.png">
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col l4 m6 s12">
-                <div class="tournament-card">
-                    <div class="status-false">Набор закрыт</div>
-                    <div class="flex-center">
-                        <p class="title">Build Battle</p>
-                    </div>
-                    <div class="flex-center">
-                        <div class="line"></div>
-                    </div>
-                    <div class="flex-center">
-                        <p class="subtitle">Типы совернований: 8x1, 16x1, 8x2</p>
-                    </div>
-                    <div class="frame">
-                        <button>Участвовать</button>
-                        <img
-                            src="https://cdn.discordapp.com/attachments/1191014765435301949/1195033754629062706/result.png">
+                <div class="col l4 m6 s12">
+                    <div class="tournament-card">
+                        <div class="status-false">Набор закрыт</div>
+                        <div class="flex-center">
+                            <p class="title">Build Battle</p>
+                        </div>
+                        <div class="flex-center">
+                            <div class="line"></div>
+                        </div>
+                        <div class="flex-center">
+                            <p class="subtitle">Типы совернований: 8x1, 16x1, 8x2</p>
+                        </div>
+                        <div class="frame">
+                            <button>Участвовать</button>
+                            <img
+                                src="https://cdn.discordapp.com/attachments/1191014765435301949/1195033754629062706/result.png">
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col l12 m12 s12">
-                <div class="global-line">
+                <div class="col l12 m12 s12">
+                    <div class="global-line">
 
-                </div>
-            </div>
-
-            <div class="col l4 m6 s12">
-                <div class="tournament-card">
-                    <div class="flex-center">
-                        <p class="title">Скоро</p>
-                    </div>
-                    <div class="flex-center">
-                        <div class="line"></div>
-                    </div>
-                    <div class="flex-center">
-                        <p class="subtitle">????????????????</p>
-                    </div>
-                    <div class="frame">
-                        <img style="filter: grayscale(1);"
-                            src="https://preview.redd.it/gk366g2tyeo11.png?auto=webp&s=f0a03a6a14183567b99a1f6081c44abd328d744b">
                     </div>
                 </div>
-            </div>
 
-            <div class="col l4 m6 s12">
-                <div class="tournament-card">
-                    <div class="flex-center">
-                        <p class="title">Скоро</p>
-                    </div>
-                    <div class="flex-center">
-                        <div class="line"></div>
-                    </div>
-                    <div class="flex-center">
-                        <p class="subtitle">????????????????</p>
-                    </div>
-                    <div class="frame">
-                        <img style="filter: grayscale(1);"
-                            src="https://preview.redd.it/gk366g2tyeo11.png?auto=webp&s=f0a03a6a14183567b99a1f6081c44abd328d744b">
+                <div class="col l4 m6 s12">
+                    <div class="tournament-card">
+                        <div class="flex-center">
+                            <p class="title">Скоро</p>
+                        </div>
+                        <div class="flex-center">
+                            <div class="line"></div>
+                        </div>
+                        <div class="flex-center">
+                            <p class="subtitle">????????????????</p>
+                        </div>
+                        <div class="frame">
+                            <img style="filter: grayscale(1);"
+                                src="https://preview.redd.it/gk366g2tyeo11.png?auto=webp&s=f0a03a6a14183567b99a1f6081c44abd328d744b">
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col l4 m6 s12">
-                <div class="tournament-card">
-                    <div class="flex-center">
-                        <p class="title">Скоро</p>
-                    </div>
-                    <div class="flex-center">
-                        <div class="line"></div>
-                    </div>
-                    <div class="flex-center">
-                        <p class="subtitle">????????????????</p>
-                    </div>
-                    <div class="frame">
-                        <img style="filter: grayscale(1);"
-                            src="https://preview.redd.it/gk366g2tyeo11.png?auto=webp&s=f0a03a6a14183567b99a1f6081c44abd328d744b">
+                <div class="col l4 m6 s12">
+                    <div class="tournament-card">
+                        <div class="flex-center">
+                            <p class="title">Скоро</p>
+                        </div>
+                        <div class="flex-center">
+                            <div class="line"></div>
+                        </div>
+                        <div class="flex-center">
+                            <p class="subtitle">????????????????</p>
+                        </div>
+                        <div class="frame">
+                            <img style="filter: grayscale(1);"
+                                src="https://preview.redd.it/gk366g2tyeo11.png?auto=webp&s=f0a03a6a14183567b99a1f6081c44abd328d744b">
+                        </div>
                     </div>
                 </div>
-            </div>
+
+                <div class="col l4 m6 s12">
+                    <div class="tournament-card">
+                        <div class="flex-center">
+                            <p class="title">Скоро</p>
+                        </div>
+                        <div class="flex-center">
+                            <div class="line"></div>
+                        </div>
+                        <div class="flex-center">
+                            <p class="subtitle">????????????????</p>
+                        </div>
+                        <div class="frame">
+                            <img style="filter: grayscale(1);"
+                                src="https://preview.redd.it/gk366g2tyeo11.png?auto=webp&s=f0a03a6a14183567b99a1f6081c44abd328d744b">
+                        </div>
+                    </div>
+                </div>
         </div>
     </div>
 

@@ -977,15 +977,23 @@ app.post('/server/:id/like', isAuthenticated, (req, res) => {
 app.get('/tournaments', recaptcha.middleware.render, (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
-    res.render('tournaments', { user: req.user, footer: footer_html, captcha: res.recaptcha });
+    pool.query(`SELECT * FROM tournaments ORDER BY id;`, (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        res.render('tournaments', { user: req.user, tournaments: result.rows, footer: footer_html, captcha: res.recaptcha });
+    });
 });
 
 app.get('/tournament/bedwars', recaptcha.middleware.render, async (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
+    const status = await pool.query(`SELECT status FROM tournaments WHERE game = 'BedWars';`);
     const applications = await pool.query('SELECT * FROM applications_bedwars WHERE old = false;');
 
-    res.render('bedwars', { user: req.user, applications: applications.rows, footer: footer_html, captcha: res.recaptcha });
+    res.render('bedwars', { user: req.user, status: status.rows, applications: applications.rows, footer: footer_html, captcha: res.recaptcha });
 });
 
 app.post('/tournament/bedwars', isAuthenticated, (req, res) => {
