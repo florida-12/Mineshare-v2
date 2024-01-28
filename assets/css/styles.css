@@ -3030,6 +3030,68 @@ rain {
     }
 }
 
+.serverpage-ip {
+    height: 40px;
+    position: relative;
+    background: #fff;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    color: #808080;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 10px;
+    display: inline-flex;
+    vertical-align:top;
+}
+
+.serverpage-ip p {
+    font-family: 'TT Norms Pro', sans-serif;
+    font-size: 16px;
+    margin-top: 6px;
+}
+
+.serverpage-website {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    background: #0F52BA;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    margin-left: 10px;
+    display: inline-flex;
+    cursor: pointer;
+}
+
+.serverpage-website i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 17px;
+}
+
+.serverpage-discord {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    background: #7289DA;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    margin-left: 10px;
+    display: inline-flex;
+    cursor: pointer;
+}
+
+.serverpage-discord i {
+    position: absolute;
+    top: 49%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 17px;
+}
+
 .serverpage-title {
     background: #fff;
     color: #3A4E57;
@@ -3042,7 +3104,7 @@ rain {
     padding-left: 30px;
     padding-right: 30px;
     padding-bottom: 25px;
-    margin-top: 25px;
+    margin-top: 10px;
     margin-bottom: 10px;
     font-family: 'Montserrat' !important;
     font-weight: 700;
@@ -3517,13 +3579,15 @@ rain {
 
 .file-field .btn {
     width: 130px;
-    border-radius: 10px !important;
+    background: #11B2FF;
+    box-shadow: none;
+    border-radius: 8px !important;
     font-family: 'TTNormsMedium';
     font-style: normal;
     text-transform: none;
     font-size: 14px;
-    background: linear-gradient(98.44deg, #8DEBFF 0%, #00ABFF 100%), #339DFF;
-    box-shadow: 0px 0px 15px rgba(113, 212, 255, 0.75);
+    text-transform: uppercase;
+    line-height: 42.5px;
 }
 
 .file-path {
@@ -3558,7 +3622,7 @@ rain {
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
     border-radius: 10px;
     margin-top: 15px;
-    margin-bottom: 0px;
+    margin-bottom: 15px;
     padding-top: 20px;
     padding-left: 40px;
     padding-right: 40px;
@@ -3568,7 +3632,7 @@ rain {
 .serverpage-launcher p {
     background: #fff;
     border-radius: 8px;
-    font-family: 'TTNormsMedium';
+    font-family: 'TT Norms Pro', sans-serif;
     font-weight: 600;
     font-size: 18px;
     color: #3A4E57;
@@ -3640,24 +3704,22 @@ rain {
     width: 50px;
     height: 50px;
     background: linear-gradient(43.98deg, #11B2FF 1.72%, #8DEBFF 100%);
-    box-shadow: 0px 0px 10px rgba(17, 178, 255, 0.5);
     border-radius: 8px;
     cursor: pointer;
-    transition: 0.2s;
+    transition: 0.1s;
 }
 
 .serverpage-gradient-blue:hover {
-    box-shadow: 0px 0px 10px rgba(17, 178, 255, 1);
+    box-shadow: 0px 0px 10px rgba(17, 178, 255, 0.7);
 }
 
 .serverpage-gradient-red {
     width: 50px;
     height: 50px;
     background: linear-gradient(43.98deg, #FF002D 1.72%, #FF6981 100%);
-    box-shadow: 0px 0px 10px rgba(253, 78, 99, 0.5);
     border-radius: 8px;
     cursor: pointer;
-    transition: 0.2s;
+    transition: 0.1s;
 }
 
 .serverpage-gradient-red:hover {
@@ -3668,10 +3730,9 @@ rain {
     width: 50px;
     height: 50px;
     background: linear-gradient(43.98deg, #6982FF 1.72%, #6982FF 1.73%, #BE8FFF 100%);
-    box-shadow: 0px 0px 10px rgba(170, 139, 255, 0.75);
     border-radius: 8px;
     cursor: pointer;
-    transition: 0.2s;
+    transition: 0.1s;
 }
 
 .serverpage-gradient-purple:hover {
@@ -3682,24 +3743,22 @@ rain {
     width: 50px;
     height: 50px;
     background: linear-gradient(43.98deg, #FF6042 1.72%, #FFCA66 100%);
-    box-shadow: 0px 0px 10px rgba(255, 96, 66, 0.5);
     border-radius: 8px;
     cursor: pointer;
-    transition: 0.2s;
+    transition: 0.1s;
 }
 
 .serverpage-gradient-orange:hover {
-    box-shadow: 0px 0px 10px rgb(255, 115, 87);
+    box-shadow: 0px 0px 10px rgb(255, 115, 87, 0.7);
 }
 
 .serverpage-gradient-green {
     width: 50px;
     height: 50px;
     background: linear-gradient(88.11deg, #5CDF47 0.94%, #62FF71 79.14%, #33FF47 79.14%);
-    box-shadow: 0px 0px 10px rgba(144, 255, 164, 0.75);
     border-radius: 8px;
     cursor: pointer;
-    transition: 0.2s;
+    transition: 0.1s;
 }
 
 .serverpage-gradient-green:hover {
@@ -3710,14 +3769,36 @@ rain {
     width: 50px;
     height: 50px;
     background: linear-gradient(43.98deg, #FE5DCD 1.72%, #FDA9F7 100%);
-    box-shadow: 0px 0px 10px rgba(253, 138, 230, 0.5);
     border-radius: 8px;
     cursor: pointer;
-    transition: 0.2s;
+    transition: 0.1s;
 }
 
 .serverpage-gradient-pink:hover {
     box-shadow: 0px 0px 11px rgba(253, 138, 230, 1);
+}
+
+.serverpage-gradient-andromeda {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    background: radial-gradient( circle farthest-corner at 83.7% 4.3%,  rgba(173,0,171,1) 0%, rgba(15,51,92,1) 90% );
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.1s;
+}
+
+.serverpage-gradient-andromeda i {
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.serverpage-gradient-andromeda:hover {
+    box-shadow: 0px 0px 10px rgba(173, 0, 171, 0.6);
 }
 
 @media only screen and (min-width: 1800px) {

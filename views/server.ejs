@@ -182,6 +182,30 @@
     <div class="page container">
         <% servers.forEach(server=> { %>
             <div class="row">
+                <div class="col l12 m12 s12" style="margin-top: 25px;">
+                    <% if (server.port==25565) { %>
+                        <div class="serverpage-ip">
+                            <p><%= server.ip %></p>
+                        </div>
+                        <% } else { %>
+                            <div class="serverpage-ip">
+                                <p>
+                                    <%= server.ip %>:<%= server.port %>
+                                </p>
+                            </div>
+                            <% } %>
+                            <% if (server.website) { %>
+                            <div class="serverpage-website" onclick="window.open('<%= server.website %>', '_blank')">
+                                <i class="fa-solid fa-globe"></i>
+                            </div>
+                            <% } %>
+                            <% if (server.discord) { %>
+                            <div class="serverpage-discord" onclick="window.open('<%= server.discord %>', '_blank')">
+                                <i class="fa-brands fa-discord"></i>
+                            </div>
+                            <% } %>
+                </div>
+
                 <div class="col l12 m12 s12">
                     <p class="serverpage-title">
                         <%= server.title %>
@@ -194,7 +218,7 @@
 
                 <div class="col l9 m12 s12">
                     <div class="serverpage-description">
-                        <%- server.description.replace(/\n/g, '<br>') %>
+                        <%- server.description.replace(/\n/g, '<br>' ) %>
                     </div>
                 </div>
 
@@ -424,9 +448,15 @@
                                                                                     сервера</p>
                                                                                 <form action="like" method="post">
                                                                                     <% if (like_status) { %>
-                                                                                        <button type="button"><span style="margin-left: 5px;"><%= like_status %></span><i style="margin-left: 5px;" class="fa-solid fa-heart-circle-bolt"></i></button>
+                                                                                        <button type="button"><span
+                                                                                                style="margin-left: 5px;">
+                                                                                                <%= like_status %>
+                                                                                            </span><i
+                                                                                                style="margin-left: 5px;"
+                                                                                                class="fa-solid fa-heart-circle-bolt"></i></button>
                                                                                         <% } else { %>
-                                                                                            <button type="submit">Поставить&nbsp;лайк</button>
+                                                                                            <button
+                                                                                                type="submit">Поставить&nbsp;лайк</button>
                                                                                             <% } %>
                                                                                 </form>
                                                                             </div>

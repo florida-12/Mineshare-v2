@@ -85,7 +85,7 @@
                     <div class="col l12 m12 s12 ">
                         <div id="tags" class="serverpagecreate-tags center">
                             <% tags.forEach(tag=> { %>
-                                <% if (server_tags.some(tagObj => tagObj.tag_id === tag.name)) { %>
+                                <% if (server_tags.some(tagObj=> tagObj.tag_id === tag.name)) { %>
                                     <div class="tag">
                                         <input type="checkbox" name="tags" value="<%= tag.name %>" class="filled-in"
                                             checked="checked">
@@ -127,8 +127,7 @@
                                 </div>
                                 <div class="file-path-wrapper prefix-clear">
                                     <input class="file-path validate" type="text" placeholder="Картинка (380 x 80)">
-                                    <input type="file" name="banner" accept="image/*"
-                                        id="id_image">
+                                    <input type="file" name="banner" accept="image/*" id="id_image">
                                 </div>
                             </div>
                         </div>
@@ -141,8 +140,8 @@
                             <div class="file-field input-field">
                                 <div class="btn waves-effect waves-light">
                                     <span>Добавить</span>
-                                    <input id="id_illustration" name="illustrations" type="file"
-                                        accept="image/*" multiple>
+                                    <input id="id_illustration" name="illustrations" type="file" accept="image/*"
+                                        multiple>
                                 </div>
                                 <div class="file-path-wrapper">
                                     <input class="file-path validate" type="text" placeholder="До 6-ти изображений">
@@ -161,6 +160,16 @@
                         </div>
                     </div>
 
+                    <div class="col l6 m12 s12">
+                        <div class="serverpage-launcher">
+                            <p>Дискорд-сервер проекта</p>
+                            <div class="input-field input-website">
+                                <input placeholder="Ссылка" name="discord" id="discord" type="url" class="validate"
+                                    maxlength="80" value="<%= server.discord %>">
+                            </div>
+                        </div>
+                    </div>
+
                     <% if (server.premium_status) { %>
                         <div class="col l6 m12 s12">
                             <div class="serverpage-gradient">
@@ -169,25 +178,24 @@
                                     value="<%= server.premium_color %>" readonly>
 
                                 <div class="row">
-                                    <div class="col l2 m2 s4">
-                                        <div onclick="changeGradient('blue')" class="serverpage-gradient-blue"></div>
-                                    </div>
-                                    <div class="col l2 m2 s4">
-                                        <div onclick="changeGradient('red')" class="serverpage-gradient-red"></div>
-                                    </div>
-                                    <div class="col l2 m2 s4">
-                                        <div onclick="changeGradient('purple')" class="serverpage-gradient-purple">
+                                    <div class="col l12 m12 s12">
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <div onclick="changeGradient('blue')" class="serverpage-gradient-blue"></div>
+
+                                            <div onclick="changeGradient('red')" class="serverpage-gradient-red"></div>
+    
+                                            <div onclick="changeGradient('purple')" class="serverpage-gradient-purple">
+                                            </div>
+    
+                                            <div onclick="changeGradient('orange')" class="serverpage-gradient-orange">
+                                            </div>
+    
+                                            <div onclick="changeGradient('green')" class="serverpage-gradient-green"></div>
+    
+                                            <div onclick="changeGradient('pink')" class="serverpage-gradient-pink"></div>
+
+                                            <div class="serverpage-gradient-andromeda"><i class="fa-solid fa-lock"></i></div>
                                         </div>
-                                    </div>
-                                    <div class="col l2 m2 s4">
-                                        <div onclick="changeGradient('orange')" class="serverpage-gradient-orange">
-                                        </div>
-                                    </div>
-                                    <div class="col l2 m2 s4">
-                                        <div onclick="changeGradient('green')" class="serverpage-gradient-green"></div>
-                                    </div>
-                                    <div class="col l2 m2 s4">
-                                        <div onclick="changeGradient('pink')" class="serverpage-gradient-pink"></div>
                                     </div>
                                 </div>
                             </div>
