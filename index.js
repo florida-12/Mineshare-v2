@@ -12,14 +12,15 @@ const session = require('express-session');
 const flash = require('express-flash');
 const { v4: uuidv4 } = require('uuid');
 const bodyParser = require('body-parser');
+const nodemailer = require('nodemailer');
 const pgSession = require('connect-pg-simple')(session);
 const multer = require('multer');
 const bcrypt = require('bcrypt');
 const axios = require('axios');
 const { SitemapStream, streamToPromise } = require('sitemap')
 const moment = require('moment-timezone');
-const { createGzip } = require('zlib')
-const { Readable } = require('stream')
+const { createGzip } = require('zlib');
+const { Readable } = require('stream');
 const app = express();
 
 
@@ -122,13 +123,16 @@ passport.use(new LocalStrategy({
     passwordField: 'password',
 }, async (email, password, done) => {
     try {
-        // Проверяем, существует ли пользователь в базе данных по email
         const userQuery = 'SELECT * FROM users WHERE email = $1';
         const userResult = await pool.query(userQuery, [email]);
 
         if (userResult.rows.length > 0) {
             const user = userResult.rows[0];
-            // Сравниваем хэшированный пароль с введенным
+
+            if (!user.confirmation) {
+                return done(null, false, { message: 'Email not confirmed. Please check your email for confirmation instructions.' });
+            }
+
             const match = await bcrypt.compare(password, user.password);
 
             if (match) {
@@ -144,6 +148,7 @@ passport.use(new LocalStrategy({
     }
 }));
 
+
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT,
     clientSecret: process.env.GOOGLE_SECRET,
@@ -158,7 +163,7 @@ passport.use(new GoogleStrategy({
             } else {
                 const password = await generatePassword();   //random password
 
-                const newUserResult = await pool.query('INSERT INTO users (email, password, regip) VALUES ($1, $2, $3) RETURNING *', [profile.emails[0].value, password, 'GOOGLE']);
+                const newUserResult = await pool.query('INSERT INTO users (email, password, confirmation, regip) VALUES ($1, $2, $3, $4) RETURNING *', [profile.emails[0].value, password, true, 'GOOGLE']);
 
                 return done(null, newUserResult.rows[0]);
             }
@@ -199,15 +204,21 @@ app.post('/register', recaptcha.middleware.verify, async (req, res) => {
         const userResult = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
 
         if (userResult.rows.length > 0) {
-            res.status(400).json({ message: 'User already exists.' });
+            res.status(400).json({ message: 'Пользователь уже существует.' });
         } else {
             const hashedPassword = await bcrypt.hash(password, 10);
 
             let regip = req.headers['x-forwarded-for'];
             if (regip == undefined) regip = '0.0.0.0';
 
-            const newUserResult = await pool.query('INSERT INTO users (email, password, regip) VALUES ($1, $2, $3) RETURNING *', [email, hashedPassword, regip]);
-            res.redirect('/')
+            const confirmationToken = uuidv4();
+
+            const newUserResult = await pool.query('INSERT INTO users (email, password, regip, confirmation_token) VALUES ($1, $2, $3, $4) RETURNING *', [email, hashedPassword, regip, confirmationToken]);
+
+            const confirmationLink = `https://mineshare.top/account/confirm/${confirmationToken}`;
+            sendConfirmationEmail(email, confirmationLink);
+
+            res.redirect('/?login=confirmation')
         }
     } catch (error) {
         console.log(error);
@@ -289,6 +300,23 @@ app.get('/account', isAuthenticated, (req, res) => {
             res.render('account', { url: req.url, user: req.user, servers: result.rows, admin_servers: null, footer: footer_html });
         }
     });
+});
+
+app.get('/account/confirm/:token', async (req, res) => {
+    const token = req.params.token;
+    try {
+        const userResult = await pool.query('SELECT * FROM users WHERE confirmation_token = $1', [token]);
+
+        if (userResult.rows.length > 0) {
+            await pool.query('UPDATE users SET confirmation = true, confirmation_token = null WHERE id = $1', [userResult.rows[0].id]);
+            res.redirect('/?login=confirmed');
+        } else {
+            res.status(400).json({ message: 'Неверный токен или пользователь не найден.' });
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
 
 app.post('/account/server-check', isAuthenticated, async (req, res) => {
@@ -914,28 +942,28 @@ app.get('/server/:id', recaptcha.middleware.render, (req, res) => {
                     }
 
                     let like_status = false;
-                        if (req.user) {
-                            const likes = await pool.query(`SELECT * FROM servers_likes WHERE user_id = $1 AND server_id = $2 LIMIT 1;`, [req.user.id, req.params.id]);
-                            if (likes.rows.length > 0) {
-                                const startDate = new Date(likes.rows[0].date);
-                                const endDate = new Date(startDate);
-                                endDate.setDate(endDate.getDate() + 7);
-                                const currentDate = new Date();
+                    if (req.user) {
+                        const likes = await pool.query(`SELECT * FROM servers_likes WHERE user_id = $1 AND server_id = $2 LIMIT 1;`, [req.user.id, req.params.id]);
+                        if (likes.rows.length > 0) {
+                            const startDate = new Date(likes.rows[0].date);
+                            const endDate = new Date(startDate);
+                            endDate.setDate(endDate.getDate() + 7);
+                            const currentDate = new Date();
 
-                                const dayDifference = Math.floor((endDate - currentDate) / (24 * 60 * 60 * 1000));
+                            const dayDifference = Math.floor((endDate - currentDate) / (24 * 60 * 60 * 1000));
 
-                                function pluralizeDays(days) {
-                                    if (days === 1) {
-                                        return 'день';
-                                    } else if (days > 1 && days < 5) {
-                                        return 'дня';
-                                    } else {
-                                        return 'дней';
-                                    }
+                            function pluralizeDays(days) {
+                                if (days === 1) {
+                                    return 'день';
+                                } else if (days > 1 && days < 5) {
+                                    return 'дня';
+                                } else {
+                                    return 'дней';
                                 }
-                                like_status = `${dayDifference} ${pluralizeDays(dayDifference)}`;
                             }
+                            like_status = `${dayDifference} ${pluralizeDays(dayDifference)}`;
                         }
+                    }
 
                     res.render('server', { user: req.user, servers: servers, tags: null, illustrations: illustrations.rows, comments: (comments.rows.length > 0) ? comments.rows : null, like_status: like_status, footer: footer_html, captcha: res.recaptcha });
                 });
@@ -1155,6 +1183,26 @@ app.get('/obs/bedwars/4x2', (req, res) => {
     res.send(jsonData);
 });
 
+
+async function sendConfirmationEmail(email, confirmationLink) {
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'mineshare.project@gmail.com',
+            pass: process.env.EMAIL_SECRET
+        }
+    });
+
+    const mailOptions = {
+        from: 'mineshare.project@gmail.com',
+        to: email,
+        subject: 'Подтверждение регистрации',
+        text: `Для подтверждения регистрации перейдите по ссылке: ${confirmationLink}`,
+        html: `<p>Для подтверждения регистрации перейдите по ссылке: <a href="${confirmationLink}">${confirmationLink}</a></p>`,
+    };
+
+    await transporter.sendMail(mailOptions);
+}
 
 async function startServer() {
     try {

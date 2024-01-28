@@ -134,6 +134,23 @@
                 <div id="auth-container" class="col s12">
                     <div class="col l12 m12 s12">
                         <form class="auth-form" action="/login" name="logForm" id="logForm" method="post">
+                            <div id="email_confirmation" style="display: none; justify-content: center;">
+                                <div style="
+                            background-color: #c7edff;
+                            font-family: 'TT Norms Pro', sans-serif;
+                            color: #0EB1FF;
+                            font-size: 12px;
+                            border-radius: 10px;
+                            border: 1.5px solid #0EB1FF;
+                            padding-top: 10px;
+                            padding-left: 12px;
+                            padding-right: 12px;
+                            padding-bottom: 12px;
+                            display: inline-flex;">
+                                    Ваш электронный адрес упешно подтвержден
+                                </div>
+                            </div>
+
                             <div class="input-field input-auth">
                                 <input placeholder="Email" name="email" type="email" class="validate" required>
                             </div>
@@ -759,15 +776,26 @@
                         $('#random').attr('disabled', false);
                     }
 
-                    document.addEventListener('DOMContentLoaded', function() {
+                    document.addEventListener('DOMContentLoaded', function () {
                         var loginValue = (new URL(window.location.href)).searchParams.get('login');
+                        console.log(loginValue);
 
-                        if (loginValue !== null) {
+                        if (loginValue == 'login') {
                             var elems = document.querySelectorAll('.auth');
                             var instances = M.Modal.init(elems);
                             instances.forEach(element => {
                                 element.open();
                             });
+                        } else if (loginValue == 'confirmed') {
+                            $('#email_confirmation').css('display', 'flex');
+
+                            var elems = document.querySelectorAll('.auth');
+                            var instances = M.Modal.init(elems);
+                            instances.forEach(element => {
+                                element.open();
+                            });
+                        } else if (loginValue == 'confirmation') {
+                            globalError('Подтвердите ваш электронный адрес');
                         }
                     });
                 </script>
