@@ -38,7 +38,7 @@ async function checkServersOnline() {
 
     await client.connect();
 
-    const result = await client.query('SELECT ip, port FROM servers;');
+    const result = await client.query('SELECT ip, port, premium_regdate FROM servers ORDER by id;');
     const servers = result.rows;
 
     for (const server of servers) {
@@ -53,6 +53,16 @@ async function checkServersOnline() {
         const maxPlayers = serverStatus.players.max;
 
         console.log(`Сервер ${server.ip} ${online ? 'онлайн' : 'офлайн'}. Игроков: ${currentPlayers}/${maxPlayers}`);
+
+        // Check premium_regdate and update premium_status
+        const currentDate = new Date();
+        const premiumRegDate = new Date(server.premium_regdate);
+        const daysDifference = Math.floor((currentDate - premiumRegDate) / (1000 * 60 * 60 * 24));
+
+        if (Math.abs(daysDifference) > 30) {
+          // Set premium_status to false if more than 30 days
+          await client.query(`UPDATE servers SET premium_status = false WHERE ip = $1;`, [server.ip]);
+        }
 
         // Обновляем статус в базе данных
         await updateServerStatus(server.ip, online, currentPlayers, maxPlayers);
