@@ -126,9 +126,12 @@ function changeGradient(gradient) {
     } else if (gradient == "green") {
         text.innerText = "Текущий градиент: Зеленый";
         element.value = "green"
-    } else {
+    } else if (gradient == "pink") {
         text.innerText = "Текущий градиент: Розовый";
         element.value = "pink"
+    } else {
+        text.innerText = "Текущий стиль: Andromeda";
+        element.value = "andromeda"
     }
 }
 

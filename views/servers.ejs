@@ -364,6 +364,10 @@
                                     <a>Кланы</a>
                                 </li>
                                 <li
+                                    onclick="document.getElementById('get_attribute').value='Паркур';document.getElementById('form_attribute').submit();">
+                                    <a>Кланы</a>
+                                </li>
+                                <li
                                     onclick="document.getElementById('get_attribute').value='Кейсы';document.getElementById('form_attribute').submit();">
                                     <a>Кейсы</a>
                                 </li>
@@ -374,6 +378,10 @@
                                 <li
                                     onclick="document.getElementById('get_attribute').value='Друзья';document.getElementById('form_attribute').submit();">
                                     <a>Друзья</a>
+                                </li>
+                                <li
+                                    onclick="document.getElementById('get_attribute').value='Оружие';document.getElementById('form_attribute').submit();">
+                                    <a>Оружие</a>
                                 </li>
                                 <li
                                     onclick="document.getElementById('get_attribute').value='Свадьбы';document.getElementById('form_attribute').submit();">
@@ -406,6 +414,10 @@
                                 <li
                                     onclick="document.getElementById('get_attribute').value='Транспорт';document.getElementById('form_attribute').submit();">
                                     <a>Транспорт</a>
+                                </li>
+                                <li
+                                    onclick="document.getElementById('get_attribute').value='Автошахта';document.getElementById('form_attribute').submit();">
+                                    <a>Автошахта</a>
                                 </li>
                                 <li
                                     onclick="document.getElementById('get_attribute').value='Гриферство';document.getElementById('form_attribute').submit();">
@@ -590,11 +602,12 @@
                                                                                         <div class="row">
                                                                                             <div class="col l2 m2 s2 server-online"
                                                                                                 style="padding-top: 8px;">
-                                                                                                <i
-                                                                                                    class="material-icons">people</i>
-                                                                                                <p>
-                                                                                                    <%= server.current_players
-                                                                                                        %>
+                                                                                                <% if (server.premium_color == 'andromeda') { %>
+                                                                                                    <i class="fa-solid fa-user-astronaut" style="font-size: 20px;"></i>
+                                                                                                <% } else { %>
+                                                                                                    <i class="fa-solid fa-user-group"></i>
+                                                                                                <% } %>
+                                                                                                <p><%= server.current_players %>
                                                                                                 </p>
                                                                                             </div>
                                                                                             <div

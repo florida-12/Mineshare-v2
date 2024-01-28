@@ -2428,8 +2428,12 @@ rain {
     cursor: pointer;
 }
 
+.filter-version:hover .dropdown-trigger {
+    color: #11B2FF;
+}
+
 .filter-version .dropdown-content {
-    min-width: 180px;
+    min-width: 190px;
     min-height: 200px;
     position: relative;
     left: 64px;
@@ -2461,8 +2465,12 @@ rain {
     cursor: pointer;
 }
 
+.filter-type:hover .dropdown-trigger {
+    color: #11B2FF;
+}
+
 .filter-type .dropdown-content {
-    min-width: 180px;
+    min-width: 190px;
     min-height: 200px;
     position: relative;
     left: 66px;
@@ -2494,8 +2502,12 @@ rain {
     cursor: pointer;
 }
 
+.filter-peculiarities:hover .dropdown-trigger {
+    color: #11B2FF;
+}
+
 .filter-peculiarities .dropdown-content {
-    min-width: 180px;
+    min-width: 190px;
     min-height: 200px;
     position: relative;
     left: 54px;
@@ -2722,6 +2734,31 @@ rain {
     margin-top: -12%;
 }
 
+.gradient-andromeda {
+    width: 500px;
+    height: 280px;
+    z-index: 1;
+    background: radial-gradient( circle farthest-corner at 83.7% 4.3%,  rgba(173,0,171,1) 0%, rgba(15,51,92,1) 90% );
+    position: absolute;
+    transform: rotate(-38deg);
+    margin-left: -8%;
+    margin-top: -12%;
+    background-size: 200% 200%;
+    animation: andromedaAnimation 6s infinite;
+}
+
+@keyframes andromedaAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
 @media only screen and (min-width: 1800px) {
     .gradient-blue {
         width: 500px;
@@ -2783,6 +2820,17 @@ rain {
         height: 200px;
         z-index: 1;
         background: linear-gradient(88.11deg, #FB4AB4 0.94%, #FEB6FF 79.14%);
+        position: absolute;
+        transform: rotate(-38deg);
+        margin-left: -5% !important;
+        margin-top: -12%;
+    }
+
+    .gradient-andromeda {
+        width: 500px;
+        height: 200px;
+        z-index: 1;
+        background: radial-gradient( circle farthest-corner at 83.7% 4.3%,  rgba(173,0,171,1) 0%, rgba(15,51,92,1) 90% );
         position: absolute;
         transform: rotate(-38deg);
         margin-left: -5% !important;
@@ -2888,6 +2936,15 @@ rain {
         position: absolute;
         transform: rotate(0deg);
     }
+
+    .gradient-andromeda {
+        width: 800px;
+        height: 105px;
+        z-index: 1;
+        background: radial-gradient( circle farthest-corner at 83.7% 4.3%,  rgba(173,0,171,1) 0%, rgba(15,51,92,1) 90% );
+        position: absolute;
+        transform: rotate(0deg);
+    }
 }
 
 @media only screen and (max-width: 501px) {
@@ -2941,6 +2998,15 @@ rain {
         height: 90px;
         z-index: 1;
         background: linear-gradient(88.11deg, #FB4AB4 0.94%, #FEB6FF 79.14%);
+        position: absolute;
+        transform: rotate(0deg);
+    }
+
+    .gradient-andromeda {
+        width: 400px;
+        height: 90px;
+        z-index: 1;
+        background: radial-gradient( circle farthest-corner at 83.7% 4.3%,  rgba(173,0,171,1) 0%, rgba(15,51,92,1) 90% );
         position: absolute;
         transform: rotate(0deg);
     }
@@ -4970,8 +5036,8 @@ rain {
     position: relative;
 }
 
-.server-online .material-icons {
-    font-size: 26px;
+.server-online i {
+    font-size: 18px;
     color: #808080;
 }
 
@@ -4981,7 +5047,7 @@ rain {
     text-transform: none;
     font-size: 16px !important;
     color: #808080;
-    margin: -5px;
+    margin: 0px;
 }
 
 .input-field .material-icons {
@@ -5195,7 +5261,7 @@ rain {
     height: 10px;
     border-radius: 8px;
     background: linear-gradient(90.11deg, #11B2FF 0%, #8DEBFF 100%);
-    box-shadow: 0px 0px 8px #6cd3ff;
+    box-shadow: 0px 0px 5px #6cd3ff;
     position: absolute;
     left: 0;
 }
@@ -5213,7 +5279,7 @@ rain {
     height: 10px;
     border-radius: 8px;
     background: linear-gradient(90.11deg, #6081FF 0%, #BE8FFF 100%);
-    box-shadow: 0px 0px 7px #A78BFF;
+    box-shadow: 0px 0px 6px #A78BFF;
     position: absolute;
     left: 0;
 }
@@ -5222,7 +5288,16 @@ rain {
     height: 10px;
     border-radius: 8px;
     background: linear-gradient(43.98deg, #FF002D 1.72%, #FF6981 100%);
-    box-shadow: 0px 0px 8px #FC7263;
+    box-shadow: 0px 0px 6px #FC7263;
+    position: absolute;
+    left: 0;
+}
+
+.server-line-green {
+    height: 10px;
+    border-radius: 8px;
+    background: linear-gradient(88.11deg, #4ef335 0.94%, #33FF47 39.14%);
+    box-shadow: 0px 0px 8px #93ff68;
     position: absolute;
     left: 0;
 }
@@ -5236,11 +5311,11 @@ rain {
     left: 0;
 }
 
-.server-line-green {
+.server-line-andromeda {
     height: 10px;
     border-radius: 8px;
-    background: linear-gradient(88.11deg, #4ef335 0.94%, #33FF47 39.14%);
-    box-shadow: 0px 0px 8px #93ff68;
+    background: radial-gradient( circle farthest-corner at 83.7% 4.3%,  rgba(173,0,171,1) 0%, rgba(15,51,92,1) 90% );
+    box-shadow: 0px 0px 3px #462177;
     position: absolute;
     left: 0;
 }
