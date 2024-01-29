@@ -6,7 +6,7 @@
     <meta name="google-site-verification" content="DLNWD4pudytDWciFfuuFNl1_BPFJm4Wxhv67aBbJSzY" />
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://kit.fontawesome.com/7a9092486b.css" crossorigin="anonymous">
 
     <link type="text/css" rel="stylesheet" href="/css/materialize.min.css" media="screen,projection" />
     <link type="text/css" rel="stylesheet" href="/css/styles.css" media="screen,projection">
@@ -550,15 +550,12 @@
                                             </div>
                                             <% } %>
                                                 <% if (server.boost_status) { %>
-                                                    <div
+                                                  <!--  <div
                                                         style="position: absolute; top: -12.5px; left: 50%; background: #0006b1; border-radius: 6px 6px 0 0; color: #fff; font-family: 'TT Norms Pro', sans-serif; font-size: 12px; font-weight: 500; transform: translate(-50%, -50%); padding-top: 3px; padding-left: 15px; padding-right: 10px; padding-bottom: 4px; user-select: none; animation: horizontal-shaking infinite 0.7s;">
                                                         Грозовая туча<i style="font-size: 10.5px; margin-left: 5px;"
-                                                            class="fa-solid fa-cloud-bolt"></i></div>
+                                                            class="fa-solid fa-cloud-bolt"></i></div> -->
                                                     <% } %>
-                                                        <div class="server" <% if (server.premium_status) { %>type="<%=
-                                                                server.premium_color %>"<% } %>
-                                                                    <% if (server.boost_status) { %>style="margin-top:
-                                                                        50px;"<% } %>>
+                                                        <div class="server" <% if (server.premium_status) { %>type="<%= server.premium_color %>"<% } %>>
                                                                             <% if (server.premium_status) { %>
                                                                                 <div
                                                                                     class="gradient-<%= server.premium_color %>">
@@ -588,12 +585,10 @@
                                                                                         <% if
                                                                                             (server.banner=='default-server-picture.gif'
                                                                                             ) { %>
-                                                                                            <div
-                                                                                                style="background-image: url('../img/default-server-picture.gif');">
+                                                                                            <div <% if (server.premium_color == 'andromeda' || server.premium_color == 'western') { %>style="box-shadow: none; border: 3px solid #fff; background-image: url('../img/default-server-picture.gif');"<% } else {%>style="background-image: url('../img/default-server-picture.gif');"<% } %>>
                                                                                             </div>
                                                                                             <% } else { %>
-                                                                                                <div
-                                                                                                    style="background-image: url('../media/pictures/<%= server.banner %>');">
+                                                                                                <div <% if (server.premium_color == 'andromeda' || server.premium_color == 'western') { %>style="box-shadow: none; border: 3px solid #fff; background-image: url('../media/pictures/<%= server.banner %>');"<% } else {%>style="background-image: url('../media/pictures/<%= server.banner %>');"<% } %>>
                                                                                                 </div>
                                                                                                 <% } %>
                                                                                     </div>
@@ -604,6 +599,8 @@
                                                                                                 style="padding-top: 8px;">
                                                                                                 <% if (server.premium_color == 'andromeda') { %>
                                                                                                     <i class="fa-solid fa-user-astronaut" style="font-size: 20px;"></i>
+                                                                                                <% } else if (server.premium_color == 'western') { %>
+                                                                                                    <i class="fa-solid fa-user-cowboy" style="font-size: 20px;"></i>
                                                                                                 <% } else { %>
                                                                                                     <i class="fa-solid fa-user-group"></i>
                                                                                                 <% } %>

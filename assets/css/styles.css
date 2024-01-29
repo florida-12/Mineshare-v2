@@ -2735,29 +2735,24 @@ rain {
 }
 
 .gradient-andromeda {
-    width: 500px;
-    height: 280px;
+    width: 100%;
+    height: 160px;
     z-index: 1;
-    background: radial-gradient( circle farthest-corner at 83.7% 4.3%,  rgba(173,0,171,1) 0%, rgba(15,51,92,1) 90% );
+    background: radial-gradient(circle farthest-corner at 83.7% 4.3%, rgba(173, 0, 171, 1) 0%, rgba(15, 51, 92, 1) 90%);
     position: absolute;
-    transform: rotate(-38deg);
-    margin-left: -8%;
-    margin-top: -12%;
-    background-size: 200% 200%;
-    animation: andromedaAnimation 6s infinite;
+    margin-left: -10px;
+    margin-top: -4%;
 }
 
-@keyframes andromedaAnimation {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
+.gradient-western {
+    width: 100%;
+    height: 160px;
+    z-index: 1;
+    background: linear-gradient(to right, #f83600 0%, #f9d423 100%);
+    position: absolute;
+    margin-left: -10px;
+    margin-top: -4%;
+}
 
 @media only screen and (min-width: 1800px) {
     .gradient-blue {
@@ -2830,7 +2825,18 @@ rain {
         width: 500px;
         height: 200px;
         z-index: 1;
-        background: radial-gradient( circle farthest-corner at 83.7% 4.3%,  rgba(173,0,171,1) 0%, rgba(15,51,92,1) 90% );
+        background: radial-gradient(circle farthest-corner at 83.7% 4.3%, rgba(173, 0, 171, 1) 0%, rgba(15, 51, 92, 1) 90%);
+        position: absolute;
+        transform: rotate(-38deg);
+        margin-left: -5% !important;
+        margin-top: -12%;
+    }
+
+    .gradient-western {
+        width: 500px;
+        height: 200px;
+        z-index: 1;
+        background: linear-gradient(to right, #f83600 0%, #f9d423 100%);
         position: absolute;
         transform: rotate(-38deg);
         margin-left: -5% !important;
@@ -2941,7 +2947,16 @@ rain {
         width: 800px;
         height: 105px;
         z-index: 1;
-        background: radial-gradient( circle farthest-corner at 83.7% 4.3%,  rgba(173,0,171,1) 0%, rgba(15,51,92,1) 90% );
+        background: radial-gradient(circle farthest-corner at 83.7% 4.3%, rgba(173, 0, 171, 1) 0%, rgba(15, 51, 92, 1) 90%);
+        position: absolute;
+        transform: rotate(0deg);
+    }
+
+    .gradient-western {
+        width: 800px;
+        height: 105px;
+        z-index: 1;
+        background: linear-gradient(to right, #f83600 0%, #f9d423 100%);
         position: absolute;
         transform: rotate(0deg);
     }
@@ -3006,7 +3021,16 @@ rain {
         width: 400px;
         height: 90px;
         z-index: 1;
-        background: radial-gradient( circle farthest-corner at 83.7% 4.3%,  rgba(173,0,171,1) 0%, rgba(15,51,92,1) 90% );
+        background: radial-gradient(circle farthest-corner at 83.7% 4.3%, rgba(173, 0, 171, 1) 0%, rgba(15, 51, 92, 1) 90%);
+        position: absolute;
+        transform: rotate(0deg);
+    }
+
+    .gradient-western {
+        width: 400px;
+        height: 90px;
+        z-index: 1;
+        background: linear-gradient(to right, #f83600 0%, #f9d423 100%);
         position: absolute;
         transform: rotate(0deg);
     }
@@ -3107,7 +3131,7 @@ rain {
     padding-right: 20px;
     margin-bottom: 10px;
     display: inline-flex;
-    vertical-align:top;
+    vertical-align: top;
 }
 
 .serverpage-ip p {
@@ -3848,7 +3872,7 @@ rain {
     width: 50px;
     height: 50px;
     position: relative;
-    background: radial-gradient( circle farthest-corner at 83.7% 4.3%,  rgba(173,0,171,1) 0%, rgba(15,51,92,1) 90% );
+    background: radial-gradient(circle farthest-corner at 83.7% 4.3%, rgba(173, 0, 171, 1) 0%, rgba(15, 51, 92, 1) 90%);
     border-radius: 8px;
     cursor: pointer;
     transition: 0.1s;
@@ -3865,6 +3889,29 @@ rain {
 
 .serverpage-gradient-andromeda:hover {
     box-shadow: 0px 0px 10px rgba(173, 0, 171, 0.6);
+}
+
+.serverpage-gradient-western {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    background: linear-gradient(to right, #f83600 0%, #f9d423 100%);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.1s;
+}
+
+.serverpage-gradient-western i {
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.serverpage-gradient-western:hover {
+    box-shadow: 0px 0px 10px rgba(255, 128, 48, 0.6);
 }
 
 @media only screen and (min-width: 1800px) {
@@ -5314,8 +5361,17 @@ rain {
 .server-line-andromeda {
     height: 10px;
     border-radius: 8px;
-    background: radial-gradient( circle farthest-corner at 83.7% 4.3%,  rgba(173,0,171,1) 0%, rgba(15,51,92,1) 90% );
-    box-shadow: 0px 0px 3px #462177;
+    background: #fff;
+    box-shadow: none;
+    position: absolute;
+    left: 0;
+}
+
+.server-line-western {
+    height: 10px;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: none;
     position: absolute;
     left: 0;
 }
