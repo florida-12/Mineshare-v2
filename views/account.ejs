@@ -483,7 +483,7 @@
                                             }
                                         </style>
                                         <td style="width: 90px; border-left: 1px solid rgba(0, 0, 0, 0.12); padding-left: 12px;">
-                                            <i class="fa-solid fa-pen-clip" style="color: #c3c3c3; cursor: pointer;"></i><div style="width: 2px; height: 15px; background: #c7c7c7; border-radius: 40px; vertical-align: middle; margin-left: 17px; margin-right: 17px; display: inline-flex;"></div><i class="fa-solid fa-trash" style="cursor: pointer;"></i>
+                                            <i class="fa-solid fa-pen-clip" style="color: #c3c3c3; cursor: pointer;"></i><div style="width: 2px; height: 15px; background: #c7c7c7; border-radius: 40px; vertical-align: middle; margin-left: 17px; margin-right: 17px; display: inline-flex;"></div><i class="fa-solid fa-trash" style="cursor: pointer;" onclick="window.location = '/account/comment/<%= comment.server_id %>/<%= comment.user_id %>/delete';"></i>
                                         </td>
                                     </tr>
                                     <% }); %>

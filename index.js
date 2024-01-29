@@ -527,6 +527,14 @@ app.post('/account/server/:id/edit', isAuthenticated, multerParser, upload.field
     });
 });
 
+app.get('/account/comment/:server_id/:user_id/delete', isAuthenticated, async (req, res) => {
+    if (req.user.admin) {
+        const result = await pool.query(`DELETE FROM servers_comments WHERE server_id = $1 AND user_id = $2;`, [req.params.server_id, req.params.user_id]);
+    }
+    
+    res.redirect('/account');
+});
+
 app.get('/media/pictures/:uuid', async (req, res) => {
     const imagePath = path.join(__dirname, '/media/pictures/', `${req.params.uuid}`);
 
