@@ -3,6 +3,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 
+@font-face {
+    font-family: 'TTNormsMedium';
+    src: url('../fonts/TTNormsMedium.eot');
+    src: url('../fonts/TTNormsMedium.eot') format('embedded-opentype'),
+        url('../fonts/TTNormsMedium.woff2') format('woff2'),
+        url('../fonts/TTNormsMedium.woff') format('woff'),
+        url('../fonts/TTNormsMedium.ttf') format('truetype'),
+        url('../fonts/TTNormsMedium.svg#TTNormsMedium') format('svg');
+}
+
 @media only screen and (min-width: 1200px) {
     .container {
         width: 86%;
