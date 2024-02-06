@@ -16,7 +16,7 @@ async function checkRating() {
 
         await client.connect();
 
-        const result = await client.query(`SELECT * FROM servers WHERE ban = false;`);
+        let result = await client.query(`SELECT * FROM servers WHERE ban = false;`);
         const servers = result.rows;
 
         for (const server of servers) {
@@ -41,6 +41,21 @@ async function checkRating() {
                 if (rate > 110) rate = 110;
                 console.log(`${server.ip}: ${rate}★`);
                 await client.query(`UPDATE servers SET rate = $1 WHERE ip = $2;`, [rate, server.ip]);
+            } catch (error) {
+                console.error(error.message);
+            }
+        }
+
+        result = await client.query(`SELECT * FROM servers_likes;`);
+        const likes = result.rows;
+
+        for (const like of likes) {
+            try {
+                const status = (new Date()) - (new Date(like.date)) >= (6 * 24 * 60 * 60 * 1000); // 6 days
+
+                if (status) {
+                    await client.query(`DELETE FROM servers_likes WHERE server_id = $1 AND user_id = $2;`, [like.server_id, like.user_id]);
+                }
             } catch (error) {
                 console.error(error.message);
             }
