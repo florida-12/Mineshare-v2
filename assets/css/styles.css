@@ -3360,14 +3360,14 @@ rain {
     position: absolute;
     top: 8px;
     right: 15px;
-    color: #808080;
+    color: #a0a0a0;
     font-size: 14px;
 }
 
 .serverpage-comments .comment .avatar {
     width: 70px;
     height: 70px;
-    display: flex;
+    display: inline-flex;
 }
 
 .serverpage-comments .comment .avatar img {
@@ -3383,6 +3383,7 @@ rain {
     font-weight: 500;
     margin-left: 20px;
     margin-bottom: 5px;
+    display: flex;
 }
 
 .serverpage-comments .comment .text {

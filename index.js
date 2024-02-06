@@ -988,7 +988,7 @@ app.post('/server/:id/comment', isAuthenticated, (req, res) => {
 
         if (result.rows.length >= 1) return res.redirect(`/server/${req.params.id}`);
 
-        pool.query(`INSERT INTO servers_comments (server_id, user_id, message) VALUES ($1, $2, $3);`, [req.params.id, req.user.id, message], (err) => {
+        pool.query(`INSERT INTO servers_comments (server_id, user_id, message) VALUES ($1, $2, $3);`, [req.params.id, req.user.id, message.trim()], (err) => {
             if (err) console.error('Error executing query:', err);
 
             return res.redirect(`/server/${req.params.id}`);

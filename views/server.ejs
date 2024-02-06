@@ -394,7 +394,7 @@
                                                                                         method="post">
                                                                                         <input type="text"
                                                                                             placeholder="Сообщение"
-                                                                                            maxlength="120"
+                                                                                            maxlength="200"
                                                                                             name="message" required>
                                                                                         <button
                                                                                             type="submit">Подтвердить</button>
@@ -414,14 +414,14 @@
                                                                                                     src="https://crafatar.com/avatars/<%= comment.skin %>?default=54c32ed5ab7243e5a00eec680d514523">
                                                                                             </div>
                                                                                             <div
-                                                                                                style="margin-top: -3px;">
+                                                                                                style="width: calc(100% - 70px); position: relative; margin-top: -5px;">
                                                                                                 <div class="name">
                                                                                                     <%= comment.username
                                                                                                         %>
                                                                                                         <% if
                                                                                                             (comment.admin)
                                                                                                             { %><span
-                                                                                                                style="color: #0F9D58; font-size: 10px;">(модератор)</span>
+                                                                                                                style="color: #0F9D58; font-size: 10px;">&nbsp;[модератор]</span>
                                                                                                             <% } %>
                                                                                                 </div>
                                                                                                 <div class="text">
