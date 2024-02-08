@@ -636,15 +636,12 @@
                                                                                                                 <% } else
                                                                                                                     { %>
                                                                                                                     <div class="col l12 s12 server-ip"
-                                                                                                                        onclick="copyIP('#<%= server.ip %>')"
+                                                                                                                        onclick="copyIP('#<%= server.id %>')"
                                                                                                                         style="cursor:pointer;">
                                                                                                                         <h6 id="<%= server.id %>"
                                                                                                                             class="center">
                                                                                                                             <%= server.ip
-                                                                                                                                %>
-                                                                                                                                :
-                                                                                                                                <%= server.port
-                                                                                                                                    %>
+                                                                                                                                %>:<%= server.port %>
                                                                                                                         </h6>
                                                                                                                     </div>
                                                                                                                     <% }}

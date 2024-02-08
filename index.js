@@ -1225,7 +1225,9 @@ async function startServer() {
 
         // Прослушивание порта
         httpsServer.listen(443, () => {
-            console.log(`---------- RUNNING ----------`);
+            console.log(`\n---------- RUNNING ----------`);
+            console.log(`${new Date()}`);
+            console.log(`-----------------------------\n`);
         });
     } catch (err) {
         console.error('Ошибка при чтении файлов:', err);
