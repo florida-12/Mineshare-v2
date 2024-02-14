@@ -1070,6 +1070,16 @@ app.get('/news', recaptcha.middleware.render, (req, res) => {
     });
 });
 
+app.get('/support', recaptcha.middleware.render, (req, res) => {
+    if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
+
+    res.render('support', { user: req.user, footer: footer_html, captcha: res.recaptcha });
+});
+
+app.post('/support', (req, res) => {
+    res.redirect('/');
+});
+
 app.get('/terms', (req, res) => {
     if (!req.path.endsWith('/') && req.path !== '/') return res.redirect(301, req.path + '/');
 
@@ -1225,9 +1235,9 @@ async function startServer() {
 
         // Прослушивание порта
         httpsServer.listen(443, () => {
-            console.log(`\n---------- RUNNING ----------`);
+            console.log(`\n--------------- RUNNING ---------------`);
             console.log(`${new Date()}`);
-            console.log(`-----------------------------\n`);
+            console.log(`---------------------------------------\n`);
         });
     } catch (err) {
         console.error('Ошибка при чтении файлов:', err);
