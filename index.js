@@ -1077,7 +1077,16 @@ app.get('/support', recaptcha.middleware.render, (req, res) => {
 });
 
 app.post('/support', (req, res) => {
-    res.redirect('/');
+    const { name, email, category, text } = req.body;
+
+    pool.query(`INSERT INTO support (name, email, category, text) VALUES ($1, $2, $3, $4);`, [name, email, category, text], (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        res.redirect('/');
+    });
 });
 
 app.get('/terms', (req, res) => {
