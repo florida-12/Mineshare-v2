@@ -1079,6 +1079,8 @@ app.get('/support', recaptcha.middleware.render, (req, res) => {
 app.post('/support', (req, res) => {
     const { name, email, category, text } = req.body;
 
+    if (email == undefined ) return res.redirect('/');
+
     pool.query(`INSERT INTO support (name, email, category, text) VALUES ($1, $2, $3, $4);`, [name, email, category, text], (err, result) => {
         if (err) {
             console.error(err);
