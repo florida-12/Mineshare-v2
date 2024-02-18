@@ -1079,7 +1079,9 @@ app.get('/support', recaptcha.middleware.render, (req, res) => {
 app.post('/support', (req, res) => {
     const { name, email, category, text } = req.body;
 
-    if (email == undefined ) return res.redirect('/');
+    const requiredFields = [name, email, category, text];
+
+    if (requiredFields.some(field => field === undefined || field === '')) return res.status(400).send('All fields are required');
 
     pool.query(`INSERT INTO support (name, email, category, text) VALUES ($1, $2, $3, $4);`, [name, email, category, text], (err, result) => {
         if (err) {
