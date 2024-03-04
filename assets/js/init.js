@@ -7,4 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     elems = document.querySelectorAll('.tabs');
     instances = M.Tabs.init(elems);
+
+    elems = document.querySelectorAll('.sidenav');
+    instances = M.Sidenav.init(elems);
 });
