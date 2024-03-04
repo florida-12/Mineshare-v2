@@ -10,4 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     elems = document.querySelectorAll('.sidenav');
     instances = M.Sidenav.init(elems);
+
+    elems = document.querySelectorAll('.materialboxed');
+    instances = M.Materialbox.init(elems);
 });
