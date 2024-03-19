@@ -600,7 +600,7 @@ app.get('/random', (req, res) => {
         const servers = result.rows.map(row => row.id);
         const server = servers[Math.floor(Math.random() * servers.length)];
 
-        res.redirect(`/server/${server}`);
+        res.redirect(`/server/${server}/?random=true`);
     });
 });
 

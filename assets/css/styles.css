@@ -27,6 +27,7 @@
 }
 
 body {
+    position: relative;
     background: #fff;
     background: url('../img/cloud-bg.png') repeat-x 0 / 90% auto;
     height: 100px;
@@ -3066,6 +3067,31 @@ rain {
     padding-bottom: 30px;
     margin-bottom: 50px;
     margin-top: 50px;
+}
+
+.serverpage-random-button {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    background: linear-gradient(98.44deg, #47ddff 0%, #00ABFF 100%), #339DFF;
+    box-shadow: 0px 0px 10px rgba(113, 212, 255, 0.8);
+    border-radius: 10px;
+    color: #fff;
+    font-family: 'TT Norms Pro', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    padding-top: 9px;
+    padding-left: 28px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    cursor: pointer;
+    display: none;
+    z-index: 100;
+}
+
+.serverpage-random-button i {
+    font-size: 14px;
+    margin-left: 8px;
 }
 
 @media only screen and (max-width: 601px) {

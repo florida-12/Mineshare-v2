@@ -34,6 +34,9 @@
 </head>
 
 <body>
+    <div id="random_button" class="serverpage-random-button waves-effect waves-light" onclick="window.location = '/random';">
+        Найти другой<i class="fa-solid fa-magnifying-glass-arrow-right"></i>
+    </div>
 
     <div class="container nav-container nav-margin">
         <div class="row nav-wrapper">
@@ -442,8 +445,7 @@
                                                                     </div>
                                                                     <div class="col l4 m12 s12">
                                                                         <div class="serverpage-like">
-                                                                            <img
-                                                                                src="/img/like-wallpaper.png">
+                                                                            <img src="/img/like-wallpaper.png">
                                                                             <div
                                                                                 style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%);">
                                                                                 <p class="title">Понравился сервер?</p>
@@ -482,6 +484,14 @@
                 });
 
                 $('.serverpage-illustration-vs').height(maxHeight);
+
+                const params = new Proxy(new URLSearchParams(window.location.search), {
+                    get: (searchParams, prop) => searchParams.get(prop),
+                });
+                if (params.random == 'true') {
+                    $('#random_button').css('display', 'block');
+                    
+                }
             });
         </script>
 </body>
