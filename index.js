@@ -38,7 +38,7 @@ const recaptcha = new Recaptcha(process.env.RECAPTCHA_SITE_KEY, process.env.RECA
 
 const pool = new pg.Pool({
     user: process.env.DATABASE_USER,
-    host: 'mineshare.top',
+    host: 'craftomania.net',
     database: 'mineshare_v2',
     password: process.env.DATABASE_PASSWORD,
     port: 5432,
@@ -46,7 +46,7 @@ const pool = new pg.Pool({
 
 const poolConfigOpts = {
     user: process.env.DATABASE_USER,
-    host: 'mineshare.top',
+    host: 'craftomania.net',
     database: 'mineshare_v2',
     password: process.env.DATABASE_PASSWORD,
     port: 5432
@@ -215,7 +215,7 @@ app.post('/register', recaptcha.middleware.verify, async (req, res) => {
 
             const newUserResult = await pool.query('INSERT INTO users (email, password, regip, confirmation_token) VALUES ($1, $2, $3, $4) RETURNING *', [email, hashedPassword, regip, confirmationToken]);
 
-            const confirmationLink = `https://mineshare.top/account/confirm/${confirmationToken}`;
+            const confirmationLink = `https://craftomania.net/account/confirm/${confirmationToken}`;
             sendConfirmationEmail(email, confirmationLink);
 
             res.redirect('/?login=confirmation')
@@ -1144,20 +1144,20 @@ app.get('/sitemap.xml', function (req, res) {
     const currentDate = new Date().toISOString();
 
     try {
-        const smStream = new SitemapStream({ hostname: 'https://mineshare.top' });
+        const smStream = new SitemapStream({ hostname: 'https://craftomania.net' });
         const pipeline = smStream.pipe(createGzip());
 
         smStream.write({
-            url: '/', lastmod: currentDate, changefreq: 'daily', priority: 1, img: [{ url: 'https://mineshare.top/media/pictures/1db268dd-09e3-450d-8596-4f44ab60aced.gif', caption: 'go.playmine.org' },
-            { url: 'https://mineshare.top/media/pictures/de884d99-0580-4c2f-aa98-3fa6851f3f19.gif', caption: 'mclucky.net' },
-            { url: 'https://mineshare.top/media/pictures/27148d9c-7666-491e-96ee-8087a790903e.gif', caption: 'mc.restartcraft.fun' },
-            { url: 'https://mineshare.top/media/pictures/2bd8f013-715b-4dee-825b-8368e25e8ff7.gif', caption: 'mc.tntland.fun' },
-            { url: 'https://mineshare.top/media/pictures/e3270066-768a-4495-9863-6f0937ad7f71.png', caption: 'tmine.su' },
-            { url: 'https://mineshare.top/media/pictures/c2102efb-1b0e-4853-9d3c-417cbc043111.gif', caption: 'mc.aquamc.su' },
-            { url: 'https://mineshare.top/media/pictures/cbd0a41a-26f0-4eb5-9eea-cb5dc1fa5632.gif', caption: 'play.mc-dnc.online' },
-            { url: 'https://mineshare.top/media/pictures/456b7736-a952-4a6a-8409-5c3831501ff2.png', caption: '51game.ru' },
-            { url: 'https://mineshare.top/img/default-server-picture.gif', caption: 'play.astrixmc.net' },
-            { url: 'https://mineshare.top/media/pictures/5140388e-08fb-41fe-8b69-decd78f7f666.gif', caption: 'bawlcraft.20tps.ru' }]
+            url: '/', lastmod: currentDate, changefreq: 'daily', priority: 1, img: [{ url: 'https://craftomania.net/media/pictures/1db268dd-09e3-450d-8596-4f44ab60aced.gif', caption: 'go.playmine.org' },
+            { url: 'https://craftomania.net/media/pictures/de884d99-0580-4c2f-aa98-3fa6851f3f19.gif', caption: 'mclucky.net' },
+            { url: 'https://craftomania.net/media/pictures/27148d9c-7666-491e-96ee-8087a790903e.gif', caption: 'mc.restartcraft.fun' },
+            { url: 'https://craftomania.net/media/pictures/2bd8f013-715b-4dee-825b-8368e25e8ff7.gif', caption: 'mc.tntland.fun' },
+            { url: 'https://craftomania.net/media/pictures/e3270066-768a-4495-9863-6f0937ad7f71.png', caption: 'tmine.su' },
+            { url: 'https://craftomania.net/media/pictures/c2102efb-1b0e-4853-9d3c-417cbc043111.gif', caption: 'mc.aquamc.su' },
+            { url: 'https://craftomania.net/media/pictures/cbd0a41a-26f0-4eb5-9eea-cb5dc1fa5632.gif', caption: 'play.mc-dnc.online' },
+            { url: 'https://craftomania.net/media/pictures/456b7736-a952-4a6a-8409-5c3831501ff2.png', caption: '51game.ru' },
+            { url: 'https://craftomania.net/img/default-server-picture.gif', caption: 'play.astrixmc.net' },
+            { url: 'https://craftomania.net/media/pictures/5140388e-08fb-41fe-8b69-decd78f7f666.gif', caption: 'bawlcraft.20tps.ru' }]
         });
         smStream.write({ url: '/terms', lastmod: currentDate, changefreq: 'weekly', priority: 0.8 });
         smStream.write({ url: '/privacy', lastmod: currentDate, changefreq: 'weekly', priority: 0.8 });
