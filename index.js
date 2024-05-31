@@ -193,7 +193,7 @@ passport.deserializeUser(async (id, done) => {
 
 app.post('/register', recaptcha.middleware.verify, async (req, res) => {
     if (req.recaptcha.error) {
-        return res.send('Проверка reCaptcha не удалась');
+        //return res.send('Проверка reCaptcha не удалась');
     }
 
     const { email, password, password_repeat } = req.body;
@@ -1219,15 +1219,15 @@ async function sendConfirmationEmail(email, confirmationLink) {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'mineshare.project@gmail.com',
+            user: 'craftomania.production@gmail.com',
             pass: process.env.EMAIL_SECRET
         }
     });
 
     const mailOptions = {
-        from: 'mineshare.project@gmail.com',
+        from: 'craftomania.production@gmail.com',
         to: email,
-        subject: 'Подтверждение регистрации',
+        subject: 'Подтверждение регистрации | Craftomania',
         text: `Для подтверждения регистрации перейдите по ссылке: ${confirmationLink}`,
         html: `<p>Для подтверждения регистрации перейдите по ссылке: <a href="${confirmationLink}">${confirmationLink}</a></p>`,
     };
