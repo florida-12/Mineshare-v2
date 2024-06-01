@@ -193,7 +193,7 @@ passport.deserializeUser(async (id, done) => {
 
 app.post('/register', recaptcha.middleware.verify, async (req, res) => {
     if (req.recaptcha.error) {
-        //return res.send('Проверка reCaptcha не удалась');
+        return res.send('Проверка reCaptcha не удалась');
     }
 
     const { email, password, password_repeat } = req.body;
