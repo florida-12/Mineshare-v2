@@ -9,6 +9,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const Recaptcha = require('express-recaptcha').RecaptchaV2;
 const session = require('express-session');
+const requestIp = require('request-ip');
 const flash = require('express-flash');
 const { v4: uuidv4 } = require('uuid');
 const bodyParser = require('body-parser');
@@ -27,6 +28,7 @@ const app = express();
 dotenv.config();
 
 
+app.use(requestIp.mw());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'assets')));
@@ -208,12 +210,12 @@ app.post('/register', recaptcha.middleware.verify, async (req, res) => {
         } else {
             const hashedPassword = await bcrypt.hash(password, 10);
 
-            let regip = req.headers['x-forwarded-for'];
+            let regip = req.clientIp;
             if (regip == undefined) regip = '0.0.0.0';
 
             const confirmationToken = uuidv4();
 
-            const newUserResult = await pool.query('INSERT INTO users (email, password, regip, confirmation_token) VALUES ($1, $2, $3, $4) RETURNING *', [email, hashedPassword, regip, confirmationToken]);
+            const newUserResult = await pool.query('INSERT INTO users (email, password, logip, regip, confirmation_token) VALUES ($1, $2, $3, $4, %5) RETURNING *', [email, hashedPassword, regip, regip, confirmationToken]);
 
             const confirmationLink = `https://craftomania.net/account/confirm/${confirmationToken}`;
             sendConfirmationEmail(email, confirmationLink);
